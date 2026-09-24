@@ -16,7 +16,7 @@ export async function SiteHeader() {
   const unread = user && db ? unreadCount(db, user) : 0;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-[#f3efe4]/95 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line/80 bg-[#f7f1e4]/75 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-2 px-4 py-3">
         <Link href="/" className="mr-1 text-xl font-bold tracking-tight text-primary">
           Sproutable

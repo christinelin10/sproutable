@@ -5,6 +5,7 @@
   },
   "nav": {
     "gardens": "Jardines",
+    "calendar": "Calendario",
     "inbox": "Bandeja",
     "dashboard": "Panel",
     "profile": "Perfil",
@@ -91,6 +92,11 @@
     "beds": "Número aproximado de camas (opcional)",
     "cover": "Foto de portada (opcional)",
     "involved": "Cómo puede participar la gente",
+    "credentials": "Credenciales",
+    "credentialUser": "Usuario",
+    "credentialManager": "Coordinación",
+    "copy": "Copiar",
+    "copied": "Copiado",
     "continue": "Continuar",
     "back": "Atrás"
   },
@@ -229,7 +235,12 @@
     "email": "Correo",
     "flyer": "Descargar volante",
     "editDate": "Editar esta fecha",
-    "englishOnly": "Se muestra en inglés porque todavía no hay versión en español."
+    "englishOnly": "Se muestra en inglés porque todavía no hay versión en español.",
+    "signInToGo": "Entra para participar"
+  },
+  "calendar": {
+    "gardens": "Jardines",
+    "all": "Todos los jardines"
   },
   "inbox": {
     "title": "Bandeja",

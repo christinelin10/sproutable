@@ -23,6 +23,9 @@ export async function SiteHeader() {
         <Link href="/gardens" className="rounded-full px-3 py-2 font-semibold hover:bg-white">
           {t("gardens")}
         </Link>
+        <Link href="/calendar" className="rounded-full px-3 py-2 font-semibold hover:bg-white">
+          {t("calendar")}
+        </Link>
         <div className="ml-auto flex items-center gap-2">
           <LanguageSwitcher locale={locale} label={t("language")} />
           {user ? (

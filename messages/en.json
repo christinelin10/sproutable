@@ -5,6 +5,7 @@
   },
   "nav": {
     "gardens": "Gardens",
+    "calendar": "Calendar",
     "inbox": "Inbox",
     "dashboard": "Dashboard",
     "profile": "Profile",
@@ -91,6 +92,11 @@
     "beds": "Approximate number of beds (optional)",
     "cover": "Cover photo (optional)",
     "involved": "How people can get involved",
+    "credentials": "Credentials",
+    "credentialUser": "User",
+    "credentialManager": "Manager",
+    "copy": "Copy",
+    "copied": "Copied",
     "continue": "Continue",
     "back": "Back"
   },
@@ -229,7 +235,12 @@
     "email": "Email",
     "flyer": "Download flyer",
     "editDate": "Edit this date",
-    "englishOnly": "Shown in English because a Spanish version is not written yet."
+    "englishOnly": "Shown in English because a Spanish version is not written yet.",
+    "signInToGo": "Sign in to go"
+  },
+  "calendar": {
+    "gardens": "Gardens",
+    "all": "All gardens"
   },
   "inbox": {
     "title": "Inbox",

@@ -27,6 +27,8 @@ export type CalendarItem = {
   viewerName: string;
   viewerEmail: string;
   loggedIn: boolean;
+  slug?: string;
+  gardenName?: string;
 };
 
 const colors: Record<string, string> = {
@@ -45,6 +47,10 @@ export function CalendarView({
   items,
   canManage,
   listItems,
+  basePath,
+  extraQuery = "",
+  returnTo,
+  signInToRsvp = false,
 }: {
   slug: string;
   month: string;
@@ -53,6 +59,10 @@ export function CalendarView({
   items: CalendarItem[];
   canManage: boolean;
   listItems: CalendarItem[];
+  basePath?: string;
+  extraQuery?: string;
+  returnTo?: string;
+  signInToRsvp?: boolean;
 }) {
   const t = useTranslations("events");
   const errors = useTranslations("errors");
@@ -77,18 +87,27 @@ export function CalendarView({
   const prev = cursor.minus({ months: 1 }).toFormat("yyyy-MM");
   const next = cursor.plus({ months: 1 }).toFormat("yyyy-MM");
   const today = DateTime.now().setZone(zone).toISODate();
+  const path = basePath ?? `/gardens/${slug}/events`;
+  function monthHref(value: string) {
+    const query = new URLSearchParams(extraQuery);
+    query.set("month", value);
+    return `${path}?${query}`;
+  }
+  function eventSlug(item: CalendarItem) {
+    return item.slug ?? slug;
+  }
 
   return (
     <div>
       <div className="flex flex-wrap items-center gap-2">
-        <a className="rounded-full border border-line px-3 py-2 font-semibold" href={`/gardens/${slug}/events?month=${prev}`}>
+        <a className="rounded-full border border-line px-3 py-2 font-semibold" href={monthHref(prev)}>
           {t("prev")}
         </a>
         <h1 className="text-3xl font-semibold">{cursor.setLocale(locale).toFormat("LLLL yyyy")}</h1>
-        <a className="rounded-full border border-line px-3 py-2 font-semibold" href={`/gardens/${slug}/events?month=${next}`}>
+        <a className="rounded-full border border-line px-3 py-2 font-semibold" href={monthHref(next)}>
           {t("next")}
         </a>
-        <a className="rounded-full border border-line px-3 py-2 font-semibold" href={`/gardens/${slug}/events?month=${DateTime.now().setZone(zone).toFormat("yyyy-MM")}`}>
+        <a className="rounded-full border border-line px-3 py-2 font-semibold" href={monthHref(DateTime.now().setZone(zone).toFormat("yyyy-MM"))}>
           {t("today")}
         </a>
         {canManage ? (
@@ -135,6 +154,7 @@ export function CalendarView({
                       }}
                       className={`mt-1 block w-full rounded-lg px-1 py-1 text-left text-xs sm:text-sm ${item.locked ? "bg-stone-200" : colors[item.category]} ${item.cancelled ? "line-through" : ""}`}
                     >
+                      {item.gardenName ? <span className="block truncate font-semibold">{item.gardenName}</span> : null}
                       {item.locked ? t("membersOnly") : item.title}
                     </button>
                   ))}
@@ -162,6 +182,7 @@ export function CalendarView({
                   {item.locked ? t("membersOnly") : t(item.category as "workday")}
                 </span>
                 <span className={`mt-2 block text-xl font-semibold ${item.cancelled ? "line-through" : ""}`}>
+                  {item.gardenName ? `${item.gardenName} · ` : ""}
                   {item.locked ? t("membersOnly") : item.title}
                 </span>
                 <span className="text-muted">{DateTime.fromISO(item.start).setLocale(locale).toLocaleString(DateTime.DATETIME_MED)}</span>
@@ -201,15 +222,21 @@ export function CalendarView({
               ) : null}
               {!selected.cancelled && !selected.mine && selected.capacity !== null && selected.going >= selected.capacity ? <p>{t("full")}</p> : null}
               {!selected.cancelled && !selected.mine && (selected.capacity === null || selected.going < selected.capacity) ? (
-                <Button type="button" onClick={() => setRsvp(true)}>
-                  {t("rsvp")}
-                </Button>
+                signInToRsvp && !selected.loggedIn ? (
+                  <Link className="inline-block rounded-full bg-accent px-4 py-2 font-semibold text-accent-foreground" href={`/login?next=${encodeURIComponent(returnTo || path)}`}>
+                    {t("signInToGo")}
+                  </Link>
+                ) : (
+                  <Button type="button" onClick={() => setRsvp(true)}>
+                    {t("rsvp")}
+                  </Button>
+                )
               ) : null}
               {selected.mine ? (
                 <form
                   action={async () => {
                     await rsvpToEvent({
-                      slug,
+                      slug: eventSlug(selected),
                       eventId: selected.eventId,
                       date: selected.date,
                       name: selected.viewerName,
@@ -235,7 +262,7 @@ export function CalendarView({
                     event.preventDefault();
                     const data = new FormData(event.currentTarget);
                     const result = await rsvpToEvent({
-                      slug,
+                      slug: eventSlug(selected),
                       eventId: selected.eventId,
                       date: selected.date,
                       name: String(data.get("name")),
@@ -272,7 +299,7 @@ export function CalendarView({
                 </form>
               ) : null}
               {(message || selected.mine) && !selected.cancelled ? (
-                <a className="block font-semibold text-primary" href={`/api/events/${selected.eventId}/ics?date=${selected.date}&slug=${slug}`}>
+                <a className="block font-semibold text-primary" href={`/api/events/${selected.eventId}/ics?date=${selected.date}&slug=${eventSlug(selected)}`}>
                   {t("addCalendar")}
                 </a>
               ) : null}
@@ -283,13 +310,13 @@ export function CalendarView({
               ) : null}
               {canManage ? (
                 <div className="flex flex-wrap gap-2">
-                  <Link className="rounded-full border border-line px-3 py-2" href={`/manage/${slug}/events/${selected.eventId}`}>
+                  <Link className="rounded-full border border-line px-3 py-2" href={`/manage/${eventSlug(selected)}/events/${selected.eventId}`}>
                     {t("edit")}
                   </Link>
-                  <Link className="rounded-full border border-line px-3 py-2" href={`/manage/${slug}/events/${selected.eventId}?date=${selected.date}`}>
+                  <Link className="rounded-full border border-line px-3 py-2" href={`/manage/${eventSlug(selected)}/events/${selected.eventId}?date=${selected.date}`}>
                     {t("editDate")}
                   </Link>
-                  <form action={cancelOccurrence.bind(null, slug, selected.eventId, selected.date)}>
+                  <form action={cancelOccurrence.bind(null, eventSlug(selected), selected.eventId, selected.date)}>
                     <button className="rounded-full border border-line px-3 py-2" type="submit">
                       {t("cancelOne")}
                     </button>

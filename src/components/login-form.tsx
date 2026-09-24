@@ -4,8 +4,8 @@ import { useActionState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { login } from "@/server/auth-actions";
-import { DEMO_ACCOUNTS, DEMO_PASSWORD } from "@/lib/demo";
 import { Button } from "@/components/button";
+import { DemoCredentials } from "@/components/demo-credentials";
 import { Field, TextInput } from "@/components/field";
 
 export function LoginForm({ next }: { next?: string }) {
@@ -14,16 +14,6 @@ export function LoginForm({ next }: { next?: string }) {
   return (
     <div className="mx-auto max-w-md px-4 py-12">
       <h1 className="text-4xl font-semibold">{t("auth.loginTitle")}</h1>
-      <p className="mt-3 rounded-2xl bg-sun/40 px-4 py-3 text-sm">
-        {t("auth.demo")} <strong>{DEMO_PASSWORD}</strong>
-      </p>
-      <ul className="mt-3 space-y-1 text-sm text-muted">
-        {DEMO_ACCOUNTS.map((account) => (
-          <li key={account.email}>
-            {account.email} · {account.role}
-          </li>
-        ))}
-      </ul>
       <form action={action} className="mt-6 space-y-4">
         <input type="hidden" name="next" value={next ?? ""} />
         <Field label={t("auth.email")}>
@@ -40,6 +30,7 @@ export function LoginForm({ next }: { next?: string }) {
       <p className="mt-4">
         {t("auth.needAccount")} <Link href="/signup" className="font-semibold text-primary">{t("nav.signup")}</Link>
       </p>
+      <DemoCredentials />
     </div>
   );
 }

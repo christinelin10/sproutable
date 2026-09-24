@@ -89,6 +89,7 @@
     "contactPhone": "Teléfono público",
     "year": "Año de inicio (opcional)",
     "beds": "Número aproximado de camas (opcional)",
+    "cover": "Foto de portada (opcional)",
     "involved": "Cómo puede participar la gente",
     "continue": "Continuar",
     "back": "Atrás"
@@ -109,7 +110,8 @@
     "empty": "Escribe un mensaje primero.",
     "tooSoon": "Puedes volver a solicitar 7 días después de un rechazo.",
     "size": "Las fotos deben ser JPG, PNG o WebP y pesar menos de 5 MB.",
-    "past": "Esa fecha ya pasó. Se guardó de todas formas."
+    "past": "Esa fecha ya pasó. Se guardó de todas formas.",
+    "last_manager": "El jardín necesita al menos una persona que lo coordine."
   },
   "dashboard": {
     "title": "Tu panel",
@@ -127,7 +129,10 @@
     "empty": "Todavía no formas parte de un jardín.",
     "browse": "Ver jardines",
     "updates": "novedades desde la última vez que abriste la bandeja",
-    "openInbox": "Abrir la bandeja"
+    "openInbox": "Abrir la bandeja",
+    "myBeds": "Tus camas",
+    "mail": "Correos de demostración",
+    "mailEmpty": "Todavía no hay correos. Las aprobaciones, confirmaciones y cancelaciones aparecen aquí."
   },
   "members": {
     "title": "Miembros",
@@ -221,7 +226,10 @@
     "noRsvps": "Todavía no hay confirmaciones.",
     "volunteerFlag": "Puede ser voluntario",
     "name": "Nombre",
-    "email": "Correo"
+    "email": "Correo",
+    "flyer": "Descargar volante",
+    "editDate": "Editar esta fecha",
+    "englishOnly": "Se muestra en inglés porque todavía no hay versión en español."
   },
   "inbox": {
     "title": "Bandeja",
@@ -274,7 +282,14 @@
     "toolNote": "Nota",
     "addTool": "Agregar una herramienta",
     "instagram": "Enlace de Instagram",
-    "facebook": "Enlace de Facebook"
+    "facebook": "Enlace de Facebook",
+    "translate": "Traducir al español",
+    "translateError": "La traducción no está disponible ahora. Puedes escribir el español tú mismo.",
+    "translateDone": "Se agregó un borrador en español. Léelo antes de guardar.",
+    "bold": "Negrita",
+    "italic": "Cursiva",
+    "list": "Lista",
+    "link": "Enlace"
   },
   "beds": {
     "title": "Camas",
@@ -304,6 +319,9 @@
     "unit": "Unidad",
     "save": "Guardar entrada",
     "delete": "Borrar entrada",
+    "edit": "Editar entrada",
+    "date": "Fecha",
+    "removePhoto": "Quitar esta foto",
     "timelineEmpty": "Todavía no hay entradas.",
     "readOnly": "Quien coordina puede leer todos los diarios. Solo quien tiene la cama puede escribir."
   },
@@ -312,7 +330,9 @@
     "new": "Publicar un aviso",
     "pin": "Fijar en la página de inicio",
     "empty": "Todavía no hay avisos.",
-    "save": "Publicar"
+    "save": "Publicar",
+    "edit": "Guardar cambios",
+    "delete": "Borrar"
   },
   "impact": {
     "title": "Impacto",
@@ -345,7 +365,11 @@
     "save": "Guardar datos",
     "profile": "Tu perfil",
     "saveProfile": "Guardar perfil",
-    "newPassword": "Nueva contraseña (opcional)"
+    "newPassword": "Nueva contraseña (opcional)",
+    "managers": "Coordinación",
+    "addManager": "Agregar",
+    "removeManager": "Quitar",
+    "managerEmail": "Correo de una cuenta que ya existe"
   },
   "manage": {
     "title": "Administrar",

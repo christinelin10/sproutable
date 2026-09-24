@@ -2,6 +2,7 @@ import { getLocale, getTranslations } from "next-intl/server";
 import { readDb } from "@/lib/data/store";
 import { formatDate } from "@/lib/format";
 import { gardenBySlug, isChatBanned, userById } from "@/lib/permissions";
+import { ConfirmSubmit } from "@/components/confirm-submit";
 import { decideMembership, removeMember, restoreChat } from "@/server/garden-actions";
 import type { Language } from "@/lib/types";
 import { notFound } from "next/navigation";
@@ -96,11 +97,12 @@ export default async function MembersPage({
                       {banned ? ` · ${t("chatBanned")}` : ""}
                     </p>
                     <div className="mt-3 flex gap-2">
-                      <form action={removeMember.bind(null, garden.garden_id, row.membership_id)}>
-                        <button className="rounded-full bg-[#8d2f2f] px-4 py-2 font-semibold text-white" type="submit">
-                          {t("remove")}
-                        </button>
-                      </form>
+                      <ConfirmSubmit
+                        action={removeMember.bind(null, garden.garden_id, row.membership_id)}
+                        label={t("remove")}
+                        message={t("confirmRemove")}
+                        className="rounded-full bg-[#8d2f2f] px-4 py-2 font-semibold text-white"
+                      />
                       {banned && person ? (
                         <form action={restoreChat.bind(null, garden.garden_id, person.user_id)}>
                           <button className="rounded-full border border-line px-4 py-2 font-semibold" type="submit">

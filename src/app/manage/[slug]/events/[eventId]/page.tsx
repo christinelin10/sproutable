@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { EventForm } from "@/components/event-form";
+import { OccurrenceForm } from "@/components/occurrence-form";
 import { readDb } from "@/lib/data/store";
 import { gardenBySlug } from "@/lib/permissions";
 import { cancelSeries } from "@/server/garden-actions";
@@ -9,8 +10,15 @@ import type { EventInput } from "@/server/garden-actions";
 import type { Language } from "@/lib/types";
 import { formatDate } from "@/lib/format";
 
-export default async function EditEventPage({ params }: { params: Promise<{ slug: string; eventId: string }> }) {
+export default async function EditEventPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string; eventId: string }>;
+  searchParams: Promise<{ date?: string }>;
+}) {
   const { slug, eventId } = await params;
+  const { date: focusDate } = await searchParams;
   const db = await readDb();
   const garden = gardenBySlug(db, slug);
   const event = db.events.find((item) => item.event_id === eventId && item.garden_id === garden?.garden_id);
@@ -55,6 +63,22 @@ export default async function EditEventPage({ params }: { params: Promise<{ slug
   return (
     <section className="grid gap-8 lg:grid-cols-2">
       <EventForm slug={slug} initial={initial} eventId={event.event_id} />
+      {focusDate ? (
+        <OccurrenceForm
+          slug={slug}
+          eventId={event.event_id}
+          date={focusDate}
+          initial={{
+            title_en: event.title_en,
+            title_es: event.title_es,
+            description_en: event.description_en,
+            description_es: event.description_es,
+            location: event.location,
+            start_time: start?.slice(0, 5) ?? "10:00",
+            end_time: end,
+          }}
+        />
+      ) : null}
       <div>
         <form action={cancelSeries.bind(null, slug, event.event_id)}>
           <button className="rounded-full bg-[#8d2f2f] px-4 py-2 font-semibold text-white" type="submit">

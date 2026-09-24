@@ -23,6 +23,7 @@ export type CalendarItem = {
   going: number;
   allDay: boolean;
   fallback: boolean;
+  mine: boolean;
   viewerName: string;
   viewerEmail: string;
   loggedIn: boolean;
@@ -54,6 +55,8 @@ export function CalendarView({
   listItems: CalendarItem[];
 }) {
   const t = useTranslations("events");
+  const errors = useTranslations("errors");
+  const [view, setView] = useState<"month" | "list">("month");
   const [selected, setSelected] = useState<CalendarItem | null>(null);
   const [rsvpOpen, setRsvp] = useState(false);
   const [message, setMessage] = useState("");
@@ -93,48 +96,80 @@ export function CalendarView({
             {t("new")}
           </Link>
         ) : null}
+        <button type="button" aria-pressed={view === "month"} className={`rounded-full px-3 py-2 font-semibold ${view === "month" ? "bg-primary text-primary-foreground" : "border border-line"}`} onClick={() => setView("month")}>
+          {t("month")}
+        </button>
+        <button type="button" aria-pressed={view === "list"} className={`rounded-full px-3 py-2 font-semibold ${view === "list" ? "bg-primary text-primary-foreground" : "border border-line"}`} onClick={() => setView("list")}>
+          {t("list")}
+        </button>
       </div>
-      <div className="mt-6 hidden gap-1 md:grid md:grid-cols-7">
-        {days.map((day) => {
-          const key = day.toISODate()!;
-          const inMonth = day.month === cursor.month;
-          return (
-            <div key={key} className={`min-h-28 rounded-2xl border p-2 ${day.toISODate() === today ? "border-primary" : "border-line"} ${inMonth ? "bg-card" : "bg-transparent opacity-60"}`}>
-              <p className="text-sm font-semibold">{day.setLocale(locale).toFormat("d")}</p>
-              {(byDate.get(key) ?? []).map((item) => (
-                <button
-                  key={`${item.eventId}-${item.date}`}
-                  type="button"
-                  onClick={() => {
-                    setSelected(item);
-                    setRsvp(false);
-                    setMessage("");
-                  }}
-                  className={`mt-1 block w-full rounded-lg px-2 py-1 text-left text-sm ${item.locked ? "bg-stone-200" : colors[item.category]} ${item.cancelled ? "line-through" : ""}`}
-                >
+      {view === "month" ? (
+        <div className="mt-6">
+          <div className="grid grid-cols-7 gap-1 text-center text-sm font-semibold text-muted">
+            {days.slice(0, 7).map((day) => (
+              <div key={day.toISODate()}>{day.setLocale(locale).toFormat("ccc")}</div>
+            ))}
+          </div>
+          <div className="mt-1 grid grid-cols-7 gap-1">
+            {days.map((day) => {
+              const key = day.toISODate()!;
+              const inMonth = day.month === cursor.month;
+              return (
+                <div key={key} className={`min-h-24 rounded-2xl border p-1 sm:min-h-28 sm:p-2 ${day.toISODate() === today ? "border-primary" : "border-line"} ${inMonth ? "bg-card" : "opacity-50"}`}>
+                  {canManage ? (
+                    <Link href={`/manage/${slug}/events/new?date=${key}`} className="text-sm font-semibold">
+                      {day.setLocale(locale).toFormat("d")}
+                    </Link>
+                  ) : (
+                    <p className="text-sm font-semibold">{day.setLocale(locale).toFormat("d")}</p>
+                  )}
+                  {(byDate.get(key) ?? []).map((item) => (
+                    <button
+                      key={`${item.eventId}-${item.date}`}
+                      type="button"
+                      onClick={() => {
+                        setSelected(item);
+                        setRsvp(false);
+                        setMessage("");
+                        setError("");
+                      }}
+                      className={`mt-1 block w-full rounded-lg px-1 py-1 text-left text-xs sm:text-sm ${item.locked ? "bg-stone-200" : colors[item.category]} ${item.cancelled ? "line-through" : ""}`}
+                    >
+                      {item.locked ? t("membersOnly") : item.title}
+                    </button>
+                  ))}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
+        <ul className="mt-6 space-y-3">
+          {listItems.length === 0 ? <li className="text-muted">{t("empty")}</li> : null}
+          {listItems.map((item) => (
+            <li key={`${item.eventId}-${item.date}-list`}>
+              <button
+                type="button"
+                className="w-full rounded-2xl border border-line bg-card p-4 text-left"
+                onClick={() => {
+                  setSelected(item);
+                  setRsvp(false);
+                  setMessage("");
+                  setError("");
+                }}
+              >
+                <span className={`rounded-full px-2 py-0.5 text-sm ${item.locked ? "bg-stone-200" : colors[item.category]}`}>
+                  {item.locked ? t("membersOnly") : t(item.category as "workday")}
+                </span>
+                <span className={`mt-2 block text-xl font-semibold ${item.cancelled ? "line-through" : ""}`}>
                   {item.locked ? t("membersOnly") : item.title}
-                </button>
-              ))}
-            </div>
-          );
-        })}
-      </div>
-      <ul className="mt-6 space-y-3 md:hidden">
-        {listItems.length === 0 ? <li className="text-muted">{t("empty")}</li> : null}
-        {listItems.map((item) => (
-          <li key={`${item.eventId}-${item.date}-list`}>
-            <button type="button" className="w-full rounded-2xl border border-line bg-card p-4 text-left" onClick={() => setSelected(item)}>
-              <span className={`rounded-full px-2 py-0.5 text-sm ${item.locked ? "bg-stone-200" : colors[item.category]}`}>
-                {item.locked ? t("membersOnly") : t(item.category as "workday")}
-              </span>
-              <span className={`mt-2 block text-xl font-semibold ${item.cancelled ? "line-through" : ""}`}>
-                {item.locked ? t("membersOnly") : item.title}
-              </span>
-              <span className="text-muted">{DateTime.fromISO(item.start).setLocale(locale).toLocaleString(DateTime.DATETIME_MED)}</span>
-            </button>
-          </li>
-        ))}
-      </ul>
+                </span>
+                <span className="text-muted">{DateTime.fromISO(item.start).setLocale(locale).toLocaleString(DateTime.DATETIME_MED)}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
       {selected ? (
         <Modal
           title={selected.locked ? t("membersOnly") : selected.title}
@@ -153,21 +188,44 @@ export function CalendarView({
           ) : (
             <div className="space-y-3">
               <p className={`inline-block rounded-full px-2 py-0.5 text-sm ${colors[selected.category]}`}>{t(selected.category as "workday")}</p>
-              {selected.fallback ? <p className="text-sm text-muted">{t("titleEs")}</p> : null}
+              {selected.fallback ? <p className="text-sm text-muted">{t("englishOnly")}</p> : null}
               <p>{DateTime.fromISO(selected.start).setLocale(locale).toLocaleString(DateTime.DATETIME_MED)}</p>
               <p>{selected.location}</p>
               <p className="whitespace-pre-wrap">{selected.description}</p>
               {selected.cancelled ? <p className="font-semibold">{t("cancelled")}</p> : null}
+              {selected.mine ? <p className="font-semibold">{t("going")}</p> : null}
               {selected.capacity ? (
                 <p>
                   {Math.max(selected.capacity - selected.going, 0)} {t("spots")}
                 </p>
               ) : null}
-              {!selected.cancelled && selected.capacity !== null && selected.going >= selected.capacity ? <p>{t("full")}</p> : null}
-              {!selected.cancelled && (selected.capacity === null || selected.going < selected.capacity) ? (
+              {!selected.cancelled && !selected.mine && selected.capacity !== null && selected.going >= selected.capacity ? <p>{t("full")}</p> : null}
+              {!selected.cancelled && !selected.mine && (selected.capacity === null || selected.going < selected.capacity) ? (
                 <Button type="button" onClick={() => setRsvp(true)}>
                   {t("rsvp")}
                 </Button>
+              ) : null}
+              {selected.mine ? (
+                <form
+                  action={async () => {
+                    await rsvpToEvent({
+                      slug,
+                      eventId: selected.eventId,
+                      date: selected.date,
+                      name: selected.viewerName,
+                      email: selected.viewerEmail,
+                      partySize: 1,
+                      volunteer: false,
+                      note: "",
+                      cancel: true,
+                    });
+                    setSelected(null);
+                  }}
+                >
+                  <Button type="submit" variant="ghost">
+                    {t("cancelRsvp")}
+                  </Button>
+                </form>
               ) : null}
               {message ? <p role="status">{message}</p> : null}
               {rsvpOpen ? (
@@ -209,19 +267,27 @@ export function CalendarView({
                     {t("rsvpNote")}
                     <textarea name="note" className="mt-1 w-full rounded-xl border border-line px-3 py-2" />
                   </label>
-                  {error ? <p className="text-[#8d2f2f]">{error}</p> : null}
+                  {error ? <p className="text-[#8d2f2f]">{errors(error as "full")}</p> : null}
                   <Button type="submit">{t("confirm")}</Button>
                 </form>
               ) : null}
-              {message ? (
+              {(message || selected.mine) && !selected.cancelled ? (
                 <a className="block font-semibold text-primary" href={`/api/events/${selected.eventId}/ics?date=${selected.date}&slug=${slug}`}>
                   {t("addCalendar")}
+                </a>
+              ) : null}
+              {!selected.locked ? (
+                <a className="block font-semibold text-primary" href={`/api/events/${selected.eventId}/flyer?date=${selected.date}`}>
+                  {t("flyer")}
                 </a>
               ) : null}
               {canManage ? (
                 <div className="flex flex-wrap gap-2">
                   <Link className="rounded-full border border-line px-3 py-2" href={`/manage/${slug}/events/${selected.eventId}`}>
                     {t("edit")}
+                  </Link>
+                  <Link className="rounded-full border border-line px-3 py-2" href={`/manage/${slug}/events/${selected.eventId}?date=${selected.date}`}>
+                    {t("editDate")}
                   </Link>
                   <form action={cancelOccurrence.bind(null, slug, selected.eventId, selected.date)}>
                     <button className="rounded-full border border-line px-3 py-2" type="submit">

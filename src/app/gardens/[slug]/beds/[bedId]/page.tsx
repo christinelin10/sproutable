@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
 import { gardenBySlug, managesGarden } from "@/lib/permissions";
-import { deleteJournal, saveJournal } from "@/server/garden-actions";
+import { JournalForm, PhotoButton } from "@/components/journal-form";
+import { deleteJournal } from "@/server/garden-actions";
 
 export default async function BedJournalPage({
   params,
@@ -33,57 +34,7 @@ export default async function BedJournalPage({
       </h1>
       {!holder ? <p className="mt-2 text-muted">{t("readOnly")}</p> : null}
       {notice ? <p role="status" className="mt-3 rounded-2xl bg-sun/40 px-4 py-3">{t("save")}</p> : null}
-      {holder ? (
-        <form
-          action={async (formData) => {
-            "use server";
-            await saveJournal(slug, bed.bed_id, formData);
-          }} className="mt-6 space-y-3 rounded-3xl border border-line bg-card p-4">
-          <h2 className="text-xl font-semibold">{t("newEntry")}</h2>
-          <label className="block">
-            {t("stage")}
-            <select name="stage" className="mt-1 w-full rounded-xl border border-line px-3 py-2">
-              {(["planted", "growing", "maintenance", "harvest"] as const).map((stage) => (
-                <option key={stage} value={stage}>
-                  {t(stage)}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="block">
-            Date
-            <input type="date" name="entry_date" defaultValue={today} className="mt-1 w-full rounded-xl border border-line px-3 py-2" />
-          </label>
-          <label className="block">
-            {t("crop")}
-            <input name="crop" className="mt-1 w-full rounded-xl border border-line px-3 py-2" />
-          </label>
-          <label className="block">
-            {t("entry")}
-            <textarea name="text" required rows={4} className="mt-1 w-full rounded-xl border border-line px-3 py-2" />
-          </label>
-          <label className="block">
-            {t("photos")}
-            <input name="photos" type="file" accept="image/jpeg,image/png,image/webp" multiple className="mt-1 block" />
-          </label>
-          <div className="grid grid-cols-2 gap-2">
-            <label>
-              {t("amount")}
-              <input name="harvest_amount" type="number" step="0.1" min="0" className="mt-1 w-full rounded-xl border border-line px-3 py-2" />
-            </label>
-            <label>
-              {t("unit")}
-              <select name="harvest_unit" className="mt-1 w-full rounded-xl border border-line px-3 py-2">
-                <option value="lb">lb</option>
-                <option value="kg">kg</option>
-              </select>
-            </label>
-          </div>
-          <button className="rounded-full bg-primary px-4 py-2 font-semibold text-primary-foreground" type="submit">
-            {t("save")}
-          </button>
-        </form>
-      ) : null}
+      {holder ? <JournalForm slug={slug} bedId={bed.bed_id} today={today} /> : null}
       {entries.length === 0 ? <p className="mt-6 text-muted">{t("timelineEmpty")}</p> : null}
       <ol className="mt-6 space-y-4">
         {entries.map((entry) => (
@@ -100,18 +51,19 @@ export default async function BedJournalPage({
             ) : null}
             <div className="mt-3 flex flex-wrap gap-2">
               {entry.image_urls.map((url) => (
-                <a key={url} href={url} target="_blank" rel="noreferrer">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={url} alt="" className="h-24 w-24 rounded-xl object-cover" />
-                </a>
+                <PhotoButton key={url} url={url} />
               ))}
             </div>
             {holder && entry.user_id === user?.user_id ? (
-              <form action={deleteJournal.bind(null, slug, entry.entry_id)} className="mt-3">
-                <button className="text-sm font-semibold" type="submit">
-                  {t("delete")}
-                </button>
-              </form>
+              <details className="mt-3">
+                <summary className="cursor-pointer font-semibold">{t("edit")}</summary>
+                <JournalForm slug={slug} bedId={bed.bed_id} today={today} entry={entry} />
+                <form action={deleteJournal.bind(null, slug, entry.entry_id)}>
+                  <button className="text-sm font-semibold" type="submit">
+                    {t("delete")}
+                  </button>
+                </form>
+              </details>
             ) : null}
           </li>
         ))}

@@ -75,13 +75,35 @@ export function expandEvents(
       if (date < windowStart.startOf("day") || date > windowEnd.endOf("day")) continue;
       const key = date.toISODate();
       if (!key) continue;
+      const tweak = exceptions.find((row) => row.event_id === event.event_id && row.occurrence_date === key && row.action === "modified");
+      let shown = event;
+      let startAt = date;
+      let endAt = date.plus(duration);
+      if (tweak) {
+        shown = {
+          ...event,
+          title_en: tweak.title_en || event.title_en,
+          title_es: tweak.title_es || event.title_es,
+          description_en: tweak.description_en || event.description_en,
+          description_es: tweak.description_es || event.description_es,
+          location: tweak.location || event.location,
+        };
+        if (tweak.start_time) {
+          const [hour, minute] = tweak.start_time.split(":").map(Number);
+          startAt = date.set({ hour, minute });
+        }
+        if (tweak.end_time) {
+          const [hour, minute] = tweak.end_time.split(":").map(Number);
+          endAt = date.set({ hour, minute });
+        }
+      }
       occurrences.push({
         eventId: event.event_id,
         date: key,
-        start: date.toISO() ?? date.toFormat("yyyy-MM-dd'T'HH:mm:ss"),
-        end: date.plus(duration).toISO() ?? "",
+        start: startAt.toISO() ?? startAt.toFormat("yyyy-MM-dd'T'HH:mm:ss"),
+        end: endAt.toISO() ?? "",
         cancelled: event.status === "cancelled" || cancelledDates.has(key),
-        event,
+        event: shown,
       });
     }
   }

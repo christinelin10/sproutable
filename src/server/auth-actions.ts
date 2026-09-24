@@ -7,6 +7,7 @@ import { z } from "zod";
 import { clearSession, getCurrentUser, hashPassword, setSession, verifyPassword } from "@/lib/auth";
 import { updateDb } from "@/lib/data/store";
 import { defaultModules, INVOLVEMENT } from "@/lib/gardens";
+import { saveImage } from "@/lib/uploads";
 import { userByEmail } from "@/lib/permissions";
 import { slugify } from "@/lib/slug";
 import type { Language } from "@/lib/types";
@@ -56,7 +57,7 @@ export async function signup(_prev: ActionState, formData: FormData): Promise<Ac
   let slug = "";
 
   try {
-    await updateDb((db) => {
+    await updateDb(async (db) => {
       if (userByEmail(db, emailResult.data)) throw new Error("taken");
       db.users.push({
         user_id: userId,
@@ -95,6 +96,8 @@ export async function signup(_prev: ActionState, formData: FormData): Promise<Ac
           created_by: userId,
           created_at: new Date().toISOString(),
         };
+        const cover = formData.get("cover");
+        if (cover instanceof File && cover.size > 0) garden.cover_image_url = await saveImage(cover);
         db.gardens.push(garden);
         db.gardenManagers.push({ garden_id: gardenId, user_id: userId, added_at: new Date().toISOString() });
         db.homeModules.push(...defaultModules(garden, randomUUID));
@@ -102,6 +105,7 @@ export async function signup(_prev: ActionState, formData: FormData): Promise<Ac
     });
   } catch (error) {
     if (error instanceof Error && error.message === "taken") return { error: "taken" };
+    if (error instanceof Error && (error.message === "type" || error.message === "size")) return { error: "size" };
     throw error;
   }
 
@@ -146,7 +150,8 @@ export async function updateProfile(_prev: ActionState, formData: FormData): Pro
   const name = String(formData.get("name") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
   const language: Language = formData.get("language") === "es" ? "es" : "en";
-  const tags = String(formData.get("interest_tags") ?? "").trim();
+  const checks = ["bed", "volunteer", "events", "produce", "learn"].filter((option) => formData.get(`tag_${option}`) === "on");
+  const tags = checks.length ? checks.join(",") : String(formData.get("interest_tags") ?? "").trim();
   const nextPassword = String(formData.get("new_password") ?? "");
   if (name.length < 2) return { error: "required" };
   if (nextPassword && nextPassword.length < 8) return { error: "password" };

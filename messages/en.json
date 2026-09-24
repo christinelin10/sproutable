@@ -89,6 +89,7 @@
     "contactPhone": "Public phone",
     "year": "Year founded (optional)",
     "beds": "Approximate number of beds (optional)",
+    "cover": "Cover photo (optional)",
     "involved": "How people can get involved",
     "continue": "Continue",
     "back": "Back"
@@ -109,7 +110,8 @@
     "empty": "Write a message first.",
     "tooSoon": "You can request again 7 days after a decline.",
     "size": "Images must be JPG, PNG, or WebP and under 5 MB.",
-    "past": "This date is in the past. It was saved anyway."
+    "past": "This date is in the past. It was saved anyway.",
+    "last_manager": "A garden needs at least one manager."
   },
   "dashboard": {
     "title": "Your dashboard",
@@ -127,7 +129,10 @@
     "empty": "You are not part of a garden yet.",
     "browse": "Browse gardens",
     "updates": "new updates since you last checked the inbox",
-    "openInbox": "Open inbox"
+    "openInbox": "Open inbox",
+    "myBeds": "Your beds",
+    "mail": "Email log",
+    "mailEmpty": "No demo emails yet. Approvals, RSVPs, and cancellations show up here."
   },
   "members": {
     "title": "Members",
@@ -221,7 +226,10 @@
     "noRsvps": "No RSVPs yet.",
     "volunteerFlag": "Can volunteer",
     "name": "Name",
-    "email": "Email"
+    "email": "Email",
+    "flyer": "Download flyer",
+    "editDate": "Edit this date",
+    "englishOnly": "Shown in English because a Spanish version is not written yet."
   },
   "inbox": {
     "title": "Inbox",
@@ -274,7 +282,14 @@
     "toolNote": "Note",
     "addTool": "Add a tool",
     "instagram": "Instagram link",
-    "facebook": "Facebook link"
+    "facebook": "Facebook link",
+    "translate": "Translate to Spanish",
+    "translateError": "Translation is unavailable right now. You can type the Spanish yourself.",
+    "translateDone": "Spanish draft added. Please read it before saving.",
+    "bold": "Bold",
+    "italic": "Italic",
+    "list": "List",
+    "link": "Link"
   },
   "beds": {
     "title": "Beds",
@@ -304,6 +319,9 @@
     "unit": "Unit",
     "save": "Save entry",
     "delete": "Delete entry",
+    "edit": "Edit entry",
+    "date": "Date",
+    "removePhoto": "Remove this photo",
     "timelineEmpty": "No journal entries yet.",
     "readOnly": "Managers can read every journal. Only the bed holder can write."
   },
@@ -312,7 +330,9 @@
     "new": "Post announcement",
     "pin": "Pin to the home page",
     "empty": "No announcements yet.",
-    "save": "Post"
+    "save": "Post",
+    "edit": "Save changes",
+    "delete": "Delete"
   },
   "impact": {
     "title": "Impact",
@@ -345,7 +365,11 @@
     "save": "Save details",
     "profile": "Your profile",
     "saveProfile": "Save profile",
-    "newPassword": "New password (optional)"
+    "newPassword": "New password (optional)",
+    "managers": "Managers",
+    "addManager": "Add manager",
+    "removeManager": "Remove",
+    "managerEmail": "Email of an existing account"
   },
   "manage": {
     "title": "Manage",

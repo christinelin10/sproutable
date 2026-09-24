@@ -28,10 +28,23 @@ export function ProfileForm({ user }: { user: User }) {
           <option value="es">{t("auth.spanish")}</option>
         </select>
       </label>
-      <label className="block font-semibold">
-        {t("members.interests")}
-        <input name="interest_tags" defaultValue={user.interest_tags} className="mt-1 w-full rounded-xl border border-line px-3 py-2" />
-      </label>
+      <fieldset>
+        <legend className="font-semibold">{t("members.interests")}</legend>
+        {(
+          [
+            ["bed", "waysBed"],
+            ["volunteer", "waysVolunteer"],
+            ["events", "waysEvents"],
+            ["produce", "waysProduce"],
+            ["learn", "waysLearn"],
+          ] as const
+        ).map(([key, label]) => (
+          <label key={key} className="mt-2 flex gap-2">
+            <input type="checkbox" name={`tag_${key}`} defaultChecked={user.interest_tags.split(",").includes(key)} />
+            {t(`garden.${label}`)}
+          </label>
+        ))}
+      </fieldset>
       <label className="block font-semibold">
         {t("settings.newPassword")}
         <input name="new_password" type="password" minLength={8} className="mt-1 w-full rounded-xl border border-line px-3 py-2" />

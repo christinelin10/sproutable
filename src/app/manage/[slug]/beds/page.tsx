@@ -2,7 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { readDb } from "@/lib/data/store";
 import { gardenBySlug, userById } from "@/lib/permissions";
-import { assignBed, createBed } from "@/server/garden-actions";
+import { assignBed, createBed, updateBed } from "@/server/garden-actions";
 
 export default async function ManageBeds({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -31,6 +31,19 @@ export default async function ManageBeds({ params }: { params: Promise<{ slug: s
             <p className="text-sm text-muted">
               {bed.size} · {t(bed.status)}
             </p>
+            <form action={updateBed.bind(null, slug, bed.bed_id)} className="mt-3 grid gap-2">
+              <input name="label" defaultValue={bed.label} className="rounded-xl border border-line px-3 py-2" />
+              <input name="size" defaultValue={bed.size} className="rounded-xl border border-line px-3 py-2" />
+              <input name="notes" defaultValue={bed.notes} className="rounded-xl border border-line px-3 py-2" />
+              <select name="status" defaultValue={bed.status} className="rounded-xl border border-line px-3 py-2">
+                <option value="available">{t("available")}</option>
+                <option value="assigned">{t("assigned")}</option>
+                <option value="out_of_service">{t("out_of_service")}</option>
+              </select>
+              <button className="w-fit rounded-full border border-line px-3 py-1 font-semibold" type="submit">
+                {t("edit")}
+              </button>
+            </form>
             <form action={assignBed.bind(null, slug, bed.bed_id)} className="mt-3 flex gap-2">
               <select name="assigned_user_id" defaultValue={bed.assigned_user_id} className="w-full rounded-xl border border-line px-3 py-2">
                 <option value="">{t("unassign")}</option>

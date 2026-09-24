@@ -9,7 +9,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { readDb, updateDb } from "@/lib/data/store";
 import { buildRRule, weekdayCode } from "@/lib/events";
 import { INVOLVEMENT } from "@/lib/gardens";
-import { canSeeMembersContent, gardenBySlug, isApprovedMember, isChatBanned, managesGarden, membershipFor } from "@/lib/permissions";
+import { canSeeMembersContent, gardenBySlug, isApprovedMember, isChatBanned, managesGarden, membershipFor, userByEmail } from "@/lib/permissions";
 import { PLATFORM_ADMINS } from "@/lib/demo";
 import { saveImage } from "@/lib/uploads";
 import type { Activity, Database, GardenEvent, HomeModule, ModuleType, User } from "@/lib/types";
@@ -22,6 +22,27 @@ function now() {
 
 function log(db: Database, item: Omit<Activity, "activity_id" | "created_at">) {
   db.activityLog.push({ ...item, activity_id: randomUUID(), created_at: now() });
+}
+
+function mail(
+  db: Database,
+  to: string,
+  subjectEn: string,
+  subjectEs: string,
+  bodyEn: string,
+  bodyEs: string,
+) {
+  if (!to) return;
+  if (!db.emails) db.emails = [];
+  db.emails.push({
+    email_id: randomUUID(),
+    to_email: to.toLowerCase(),
+    subject_en: subjectEn,
+    subject_es: subjectEs,
+    body_en: bodyEn,
+    body_es: bodyEs,
+    created_at: now(),
+  });
 }
 
 async function requireUser() {
@@ -96,6 +117,15 @@ export async function decideMembership(gardenId: string, membershipId: string, d
       summary_en: decision === "approved" ? `You are now a member of ${name}.` : `Your request to join ${name} was not approved this time.`,
       summary_es: decision === "approved" ? `Ya eres parte de ${name}.` : `Esta vez no se aprobó tu solicitud para unirte a ${name}.`,
     });
+    const person = db.users.find((item) => item.user_id === row.user_id);
+    mail(
+      db,
+      person?.email ?? "",
+      decision === "approved" ? `You are now a member of ${name}` : `Update on your request to join ${name}`,
+      decision === "approved" ? `Ya eres parte de ${name}` : `Novedad sobre tu solicitud para ${name}`,
+      decision === "approved" ? `Your request was approved. You can see member events now.` : `Your request was not approved this time. You can ask again in 7 days.`,
+      decision === "approved" ? `Aprobaron tu solicitud. Ya puedes ver los eventos para miembros.` : `Esta vez no aprobaron tu solicitud. Puedes volver a pedir en 7 días.`,
+    );
   });
   revalidatePath(`/manage/${await slugFor(gardenId)}/members`);
 }
@@ -262,6 +292,16 @@ export async function cancelOccurrence(slug: string, eventId: string, date: stri
       summary_en: `${event.title_en} on ${date} was cancelled.`,
       summary_es: `Se canceló ${event.title_es || event.title_en} el ${date}.`,
     });
+    for (const rsvp of db.rsvps.filter((row) => row.event_id === eventId && row.occurrence_date === date && row.status === "going")) {
+      mail(
+        db,
+        rsvp.email,
+        `${event.title_en} on ${date} was cancelled`,
+        `Se canceló ${event.title_es || event.title_en} el ${date}`,
+        "This is a demo email. Nothing was sent to a real inbox.",
+        "Este es un correo de demostración. No se envió a un buzón real.",
+      );
+    }
   });
   revalidatePath(`/gardens/${slug}/events`);
 }
@@ -366,6 +406,16 @@ export async function rsvpToEvent(input: {
         visited_at: `${input.date}T12:00:00.000Z`,
         source: "rsvp",
       });
+    }
+    if (!input.cancel) {
+      mail(
+        db,
+        email,
+        `You're going: ${event.title_en}`,
+        `Ahí estarás: ${event.title_es || event.title_en}`,
+        `Demo confirmation for ${input.date}. No real email was sent.`,
+        `Confirmación de demostración para el ${input.date}. No se envió un correo real.`,
+      );
     }
   });
   revalidatePath(`/gardens/${input.slug}/events`);
@@ -681,20 +731,33 @@ export async function saveJournal(slug: string, bedId: string, formData: FormDat
         if (file instanceof File && file.size > 0) images.push(await saveImage(file));
       }
       const amountRaw = String(formData.get("harvest_amount") ?? "");
-      db.journalEntries.push({
-        entry_id: randomUUID(),
-        bed_id: bed.bed_id,
-        garden_id: garden.garden_id,
-        user_id: user.user_id,
+      const entryId = String(formData.get("entry_id") ?? "");
+      const existing = entryId ? db.journalEntries.find((entry) => entry.entry_id === entryId && entry.bed_id === bed.bed_id) : undefined;
+      if (existing && existing.user_id !== user.user_id) throw new Error("denied");
+      const kept = existing
+        ? existing.image_urls.filter((url) => !formData.getAll("remove_image").map(String).includes(url))
+        : [];
+      const nextImages = [...kept, ...images].slice(0, 5);
+      const payload = {
         entry_date: String(formData.get("entry_date") ?? "") || DateTime.now().setZone(garden.timezone).toISODate()!,
         stage: stage as "planted",
         crop: String(formData.get("crop") ?? "").slice(0, 80),
         text: text.slice(0, 2000),
-        image_urls: images,
+        image_urls: nextImages,
         harvest_amount: stage === "harvest" && amountRaw ? Number(amountRaw) : null,
-        harvest_unit: stage === "harvest" && formData.get("harvest_unit") === "kg" ? "kg" : stage === "harvest" ? "lb" : "",
-        created_at: now(),
-      });
+        harvest_unit: (stage === "harvest" && formData.get("harvest_unit") === "kg" ? "kg" : stage === "harvest" ? "lb" : "") as "" | "lb" | "kg",
+      };
+      if (existing) Object.assign(existing, payload);
+      else {
+        db.journalEntries.push({
+          entry_id: randomUUID(),
+          bed_id: bed.bed_id,
+          garden_id: garden.garden_id,
+          user_id: user.user_id,
+          created_at: now(),
+          ...payload,
+        });
+      }
     });
   } catch (error) {
     if (error instanceof Error && error.message === "denied") return { error: "denied" };
@@ -713,6 +776,139 @@ export async function deleteJournal(slug: string, entryId: string) {
     db.journalEntries = db.journalEntries.filter((item) => item.entry_id !== entryId);
   });
   revalidatePath(`/gardens/${slug}/beds`);
+}
+
+export async function saveOccurrence(
+  slug: string,
+  eventId: string,
+  date: string,
+  input: {
+    title_en: string;
+    title_es: string;
+    description_en: string;
+    description_es: string;
+    location: string;
+    start_time: string;
+    end_time: string;
+  },
+): Promise<ActionState> {
+  const user = await requireUser();
+  if (!input.title_en.trim() || !input.description_en.trim()) return { error: "required" };
+  await updateDb((db) => {
+    const garden = gardenBySlug(db, slug);
+    if (!garden) throw new Error("missing");
+    assertManager(db, user, garden.garden_id);
+    const event = db.events.find((item) => item.event_id === eventId && item.garden_id === garden.garden_id);
+    if (!event) throw new Error("missing");
+    const existing = db.eventExceptions.find((row) => row.event_id === eventId && row.occurrence_date === date && row.action === "modified");
+    const patch = {
+      title_en: input.title_en.trim(),
+      title_es: input.title_es.trim(),
+      description_en: input.description_en.trim(),
+      description_es: input.description_es.trim(),
+      location: input.location.trim(),
+      start_time: input.start_time,
+      end_time: input.end_time,
+    };
+    if (existing) Object.assign(existing, patch);
+    else db.eventExceptions.push({ exception_id: randomUUID(), event_id: eventId, occurrence_date: date, action: "modified", ...patch });
+  });
+  revalidatePath(`/gardens/${slug}/events`);
+  redirect(`/gardens/${slug}/events?notice=saved`);
+}
+
+export async function deleteAnnouncement(slug: string, announcementId: string) {
+  const user = await requireUser();
+  await updateDb((db) => {
+    const garden = gardenBySlug(db, slug);
+    if (!garden) return;
+    assertManager(db, user, garden.garden_id);
+    db.announcements = db.announcements.filter((item) => item.announcement_id !== announcementId);
+  });
+  revalidatePath(`/gardens/${slug}`);
+}
+
+export async function updateAnnouncement(slug: string, formData: FormData): Promise<ActionState> {
+  const user = await requireUser();
+  const titleEn = String(formData.get("title_en") ?? "").trim();
+  const bodyEn = String(formData.get("body_en") ?? "").trim();
+  if (!titleEn || !bodyEn) return { error: "required" };
+  await updateDb((db) => {
+    const garden = gardenBySlug(db, slug);
+    if (!garden) return;
+    assertManager(db, user, garden.garden_id);
+    const row = db.announcements.find((item) => item.announcement_id === String(formData.get("announcement_id")));
+    if (!row || row.garden_id !== garden.garden_id) return;
+    row.title_en = titleEn;
+    row.title_es = String(formData.get("title_es") ?? "").trim();
+    row.body_en = bodyEn;
+    row.body_es = String(formData.get("body_es") ?? "").trim();
+    row.visibility = formData.get("visibility") === "members" ? "members" : "public";
+    row.pinned = formData.get("pinned") === "on";
+  });
+  revalidatePath(`/gardens/${slug}`);
+  redirect(`/manage/${slug}/announcements?notice=saved`);
+}
+
+export async function updateBed(slug: string, bedId: string, formData: FormData) {
+  const user = await requireUser();
+  await updateDb((db) => {
+    const garden = gardenBySlug(db, slug);
+    if (!garden) return;
+    assertManager(db, user, garden.garden_id);
+    const bed = db.beds.find((item) => item.bed_id === bedId && item.garden_id === garden.garden_id);
+    if (!bed) return;
+    bed.label = String(formData.get("label") ?? bed.label).trim() || bed.label;
+    bed.size = String(formData.get("size") ?? "");
+    bed.notes = String(formData.get("notes") ?? "");
+    const status = String(formData.get("status") ?? bed.status);
+    if (status === "available" || status === "assigned" || status === "out_of_service") bed.status = status;
+    if (bed.status === "out_of_service" || bed.status === "available") {
+      bed.assigned_user_id = "";
+      if (bed.status !== "out_of_service") bed.status = "available";
+    }
+  });
+  revalidatePath(`/manage/${slug}/beds`);
+}
+
+export async function addManager(slug: string, formData: FormData): Promise<ActionState> {
+  const user = await requireUser();
+  const email = String(formData.get("email") ?? "").trim();
+  let error = "";
+  await updateDb((db) => {
+    const garden = gardenBySlug(db, slug);
+    if (!garden) return;
+    assertManager(db, user, garden.garden_id);
+    const found = userByEmail(db, email);
+    if (!found) {
+      error = "email";
+      return;
+    }
+    if (managesGarden(db, found.user_id, garden.garden_id)) return;
+    db.gardenManagers.push({ garden_id: garden.garden_id, user_id: found.user_id, added_at: now() });
+  });
+  if (error) return { error };
+  revalidatePath(`/manage/${slug}/settings`);
+  return { ok: true };
+}
+
+export async function removeManager(slug: string, userId: string): Promise<ActionState> {
+  const user = await requireUser();
+  let error = "";
+  await updateDb((db) => {
+    const garden = gardenBySlug(db, slug);
+    if (!garden) return;
+    assertManager(db, user, garden.garden_id);
+    const managers = db.gardenManagers.filter((row) => row.garden_id === garden.garden_id);
+    if (managers.length <= 1) {
+      error = "last_manager";
+      return;
+    }
+    db.gardenManagers = db.gardenManagers.filter((row) => !(row.garden_id === garden.garden_id && row.user_id === userId));
+  });
+  if (error) return { error };
+  revalidatePath(`/manage/${slug}/settings`);
+  return { ok: true };
 }
 
 export async function postChat(slug: string, body: string) {

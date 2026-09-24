@@ -136,6 +136,17 @@ const db: Database = {
   journalEntries: [],
   visits: [],
   chatMessages: [],
+  emails: [
+    {
+      email_id: "mail_1",
+      to_email: "member2@demo.com",
+      subject_en: "You are now a member of Riverside Community Garden",
+      subject_es: "Ya eres parte del Jardín comunitario Riverside",
+      body_en: "Maria approved your request. Member events are now open.",
+      body_es: "Maria aprobó tu solicitud. Ya puedes ver los eventos para miembros.",
+      created_at: utc(today.minus({ days: 38 })),
+    },
+  ],
   chatBans: [
     {
       garden_id: "g_riverside",

@@ -84,6 +84,9 @@ export function SignupForm({ initialType }: { initialType?: string }) {
             <Field label={t("auth.beds")}>
               <TextInput name="bed_count" />
             </Field>
+            <Field label={t("auth.cover")}>
+              <input name="cover" type="file" accept="image/jpeg,image/png,image/webp" className="block" />
+            </Field>
             <fieldset>
               <legend className="font-semibold">{t("auth.involved")}</legend>
               {options.map(([key, label]) => (

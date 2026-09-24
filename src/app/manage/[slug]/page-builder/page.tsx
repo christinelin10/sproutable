@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { readDb } from "@/lib/data/store";
 import { gardenBySlug } from "@/lib/permissions";
 import { addModule, deleteModule, moveModule, saveModule, toggleModule } from "@/server/garden-actions";
+import { BilingualFields } from "@/components/bilingual-fields";
 import type { HomeModule, ModuleType } from "@/lib/types";
 
 const addable: ModuleType[] = ["about", "gallery", "upcoming_events", "ways", "tools", "getting_here", "announcements", "contact"];
@@ -83,7 +84,7 @@ function ModuleForm({ slug, module }: { slug: string; module: HomeModule }) {
         await saveModule(slug, formData);
       }} className="mt-4 space-y-3">
       <input type="hidden" name="module_id" value={module.module_id} />
-      <Bilingual titleEn={module.title_en} titleEs={module.title_es} bodyEn={module.body_en} bodyEs={module.body_es} />
+      <BilingualFields titleEn={module.title_en} titleEs={module.title_es} bodyEn={module.body_en} bodyEs={module.body_es} />
       {module.type === "hero" ? (
         <label className="block text-sm font-semibold">
           Cover
@@ -147,17 +148,6 @@ function ModuleForm({ slug, module }: { slug: string; module: HomeModule }) {
       ) : null}
       <Save />
     </form>
-  );
-}
-
-function Bilingual({ titleEn, titleEs, bodyEn, bodyEs }: { titleEn: string; titleEs: string; bodyEn: string; bodyEs: string }) {
-  return (
-    <>
-      <input name="title_en" defaultValue={titleEn} placeholder="Title" className="w-full rounded-xl border border-line px-3 py-2" />
-      <input name="title_es" defaultValue={titleEs} placeholder="Título" className="w-full rounded-xl border border-line px-3 py-2" />
-      <textarea name="body_en" defaultValue={bodyEn} rows={4} placeholder="English. **bold**, *italic*, - list, [text](https://...)" className="w-full rounded-xl border border-line px-3 py-2" />
-      <textarea name="body_es" defaultValue={bodyEs} rows={4} placeholder="Español" className="w-full rounded-xl border border-line px-3 py-2" />
-    </>
   );
 }
 

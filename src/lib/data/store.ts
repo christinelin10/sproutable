@@ -21,7 +21,9 @@ function enqueue<T>(task: () => Promise<T>): Promise<T> {
 async function readFileDb(): Promise<Database> {
   try {
     const raw = await fs.readFile(DB_PATH, "utf8");
-    return JSON.parse(raw) as Database;
+    const data = JSON.parse(raw) as Database;
+    if (!data.emails) data.emails = [];
+    return data;
   } catch (error) {
     const code = (error as NodeJS.ErrnoException).code;
     if (code === "ENOENT") return emptyDatabase();

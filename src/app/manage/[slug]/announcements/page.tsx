@@ -1,8 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
+import { BilingualFields } from "@/components/bilingual-fields";
 import { readDb } from "@/lib/data/store";
 import { gardenBySlug } from "@/lib/permissions";
-import { saveAnnouncement } from "@/server/garden-actions";
+import { deleteAnnouncement, saveAnnouncement, updateAnnouncement } from "@/server/garden-actions";
 
 export default async function AnnouncementsPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ notice?: string }> }) {
   const { slug } = await params;
@@ -11,6 +12,7 @@ export default async function AnnouncementsPage({ params, searchParams }: { para
   const garden = gardenBySlug(db, slug);
   if (!garden) notFound();
   const t = await getTranslations("announcements");
+  const events = await getTranslations("events");
   const rows = db.announcements.filter((item) => item.garden_id === garden.garden_id).sort((a, b) => b.created_at.localeCompare(a.created_at));
   return (
     <section className="grid gap-8 lg:grid-cols-2">
@@ -21,14 +23,11 @@ export default async function AnnouncementsPage({ params, searchParams }: { para
         }} className="space-y-3">
         <h1 className="text-3xl font-semibold">{t("new")}</h1>
         {notice ? <p role="status">{t("save")}</p> : null}
-        <input name="title_en" required placeholder="Title" className="w-full rounded-xl border border-line px-3 py-2" />
-        <input name="title_es" placeholder="Título" className="w-full rounded-xl border border-line px-3 py-2" />
-        <textarea name="body_en" required rows={4} placeholder="English" className="w-full rounded-xl border border-line px-3 py-2" />
-        <textarea name="body_es" rows={4} placeholder="Español" className="w-full rounded-xl border border-line px-3 py-2" />
+        <BilingualFields />
         <label className="block">
           <select name="visibility" className="rounded-xl border border-line px-3 py-2">
-            <option value="public">Public</option>
-            <option value="members">Members</option>
+            <option value="public">{events("public")}</option>
+            <option value="members">{events("members")}</option>
           </select>
         </label>
         <label className="flex gap-2">
@@ -42,9 +41,37 @@ export default async function AnnouncementsPage({ params, searchParams }: { para
         {rows.length === 0 ? <li className="text-muted">{t("empty")}</li> : null}
         {rows.map((row) => (
           <li key={row.announcement_id} className="rounded-2xl border border-line bg-card p-4">
-            <p className="font-semibold">{row.title_en}</p>
-            <p className="text-sm text-muted">{row.visibility}{row.pinned ? " · pinned" : ""}</p>
-            <p className="mt-2">{row.body_en}</p>
+            <form
+              action={async (formData) => {
+                "use server";
+                await updateAnnouncement(slug, formData);
+              }}
+              className="space-y-2"
+            >
+              <input type="hidden" name="announcement_id" value={row.announcement_id} />
+              <BilingualFields titleEn={row.title_en} titleEs={row.title_es} bodyEn={row.body_en} bodyEs={row.body_es} />
+              <select name="visibility" defaultValue={row.visibility} className="rounded-xl border border-line px-3 py-2">
+                <option value="public">{events("public")}</option>
+                <option value="members">{events("members")}</option>
+              </select>
+              <label className="flex gap-2">
+                <input type="checkbox" name="pinned" defaultChecked={row.pinned} /> {t("pin")}
+              </label>
+              <button className="rounded-full bg-primary px-3 py-1 font-semibold text-primary-foreground" type="submit">
+                {t("edit")}
+              </button>
+            </form>
+            <form
+              action={async () => {
+                "use server";
+                await deleteAnnouncement(slug, row.announcement_id);
+              }}
+              className="mt-2"
+            >
+              <button className="text-sm font-semibold" type="submit">
+                {t("delete")}
+              </button>
+            </form>
           </li>
         ))}
       </ul>

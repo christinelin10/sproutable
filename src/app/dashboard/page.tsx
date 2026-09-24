@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { CopyLink } from "@/components/copy-link";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
 import { unreadCount } from "@/lib/inbox";
+import { pickLocalized } from "@/lib/text";
 import { managesGarden } from "@/lib/permissions";
 
 export default async function DashboardPage({ searchParams }: { searchParams: Promise<{ welcome?: string }> }) {
@@ -12,6 +13,7 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
   if (!user) redirect("/login?next=/dashboard");
   const { welcome } = await searchParams;
   const t = await getTranslations("dashboard");
+  const locale = await getLocale();
   const db = await readDb();
   const managed = db.gardens.filter((garden) => managesGarden(db, user.user_id, garden.garden_id));
   const memberships = db.memberships.filter((item) => item.user_id === user.user_id);
@@ -90,6 +92,39 @@ export default async function DashboardPage({ searchParams }: { searchParams: Pr
             </li>
           );
         })}
+      </ul>
+      <h2 className="mt-8 text-2xl font-semibold">{t("myBeds")}</h2>
+      <ul className="mt-3 space-y-2">
+        {db.beds
+          .filter((bed) => bed.assigned_user_id === user.user_id)
+          .map((bed) => {
+            const garden = db.gardens.find((row) => row.garden_id === bed.garden_id);
+            if (!garden) return null;
+            return (
+              <li key={bed.bed_id}>
+                <Link className="font-semibold text-primary" href={`/gardens/${garden.slug}/beds/${bed.bed_id}`}>
+                  {garden.name} · {bed.label}
+                </Link>
+              </li>
+            );
+          })}
+      </ul>
+      <h2 className="mt-8 text-2xl font-semibold">{t("mail")}</h2>
+      <ul className="mt-3 space-y-3">
+        {db.emails.filter((mail) => mail.to_email === user.email).length === 0 ? <li className="text-muted">{t("mailEmpty")}</li> : null}
+        {db.emails
+          .filter((mail) => mail.to_email === user.email)
+          .sort((a, b) => b.created_at.localeCompare(a.created_at))
+          .map((mail) => {
+            const subject = pickLocalized(locale === "es" ? "es" : "en", mail.subject_en, mail.subject_es);
+            const body = pickLocalized(locale === "es" ? "es" : "en", mail.body_en, mail.body_es);
+            return (
+              <li key={mail.email_id} className="rounded-2xl border border-line bg-card p-4">
+                <p className="font-semibold">{subject.text}</p>
+                <p className="mt-1 text-sm">{body.text}</p>
+              </li>
+            );
+          })}
       </ul>
       <Link href="/gardens" className="mt-6 inline-block font-semibold text-primary">
         {t("browse")}

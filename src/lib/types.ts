@@ -106,7 +106,24 @@ export interface EventException {
   exception_id: string;
   event_id: string;
   occurrence_date: string;
-  action: "cancelled";
+  action: "cancelled" | "modified";
+  title_en?: string;
+  title_es?: string;
+  description_en?: string;
+  description_es?: string;
+  location?: string;
+  start_time?: string;
+  end_time?: string;
+}
+
+export interface MockEmail {
+  email_id: string;
+  to_email: string;
+  subject_en: string;
+  subject_es: string;
+  body_en: string;
+  body_es: string;
+  created_at: string;
 }
 
 export interface Rsvp {
@@ -225,6 +242,7 @@ export interface Database {
   visits: Visit[];
   chatMessages: ChatMessage[];
   chatBans: ChatBan[];
+  emails: MockEmail[];
 }
 
 export function emptyDatabase(): Database {
@@ -245,5 +263,6 @@ export function emptyDatabase(): Database {
     visits: [],
     chatMessages: [],
     chatBans: [],
+    emails: [],
   };
 }

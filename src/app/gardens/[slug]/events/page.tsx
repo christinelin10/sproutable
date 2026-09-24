@@ -64,6 +64,16 @@ export default async function EventsPage({
       going,
       allDay: item.event.all_day,
       fallback: localized.fallback,
+      mine: Boolean(
+        user &&
+          db.rsvps.some(
+            (rsvp) =>
+              rsvp.event_id === item.eventId &&
+              rsvp.occurrence_date === item.date &&
+              rsvp.status === "going" &&
+              rsvp.email.toLowerCase() === user.email.toLowerCase(),
+          ),
+      ),
       viewerName: user?.name ?? "",
       viewerEmail: user?.email ?? "",
       loggedIn: Boolean(user),

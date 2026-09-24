@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { PLATFORM_ADMINS } from "@/lib/demo";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
-import { gardenBySlug } from "@/lib/permissions";
+import { ManagerPanel } from "@/components/manager-panel";
+import { gardenBySlug, userById } from "@/lib/permissions";
 import { saveGardenSettings } from "@/server/garden-actions";
 
 export default async function SettingsPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ notice?: string }> }) {
@@ -43,6 +44,15 @@ export default async function SettingsPage({ params, searchParams }: { params: P
           {t("save")}
         </button>
       </form>
+      <ManagerPanel
+        slug={slug}
+        managers={db.gardenManagers
+          .filter((row) => row.garden_id === garden.garden_id)
+          .map((row) => {
+            const person = userById(db, row.user_id);
+            return { user_id: row.user_id, name: person?.name ?? row.user_id, email: person?.email ?? "" };
+          })}
+      />
     </section>
   );
 }

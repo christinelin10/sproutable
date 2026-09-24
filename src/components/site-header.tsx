@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getLocale, getTranslations } from "next-intl/server";
 import { logout } from "@/server/auth-actions";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { NavLink } from "@/components/nav-link";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
 import { unreadCount } from "@/lib/inbox";
@@ -16,16 +17,18 @@ export async function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-[#f3efe4]/95 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
-        <Link href="/" className="text-xl font-bold tracking-tight text-primary">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-2 px-4 py-3">
+        <Link href="/" className="mr-1 text-xl font-bold tracking-tight text-primary">
           Sproutable
         </Link>
-        <Link href="/gardens" className="rounded-full px-3 py-2 font-semibold hover:bg-white">
-          {t("gardens")}
-        </Link>
-        <Link href="/calendar" className="rounded-full px-3 py-2 font-semibold hover:bg-white">
-          {t("calendar")}
-        </Link>
+        <nav className="flex flex-wrap items-center gap-1" aria-label={t("primary")}>
+          <NavLink href="/gardens" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
+            {t("gardens")}
+          </NavLink>
+          <NavLink href="/calendar" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
+            {t("calendar")}
+          </NavLink>
+        </nav>
         <div className="ml-auto flex items-center gap-2">
           <LanguageSwitcher locale={locale} label={t("language")} />
           {user ? (
@@ -39,7 +42,7 @@ export async function SiteHeader() {
                 ) : null}
               </Link>
               <details className="relative">
-                <summary className="cursor-pointer list-none rounded-full border border-line bg-card px-3 py-2 font-semibold">
+                <summary aria-label={t("menu")} className="cursor-pointer list-none rounded-full border border-line bg-card px-3 py-2 font-semibold">
                   {user.name.split(" ")[0]}
                 </summary>
                 <div className="absolute right-0 mt-2 w-48 rounded-2xl border border-line bg-card p-2 shadow-lg">

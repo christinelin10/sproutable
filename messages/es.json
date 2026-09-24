@@ -14,6 +14,7 @@
     "signup": "Crear cuenta",
     "language": "Idioma",
     "menu": "Menú de la cuenta",
+    "primary": "Principal",
     "skip": "Saltar al contenido"
   },
   "home": {
@@ -22,6 +23,12 @@
     "body": "Publica una página, organiza eventos, recibe a la vecindad en inglés y en español, y muestra lo que sumó la temporada.",
     "find": "Buscar un jardín",
     "manage": "Yo coordino un jardín",
+    "openCalendar": "Ver el calendario",
+    "upcoming": "Próximamente",
+    "allEvents": "Todos los eventos públicos",
+    "yourGardens": "Jardines que coordinas",
+    "visit": "Visitar",
+    "emptyEvents": "No hay eventos públicos en las próximas semanas.",
     "featured": "Jardines cerca de Pittsburgh",
     "card1Title": "Una página que se siente como el jardín",
     "card1Body": "Cuenta cómo llegar, qué traer y cómo participar.",
@@ -37,7 +44,9 @@
     "next": "Próximo evento",
     "none": "No hay un evento público próximo",
     "verified": "Verificado",
-    "welcome": "Encuentra un jardín cerca de ti."
+    "welcome": "Encuentra un jardín cerca de ti.",
+    "manage": "Administrar este jardín",
+    "searchGo": "Buscar"
   },
   "garden": {
     "join": "Unirme a este jardín",
@@ -108,7 +117,7 @@
     "invalid_login": "Ese correo y esa contraseña no coinciden.",
     "generic": "Algo salió mal. Inténtalo de nuevo.",
     "denied": "No tienes acceso a esta página.",
-    "deniedBody": "Si crees que es un error, habla con quien coordina el jardín.",
+    "deniedBody": "Solo puedes administrar un jardín si eres quien lo coordina.",
     "home": "Volver a los jardines",
     "full": "Ese evento ya está lleno.",
     "rate": "Espera un segundo antes de enviar otro mensaje.",

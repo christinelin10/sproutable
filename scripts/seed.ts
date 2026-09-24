@@ -24,6 +24,7 @@ const db: Database = {
   users: [
     user("u_maria", "Maria Alvarez", "manager1@demo.com", "manager", "en", "412-555-0142", "events,volunteers"),
     user("u_sam", "Sam Okonkwo", "manager2@demo.com", "manager", "en", "412-555-0177", "beds"),
+    user("u_beech", "Beechview Steward", "beechview@demo.com", "manager", "en", "", "events,volunteer"),
     user("u_denise", "Denise Carter", "member1@demo.com", "user", "en", "412-555-0118", "tomatoes,herbs"),
     user("u_carlos", "Carlos Rivera", "member2@demo.com", "user", "es", "412-555-0190", "volunteer,learn"),
     user("u_priya", "Priya Shah", "user1@demo.com", "user", "en", "", "events"),
@@ -32,6 +33,27 @@ const db: Database = {
     user("u_admin", "Avery Chen", "admin@demo.com", "user", "en", "", ""),
   ],
   gardens: [
+    {
+      garden_id: "g_beechview",
+      slug: "beechview-community-garden",
+      name: "Beechview Community Garden",
+      description_en:
+        "A city garden on the old pool site at 1229 Rockland Avenue, between Beechwood Elementary and Vannucci Park. Neighbors lease beds, and anyone can visit from dawn until dusk.",
+      description_es:
+        "Un jardín de la ciudad en el terreno de la antigua piscina, en 1229 Rockland Avenue, entre la escuela Beechwood y el parque Vannucci. El vecindario alquila camas y cualquiera puede visitar desde el amanecer hasta el anochecer.",
+      address: "1229 Rockland Ave, Pittsburgh, PA 15216",
+      neighborhood: "Beechview",
+      timezone: zone,
+      contact_email: "garden@prettyupbeechview.org",
+      contact_phone: "",
+      year_founded: "",
+      bed_count: "27",
+      cover_image_url: "/seed/beechview.svg",
+      involvement_options: "bed,volunteer,events,produce,learn",
+      verified: true,
+      created_by: "u_beech",
+      created_at: utc(today.minus({ years: 2 })),
+    },
     {
       garden_id: "g_riverside",
       slug: "riverside-community-garden",
@@ -75,6 +97,7 @@ const db: Database = {
     },
   ],
   gardenManagers: [
+    { garden_id: "g_beechview", user_id: "u_beech", added_at: utc(today.minus({ years: 2 })) },
     { garden_id: "g_riverside", user_id: "u_maria", added_at: utc(today.minus({ months: 4 })) },
     { garden_id: "g_hilltop", user_id: "u_sam", added_at: utc(today.minus({ days: 20 })) },
   ],
@@ -226,6 +249,30 @@ db.homeModules = [
     access_es: "La pendiente es fuerte. Avísanos si necesitas ayuda para entrar.",
   }),
   module("mod_h_contact", "g_hilltop", "contact", 5, "Contact", "Contacto", "", "", {}),
+  module("mod_b_hero", "g_beechview", "hero", 0, "Beechview Community Garden", "Jardín comunitario de Beechview", "", ""),
+  module(
+    "mod_b_about",
+    "g_beechview",
+    "about",
+    1,
+    "About this garden",
+    "Sobre este jardín",
+    "Pretty Up Beechview stewards this garden. There are individual beds plus shared plantings, including herbs and a butterfly garden.\n\n- Open dawn until dusk\n- Flat ground, picnic tables, and benches\n- Dogs are not allowed\n\nCome by, and please leave the space as tidy as you found it.",
+    "Pretty Up Beechview cuida este jardín. Hay camas individuales y siembras compartidas, incluidas hierbas y un jardín de mariposas.\n\n- Abre del amanecer al anochecer\n- Terreno plano, mesas y bancas\n- No se permiten perros\n\nPasa a visitar y deja el lugar tan ordenado como lo encontraste.",
+  ),
+  module("mod_b_events", "g_beechview", "upcoming_events", 2, "Upcoming events", "Próximos eventos", "", ""),
+  module("mod_b_ways", "g_beechview", "ways", 3, "Ways to get involved", "Cómo participar", "", "", {
+    options: ["bed", "volunteer", "events", "produce", "learn"],
+  }),
+  module("mod_b_here", "g_beechview", "getting_here", 4, "Getting here", "Cómo llegar", "", "", {
+    bus_en: "The garden is on Rockland Avenue, between the school and Vannucci Park.",
+    bus_es: "El jardín está en Rockland Avenue, entre la escuela y el parque Vannucci.",
+    parking_en: "Park along Rockland, in the school lot when school is out, or at the playground.",
+    parking_es: "Estaciona en Rockland, en el lote de la escuela cuando no hay clases, o en el parque.",
+    access_en: "The ground is flat. The garden closes at dark. Please do not bring dogs.",
+    access_es: "El terreno es plano. El jardín cierra al anochecer. No traigas perros.",
+  }),
+  module("mod_b_contact", "g_beechview", "contact", 5, "Contact", "Contacto", "", "", {}),
 ];
 
 const weeklyStart = nextSaturday.set({ hour: 10, minute: 0 });
@@ -243,6 +290,8 @@ db.events = [
   event("e_past_shop", "g_riverside", "Spring seed starting", "Siembra de primavera", "We started tomatoes indoors.", "Empezamos los tomates adentro.", "workshop", "public", today.minus({ days: 45 }).set({ hour: 11, minute: 0 }), 2, "", "", null),
   event("e_members_past", "g_riverside", "Budget check-in", "Revisión del presupuesto", "Members only notes from last month.", "Notas del mes pasado, solo para miembros.", "meeting", "members", today.minus({ days: 21 }).set({ hour: 18, minute: 0 }), 1, "", "", null),
   event("e_hill", "g_hilltop", "First workday", "Primera jornada", "Help us finish the paths.", "Ayúdanos a terminar los caminos.", "workday", "public", today.plus({ days: 8 }).set({ hour: 9, minute: 0 }), 3, "", "", null),
+  event("e_beech_sat", "g_beechview", "Saturday open garden", "Jardín abierto el sábado", "Stop by the beds, water if you have a plot, or help with the shared plantings. Stay as long as you like.", "Pasa por las camas, riega si tienes una parcela o ayuda con las siembras compartidas. Quédate el tiempo que quieras.", "workday", "public", weeklyStart, 3, "FREQ=WEEKLY;BYDAY=SA", nextSaturday.plus({ weeks: 8 }).toISODate()!, null),
+  event("e_beech_beds", "g_beechview", "Bed care morning", "Mañana de cuidado de camas", "A morning for weeding the shared herb and butterfly beds. Tools are on site.", "Una mañana para deshierbar las camas compartidas de hierbas y mariposas. Las herramientas están aquí.", "workday", "public", today.plus({ days: 3 }).set({ hour: 9, minute: 0 }), 2, "", "", null),
 ];
 
 db.eventExceptions = [
@@ -459,7 +508,12 @@ function event(
     description_en: descriptionEn,
     description_es: descriptionEs,
     category,
-    location: gardenId === "g_riverside" ? "4200 Butler St, Pittsburgh, PA 15201" : "1400 Arlington Ave, Pittsburgh, PA 15210",
+    location:
+      gardenId === "g_beechview"
+        ? "1229 Rockland Ave, Pittsburgh, PA 15216"
+        : gardenId === "g_riverside"
+          ? "4200 Butler St, Pittsburgh, PA 15201"
+          : "1400 Arlington Ave, Pittsburgh, PA 15210",
     start_datetime: wall(start, start.hour, start.minute),
     end_datetime: wall(start.plus({ hours }), start.plus({ hours }).hour, start.plus({ hours }).minute),
     all_day: false,
@@ -468,7 +522,7 @@ function event(
     recurrence_rule: rule,
     recurrence_until: until,
     status: "active" as const,
-    created_by: gardenId === "g_riverside" ? "u_maria" : "u_sam",
+    created_by: gardenId === "g_beechview" ? "u_beech" : gardenId === "g_riverside" ? "u_maria" : "u_sam",
     created_at: utc(today.minus({ days: 10 })),
   };
 }

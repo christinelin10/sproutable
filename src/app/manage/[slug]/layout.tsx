@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { getTranslations } from "next-intl/server";
+import { NavLink } from "@/components/nav-link";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
 import { gardenBySlug, managesGarden } from "@/lib/permissions";
@@ -41,9 +42,14 @@ export default async function ManageLayout({ children, params }: { children: Rea
         <p className="font-semibold text-primary">{garden.name}</p>
         <nav className="mt-3 flex gap-2 overflow-auto md:block" aria-label={t("manage.title")}>
           {links.map(([href, label]) => (
-            <Link key={href} href={`/manage/${slug}${href}`} className="block rounded-xl px-3 py-2 font-semibold hover:bg-card">
+            <NavLink
+              key={href}
+              href={`/manage/${slug}${href}`}
+              exact={href === ""}
+              className="block min-h-11 rounded-xl px-3 py-2 font-semibold hover:bg-card aria-[current=page]:bg-card"
+            >
               {label}
-            </Link>
+            </NavLink>
           ))}
         </nav>
       </aside>

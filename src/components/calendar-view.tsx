@@ -152,6 +152,7 @@ export function CalendarView({
                         setMessage("");
                         setError("");
                       }}
+                      aria-label={`${item.gardenName ? `${item.gardenName}, ` : ""}${item.locked ? t("membersOnly") : item.title}, ${item.date}`}
                       className={`mt-1 block w-full rounded-lg px-1 py-1 text-left text-xs sm:text-sm ${item.locked ? "bg-stone-200" : colors[item.category]} ${item.cancelled ? "line-through" : ""}`}
                     >
                       {item.gardenName ? <span className="block truncate font-semibold">{item.gardenName}</span> : null}

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { NavLink } from "@/components/nav-link";
 import { getTranslations } from "next-intl/server";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
@@ -33,9 +33,9 @@ export default async function GardenLayout({
         <ul className="mx-auto flex max-w-6xl gap-2 overflow-auto px-4 py-3">
           {links.map(([href, label]) => (
             <li key={href}>
-              <Link href={href} className="inline-flex min-h-10 items-center rounded-full px-3 font-semibold hover:bg-background">
+              <NavLink href={href} exact={href === `/gardens/${slug}`} className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-background aria-[current=page]:bg-background">
                 {label}
-              </Link>
+              </NavLink>
             </li>
           ))}
         </ul>

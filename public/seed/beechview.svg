@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="Beechview community garden">
+  <rect width="800" height="480" fill="#e7f0df"/>
+  <rect y="280" width="800" height="200" fill="#6f9a5b"/>
+  <circle cx="140" cy="120" r="46" fill="#e6b23c"/>
+  <rect x="70" y="300" width="90" height="90" rx="8" fill="#8b5a2b"/>
+  <rect x="180" y="310" width="90" height="80" rx="8" fill="#8b5a2b"/>
+  <rect x="290" y="290" width="110" height="100" rx="8" fill="#8b5a2b"/>
+  <rect x="420" y="315" width="90" height="75" rx="8" fill="#8b5a2b"/>
+  <rect x="530" y="300" width="90" height="90" rx="8" fill="#8b5a2b"/>
+  <g fill="#2f6b4f">
+    <circle cx="115" cy="340" r="14"/>
+    <circle cx="225" cy="345" r="14"/>
+    <circle cx="345" cy="330" r="16"/>
+    <circle cx="465" cy="348" r="14"/>
+    <circle cx="575" cy="340" r="14"/>
+  </g>
+  <rect x="650" y="250" width="18" height="90" fill="#3d5c3a"/>
+  <circle cx="659" cy="240" r="28" fill="#3d5c3a"/>
+</svg>

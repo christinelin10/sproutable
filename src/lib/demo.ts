@@ -3,6 +3,7 @@ export const DEMO_PASSWORD = "gardenhub";
 export const DEMO_ACCOUNTS = [
   { email: "manager1@demo.com", name: "Maria Alvarez", group: "manager", note: "Riverside" },
   { email: "manager2@demo.com", name: "Sam Okonkwo", group: "manager", note: "Hilltop" },
+  { email: "beechview@demo.com", name: "Beechview Steward", group: "manager", note: "Beechview" },
   { email: "member1@demo.com", name: "Denise Carter", group: "user", note: "Member, bed holder" },
   { email: "member2@demo.com", name: "Carlos Rivera", group: "user", note: "Member, Spanish" },
   { email: "user1@demo.com", name: "Priya Shah", group: "user", note: "No garden yet" },

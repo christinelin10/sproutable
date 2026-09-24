@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { DateTime } from "luxon";
 import { getLocale, getTranslations } from "next-intl/server";
+import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
+import { managesGarden } from "@/lib/permissions";
 import { nextPublicOccurrence } from "@/lib/events";
 import { formatDate } from "@/lib/format";
 import type { Language } from "@/lib/types";
@@ -15,10 +17,15 @@ export default async function GardensPage({
   const t = await getTranslations("gardens");
   const locale = (await getLocale()) as Language;
   const db = await readDb();
+  const user = await getCurrentUser();
   const query = q.trim().toLowerCase();
-  const gardens = db.gardens.filter(
-    (garden) => !query || garden.name.toLowerCase().includes(query) || garden.neighborhood.toLowerCase().includes(query),
-  );
+  const gardens = [...db.gardens]
+    .sort((a, b) => {
+      if (a.slug === "beechview-community-garden") return -1;
+      if (b.slug === "beechview-community-garden") return 1;
+      return a.name.localeCompare(b.name);
+    })
+    .filter((garden) => !query || garden.name.toLowerCase().includes(query) || garden.neighborhood.toLowerCase().includes(query));
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-10">
@@ -28,7 +35,12 @@ export default async function GardensPage({
         <label className="block font-semibold" htmlFor="q">
           {t("search")}
         </label>
-        <input id="q" name="q" defaultValue={q} className="mt-2 w-full max-w-md rounded-xl border border-line bg-white px-3 py-2" />
+        <div className="mt-2 flex max-w-md gap-2">
+          <input id="q" name="q" defaultValue={q} className="min-h-11 w-full rounded-xl border border-line bg-white px-3 py-2" />
+          <button className="min-h-11 rounded-full bg-primary px-4 font-semibold text-primary-foreground" type="submit">
+            {t("searchGo")}
+          </button>
+        </div>
       </form>
       {gardens.length === 0 ? <p className="mt-10 text-muted">{t("empty")}</p> : null}
       <ul className="mt-8 grid gap-5 md:grid-cols-2">
@@ -39,8 +51,8 @@ export default async function GardensPage({
             garden.timezone,
           );
           return (
-            <li key={garden.garden_id}>
-              <Link href={`/gardens/${garden.slug}`} className="block overflow-hidden rounded-3xl border border-line bg-card">
+            <li key={garden.garden_id} className="overflow-hidden rounded-3xl border border-line bg-card">
+              <Link href={`/gardens/${garden.slug}`} className="block">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={garden.cover_image_url} alt="" className="h-48 w-full object-cover" />
                 <div className="p-5">
@@ -57,6 +69,11 @@ export default async function GardensPage({
                   </p>
                 </div>
               </Link>
+              {user && managesGarden(db, user.user_id, garden.garden_id) ? (
+                <Link href={`/manage/${garden.slug}`} className="mx-5 mb-5 inline-flex min-h-11 items-center rounded-full bg-primary px-4 font-semibold text-primary-foreground">
+                  {t("manage")}
+                </Link>
+              ) : null}
             </li>
           );
         })}

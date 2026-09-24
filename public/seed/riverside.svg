@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" role="img" aria-label="Riverside garden">
+  <rect width="800" height="480" fill="#d5e4cf"/>
+  <rect y="250" width="800" height="230" fill="#7ea86a"/>
+  <circle cx="660" cy="110" r="48" fill="#e6b23c"/>
+  <path d="M0 250 C120 210 180 290 320 250 C460 210 520 290 680 240 C740 220 780 230 800 240 L800 250 Z" fill="#b7d0e4"/>
+  <g fill="#2f6b4f">
+    <rect x="80" y="300" width="120" height="70" rx="6"/>
+    <rect x="230" y="310" width="120" height="70" rx="6"/>
+    <rect x="380" y="295" width="120" height="70" rx="6"/>
+  </g>
+  <g fill="#c45c32">
+    <circle cx="140" cy="330" r="10"/>
+    <circle cx="290" cy="340" r="10"/>
+    <circle cx="440" cy="325" r="10"/>
+  </g>
+</svg>

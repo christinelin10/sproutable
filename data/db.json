@@ -1,0 +1,2531 @@
+{
+  "users": [
+    {
+      "user_id": "u_maria",
+      "name": "Maria Alvarez",
+      "email": "manager1@demo.com",
+      "password_hash": "$2b$10$MR3diHJekPChWQgvYvEDUOXOgQIxJ3YY/ae3j45ZkQHKo/i6T4MrK",
+      "account_type": "manager",
+      "language": "en",
+      "phone": "412-555-0142",
+      "interest_tags": "events,volunteers",
+      "created_at": "2026-06-26T16:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "user_id": "u_sam",
+      "name": "Sam Okonkwo",
+      "email": "manager2@demo.com",
+      "password_hash": "$2b$10$MR3diHJekPChWQgvYvEDUOXOgQIxJ3YY/ae3j45ZkQHKo/i6T4MrK",
+      "account_type": "manager",
+      "language": "en",
+      "phone": "412-555-0177",
+      "interest_tags": "beds",
+      "created_at": "2026-06-26T16:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "user_id": "u_denise",
+      "name": "Denise Carter",
+      "email": "member1@demo.com",
+      "password_hash": "$2b$10$MR3diHJekPChWQgvYvEDUOXOgQIxJ3YY/ae3j45ZkQHKo/i6T4MrK",
+      "account_type": "user",
+      "language": "en",
+      "phone": "412-555-0118",
+      "interest_tags": "tomatoes,herbs",
+      "created_at": "2026-06-26T16:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "user_id": "u_carlos",
+      "name": "Carlos Rivera",
+      "email": "member2@demo.com",
+      "password_hash": "$2b$10$MR3diHJekPChWQgvYvEDUOXOgQIxJ3YY/ae3j45ZkQHKo/i6T4MrK",
+      "account_type": "user",
+      "language": "es",
+      "phone": "412-555-0190",
+      "interest_tags": "volunteer,learn",
+      "created_at": "2026-06-26T16:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "user_id": "u_priya",
+      "name": "Priya Shah",
+      "email": "user1@demo.com",
+      "password_hash": "$2b$10$MR3diHJekPChWQgvYvEDUOXOgQIxJ3YY/ae3j45ZkQHKo/i6T4MrK",
+      "account_type": "user",
+      "language": "en",
+      "phone": "",
+      "interest_tags": "events",
+      "created_at": "2026-06-26T16:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "user_id": "u_luis",
+      "name": "Luis Gomez",
+      "email": "user2@demo.com",
+      "password_hash": "$2b$10$MR3diHJekPChWQgvYvEDUOXOgQIxJ3YY/ae3j45ZkQHKo/i6T4MrK",
+      "account_type": "user",
+      "language": "es",
+      "phone": "412-555-0164",
+      "interest_tags": "learn",
+      "created_at": "2026-06-26T16:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "user_id": "u_pat",
+      "name": "Pat Nguyen",
+      "email": "pat@demo.com",
+      "password_hash": "$2b$10$MR3diHJekPChWQgvYvEDUOXOgQIxJ3YY/ae3j45ZkQHKo/i6T4MrK",
+      "account_type": "user",
+      "language": "en",
+      "phone": "",
+      "interest_tags": "volunteer",
+      "created_at": "2026-06-26T16:00:00.000Z",
+      "status": "active"
+    },
+    {
+      "user_id": "u_admin",
+      "name": "Avery Chen",
+      "email": "admin@demo.com",
+      "password_hash": "$2b$10$MR3diHJekPChWQgvYvEDUOXOgQIxJ3YY/ae3j45ZkQHKo/i6T4MrK",
+      "account_type": "user",
+      "language": "en",
+      "phone": "",
+      "interest_tags": "",
+      "created_at": "2026-06-26T16:00:00.000Z",
+      "status": "active"
+    }
+  ],
+  "gardens": [
+    {
+      "garden_id": "g_riverside",
+      "slug": "riverside-community-garden",
+      "name": "Riverside Community Garden",
+      "description_en": "A shared garden along the Allegheny in Lawrenceville. We grow food, lend tools, and eat together.",
+      "description_es": "Un jardín compartido junto al río Allegheny, en Lawrenceville. Cultivamos comida, prestamos herramientas y comemos juntos.",
+      "address": "4200 Butler St, Pittsburgh, PA 15201",
+      "neighborhood": "Lawrenceville",
+      "timezone": "America/New_York",
+      "contact_email": "hello@riverside.garden",
+      "contact_phone": "412-555-0142",
+      "year_founded": "2014",
+      "bed_count": "12",
+      "cover_image_url": "/seed/riverside.svg",
+      "involvement_options": "bed,volunteer,events,produce,learn",
+      "verified": true,
+      "created_by": "u_maria",
+      "created_at": "2026-05-24T16:00:00.000Z"
+    },
+    {
+      "garden_id": "g_hilltop",
+      "slug": "hilltop-neighborhood-garden",
+      "name": "Hilltop Neighborhood Garden",
+      "description_en": "A young garden on the hill in Allentown. We are still building beds and want neighbors to shape it.",
+      "description_es": "Un jardín nuevo en la colina de Allentown. Todavía estamos haciendo las camas y queremos que el vecindario lo construya con nosotros.",
+      "address": "1400 Arlington Ave, Pittsburgh, PA 15210",
+      "neighborhood": "Allentown",
+      "timezone": "America/New_York",
+      "contact_email": "hello@hilltop.garden",
+      "contact_phone": "412-555-0177",
+      "year_founded": "2025",
+      "bed_count": "4",
+      "cover_image_url": "/seed/hilltop.svg",
+      "involvement_options": "volunteer,events,learn",
+      "verified": false,
+      "created_by": "u_sam",
+      "created_at": "2026-09-04T16:00:00.000Z"
+    }
+  ],
+  "gardenManagers": [
+    {
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "added_at": "2026-05-24T16:00:00.000Z"
+    },
+    {
+      "garden_id": "g_hilltop",
+      "user_id": "u_sam",
+      "added_at": "2026-09-04T16:00:00.000Z"
+    }
+  ],
+  "homeModules": [
+    {
+      "module_id": "mod_hero",
+      "garden_id": "g_riverside",
+      "type": "hero",
+      "position": 0,
+      "visible": true,
+      "title_en": "Riverside Community Garden",
+      "title_es": "Jardín comunitario Riverside",
+      "body_en": "",
+      "body_es": "",
+      "config": {}
+    },
+    {
+      "module_id": "mod_about",
+      "garden_id": "g_riverside",
+      "type": "about",
+      "position": 1,
+      "visible": true,
+      "title_en": "About this garden",
+      "title_es": "Sobre este jardín",
+      "body_en": "We started in **2014** with eight neighbors and a pile of lumber.\n\n- 12 raised beds\n- A tool shed anyone in the garden can use\n- A long table for dinners\n\nNew here? Come to a workday. You do not need experience.",
+      "body_es": "Empezamos en **2014** con ocho vecinos y un montón de madera.\n\n- 12 camas elevadas\n- Un cobertizo de herramientas para quien participa\n- Una mesa larga para las cenas\n\n¿Eres nuevo? Ven a una jornada. No necesitas experiencia.",
+      "config": {}
+    },
+    {
+      "module_id": "mod_gallery",
+      "garden_id": "g_riverside",
+      "type": "gallery",
+      "position": 2,
+      "visible": true,
+      "title_en": "Photos",
+      "title_es": "Fotos",
+      "body_en": "",
+      "body_es": "",
+      "config": {
+        "images": [
+          {
+            "url": "/seed/beds.svg",
+            "alt_en": "Raised beds in summer",
+            "alt_es": "Camas elevadas en verano",
+            "caption_en": "Beds in July",
+            "caption_es": "Camas en julio"
+          },
+          {
+            "url": "/seed/table.svg",
+            "alt_en": "Community table",
+            "alt_es": "Mesa comunitaria",
+            "caption_en": "Thursday dinners",
+            "caption_es": "Cenas de los jueves"
+          },
+          {
+            "url": "/seed/harvest.svg",
+            "alt_en": "Tomatoes in a crate",
+            "alt_es": "Tomates en una caja",
+            "caption_en": "Harvest share",
+            "caption_es": "Reparto de cosecha"
+          }
+        ]
+      }
+    },
+    {
+      "module_id": "mod_events",
+      "garden_id": "g_riverside",
+      "type": "upcoming_events",
+      "position": 3,
+      "visible": true,
+      "title_en": "Upcoming events",
+      "title_es": "Próximos eventos",
+      "body_en": "",
+      "body_es": "",
+      "config": {}
+    },
+    {
+      "module_id": "mod_ways",
+      "garden_id": "g_riverside",
+      "type": "ways",
+      "position": 4,
+      "visible": true,
+      "title_en": "Ways to get involved",
+      "title_es": "Cómo participar",
+      "body_en": "",
+      "body_es": "",
+      "config": {
+        "options": [
+          "bed",
+          "volunteer",
+          "events",
+          "produce",
+          "learn"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_tools",
+      "garden_id": "g_riverside",
+      "type": "tools",
+      "position": 5,
+      "visible": true,
+      "title_en": "Tools and resources",
+      "title_es": "Herramientas y recursos",
+      "body_en": "",
+      "body_es": "",
+      "config": {
+        "items": [
+          {
+            "name_en": "Wheelbarrows and gloves",
+            "name_es": "Carretillas y guantes",
+            "note_en": "In the shed. Sign the clipboard.",
+            "note_es": "En el cobertizo. Anótalo en la lista."
+          },
+          {
+            "name_en": "Hoses and watering cans",
+            "name_es": "Mangueras y regaderas",
+            "note_en": "Please coil the hose when you finish.",
+            "note_es": "Enrolla la manguera cuando termines."
+          },
+          {
+            "name_en": "Harvest crates",
+            "name_es": "Cajas para cosechar",
+            "note_en": "Shared. Wash and return the same day.",
+            "note_es": "Son compartidas. Lávalas y devuélvelas el mismo día."
+          }
+        ]
+      }
+    },
+    {
+      "module_id": "mod_here",
+      "garden_id": "g_riverside",
+      "type": "getting_here",
+      "position": 6,
+      "visible": true,
+      "title_en": "Getting here",
+      "title_es": "Cómo llegar",
+      "body_en": "",
+      "body_es": "",
+      "config": {
+        "bus_en": "Buses 91 and 93 stop at Butler and 42nd.",
+        "bus_es": "Los autobuses 91 y 93 paran en Butler y la calle 42.",
+        "parking_en": "Street parking on Butler. Please do not block the alley.",
+        "parking_es": "Hay estacionamiento en la calle Butler. No bloquees el callejón.",
+        "access_en": "The main path is gravel. One bed is raised to wheelchair height. There is no restroom on site.",
+        "access_es": "El camino principal es de grava. Una cama está a la altura de una silla de ruedas. No hay baño en el lugar."
+      }
+    },
+    {
+      "module_id": "mod_news",
+      "garden_id": "g_riverside",
+      "type": "announcements",
+      "position": 7,
+      "visible": true,
+      "title_en": "Announcements",
+      "title_es": "Avisos",
+      "body_en": "",
+      "body_es": "",
+      "config": {}
+    },
+    {
+      "module_id": "mod_contact",
+      "garden_id": "g_riverside",
+      "type": "contact",
+      "position": 8,
+      "visible": true,
+      "title_en": "Contact",
+      "title_es": "Contacto",
+      "body_en": "",
+      "body_es": "",
+      "config": {
+        "instagram": "https://instagram.com",
+        "facebook": "https://facebook.com"
+      }
+    },
+    {
+      "module_id": "mod_h_hero",
+      "garden_id": "g_hilltop",
+      "type": "hero",
+      "position": 0,
+      "visible": true,
+      "title_en": "Hilltop Neighborhood Garden",
+      "title_es": "Jardín del vecindario Hilltop",
+      "body_en": "",
+      "body_es": "",
+      "config": {}
+    },
+    {
+      "module_id": "mod_h_about",
+      "garden_id": "g_hilltop",
+      "type": "about",
+      "position": 1,
+      "visible": true,
+      "title_en": "About this garden",
+      "title_es": "Sobre este jardín",
+      "body_en": "Hilltop is just getting started. The beds are built. The rest is up to us.",
+      "body_es": "Hilltop apenas empieza. Las camas ya están. Lo demás lo hacemos juntos.",
+      "config": {}
+    },
+    {
+      "module_id": "mod_h_events",
+      "garden_id": "g_hilltop",
+      "type": "upcoming_events",
+      "position": 2,
+      "visible": true,
+      "title_en": "Upcoming events",
+      "title_es": "Próximos eventos",
+      "body_en": "",
+      "body_es": "",
+      "config": {}
+    },
+    {
+      "module_id": "mod_h_ways",
+      "garden_id": "g_hilltop",
+      "type": "ways",
+      "position": 3,
+      "visible": true,
+      "title_en": "Ways to get involved",
+      "title_es": "Cómo participar",
+      "body_en": "",
+      "body_es": "",
+      "config": {
+        "options": [
+          "volunteer",
+          "events",
+          "learn"
+        ]
+      }
+    },
+    {
+      "module_id": "mod_h_here",
+      "garden_id": "g_hilltop",
+      "type": "getting_here",
+      "position": 4,
+      "visible": true,
+      "title_en": "Getting here",
+      "title_es": "Cómo llegar",
+      "body_en": "",
+      "body_es": "",
+      "config": {
+        "bus_en": "Bus 51 stops nearby on Arlington.",
+        "bus_es": "El autobús 51 para cerca, en Arlington.",
+        "parking_en": "A small lot is beside the gate.",
+        "parking_es": "Hay un estacionamiento pequeño junto a la entrada.",
+        "access_en": "The slope is steep. Tell us if you need a hand getting in.",
+        "access_es": "La pendiente es fuerte. Avísanos si necesitas ayuda para entrar."
+      }
+    },
+    {
+      "module_id": "mod_h_contact",
+      "garden_id": "g_hilltop",
+      "type": "contact",
+      "position": 5,
+      "visible": true,
+      "title_en": "Contact",
+      "title_es": "Contacto",
+      "body_en": "",
+      "body_es": "",
+      "config": {}
+    }
+  ],
+  "memberships": [
+    {
+      "membership_id": "m_denise",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "status": "approved",
+      "note": "I would like a bed for tomatoes.",
+      "interests": "bed,volunteer",
+      "requested_at": "2026-07-06T16:00:00.000Z",
+      "decided_at": "2026-07-07T16:00:00.000Z",
+      "decided_by": "u_maria"
+    },
+    {
+      "membership_id": "m_carlos",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "status": "approved",
+      "note": "Quiero ayudar los sábados.",
+      "interests": "volunteer,learn",
+      "requested_at": "2026-08-15T16:00:00.000Z",
+      "decided_at": "2026-08-17T16:00:00.000Z",
+      "decided_by": "u_maria"
+    },
+    {
+      "membership_id": "m_pat",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "status": "approved",
+      "note": "Happy to water during the week.",
+      "interests": "volunteer",
+      "requested_at": "2026-08-25T16:00:00.000Z",
+      "decided_at": "2026-08-26T16:00:00.000Z",
+      "decided_by": "u_maria"
+    },
+    {
+      "membership_id": "m_luis",
+      "garden_id": "g_riverside",
+      "user_id": "u_luis",
+      "status": "pending",
+      "note": "Vivo cerca y quiero aprender.",
+      "interests": "learn,events",
+      "requested_at": "2026-09-22T16:00:00.000Z",
+      "decided_at": "",
+      "decided_by": ""
+    }
+  ],
+  "events": [
+    {
+      "event_id": "e_weekly",
+      "garden_id": "g_riverside",
+      "title_en": "Saturday workday",
+      "title_es": "Jornada de los sábados",
+      "description_en": "Weeding, watering, and a snack at noon. Stay for an hour or the whole morning.",
+      "description_es": "Deshierbamos, regamos y hay algo de comer al mediodía. Quédate una hora o toda la mañana.",
+      "category": "workday",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-09-26T10:00:00",
+      "end_datetime": "2026-09-26T12:00:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": null,
+      "recurrence_rule": "FREQ=WEEKLY;BYDAY=SA",
+      "recurrence_until": "2026-11-14",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_meeting",
+      "garden_id": "g_riverside",
+      "title_en": "Member planning meeting",
+      "title_es": "Reunión de planificación",
+      "description_en": "Members look at the month ahead: beds, tools, and who is away.",
+      "description_es": "Las personas miembros revisan el mes: camas, herramientas y quiénes van a estar fuera.",
+      "category": "meeting",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-10-03T18:30:00",
+      "end_datetime": "2026-10-03T20:00:00",
+      "all_day": false,
+      "visibility": "members",
+      "capacity": null,
+      "recurrence_rule": "FREQ=MONTHLY;COUNT=4",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_dinner",
+      "garden_id": "g_riverside",
+      "title_en": "Community dinner",
+      "title_es": "Cena comunitaria",
+      "description_en": "Bring a dish if you can. Everyone eats, including kids.",
+      "description_es": "Trae un plato si puedes. Comemos todos, incluidas las niñas y los niños.",
+      "category": "meal",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-09-29T18:00:00",
+      "end_datetime": "2026-09-29T20:00:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": 40,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_full",
+      "garden_id": "g_riverside",
+      "title_en": "Composting workshop",
+      "title_es": "Taller de composta",
+      "description_en": "A small group lesson beside the bins. This one is full.",
+      "description_es": "Una lección en grupo pequeño junto a los botes. Este taller ya está lleno.",
+      "category": "workshop",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-10-06T11:00:00",
+      "end_datetime": "2026-10-06T12:30:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": 10,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_harvest",
+      "garden_id": "g_riverside",
+      "title_en": "Harvest share",
+      "title_es": "Reparto de cosecha",
+      "description_en": "Pick what is ready and take a bag home. No experience needed.",
+      "description_es": "Cosechamos lo que está listo y cada quien se lleva una bolsa. No necesitas experiencia.",
+      "category": "meal",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-10-14T16:00:00",
+      "end_datetime": "2026-10-14T18:00:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": null,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_kids",
+      "garden_id": "g_riverside",
+      "title_en": "Kids planting day",
+      "title_es": "Día de siembra para niñas y niños",
+      "description_en": "Families plant beans and sunflowers. Tools are here.",
+      "description_es": "Las familias siembran frijoles y girasoles. Las herramientas están aquí.",
+      "category": "workshop",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-10-12T10:00:00",
+      "end_datetime": "2026-10-12T12:00:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": null,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_past",
+      "garden_id": "g_riverside",
+      "title_en": "July workday",
+      "title_es": "Jornada de julio",
+      "description_en": "We mulched the paths.",
+      "description_es": "Cubrimos los caminos con mantillo.",
+      "category": "workday",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-09-10T10:00:00",
+      "end_datetime": "2026-09-10T12:00:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": null,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_past_meal",
+      "garden_id": "g_riverside",
+      "title_en": "August dinner",
+      "title_es": "Cena de agosto",
+      "description_en": "Tomato night.",
+      "description_es": "Noche de tomates.",
+      "category": "meal",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-08-25T18:00:00",
+      "end_datetime": "2026-08-25T20:00:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": null,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_past_shop",
+      "garden_id": "g_riverside",
+      "title_en": "Spring seed starting",
+      "title_es": "Siembra de primavera",
+      "description_en": "We started tomatoes indoors.",
+      "description_es": "Empezamos los tomates adentro.",
+      "category": "workshop",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-08-10T11:00:00",
+      "end_datetime": "2026-08-10T13:00:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": null,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_members_past",
+      "garden_id": "g_riverside",
+      "title_en": "Budget check-in",
+      "title_es": "Revisión del presupuesto",
+      "description_en": "Members only notes from last month.",
+      "description_es": "Notas del mes pasado, solo para miembros.",
+      "category": "meeting",
+      "location": "4200 Butler St, Pittsburgh, PA 15201",
+      "start_datetime": "2026-09-03T18:00:00",
+      "end_datetime": "2026-09-03T19:00:00",
+      "all_day": false,
+      "visibility": "members",
+      "capacity": null,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_maria",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    },
+    {
+      "event_id": "e_hill",
+      "garden_id": "g_hilltop",
+      "title_en": "First workday",
+      "title_es": "Primera jornada",
+      "description_en": "Help us finish the paths.",
+      "description_es": "Ayúdanos a terminar los caminos.",
+      "category": "workday",
+      "location": "1400 Arlington Ave, Pittsburgh, PA 15210",
+      "start_datetime": "2026-10-02T09:00:00",
+      "end_datetime": "2026-10-02T12:00:00",
+      "all_day": false,
+      "visibility": "public",
+      "capacity": null,
+      "recurrence_rule": "",
+      "recurrence_until": "",
+      "status": "active",
+      "created_by": "u_sam",
+      "created_at": "2026-09-14T16:00:00.000Z"
+    }
+  ],
+  "eventExceptions": [
+    {
+      "exception_id": "x_weekly",
+      "event_id": "e_weekly",
+      "occurrence_date": "2026-10-10",
+      "action": "cancelled"
+    }
+  ],
+  "rsvps": [
+    {
+      "rsvp_id": "r1",
+      "event_id": "e_dinner",
+      "occurrence_date": "2026-09-29",
+      "user_id": "u_denise",
+      "name": "Denise Carter",
+      "email": "member1@demo.com",
+      "party_size": 2,
+      "volunteer": true,
+      "note": "I can bring salad.",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    },
+    {
+      "rsvp_id": "r2",
+      "event_id": "e_dinner",
+      "occurrence_date": "2026-09-29",
+      "user_id": "u_carlos",
+      "name": "Carlos Rivera",
+      "email": "member2@demo.com",
+      "party_size": 3,
+      "volunteer": false,
+      "note": "Vamos en familia.",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    },
+    {
+      "rsvp_id": "r3",
+      "event_id": "e_dinner",
+      "occurrence_date": "2026-09-29",
+      "user_id": "",
+      "name": "Jamie Cole",
+      "email": "jamie@example.com",
+      "party_size": 1,
+      "volunteer": false,
+      "note": "",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    },
+    {
+      "rsvp_id": "r4",
+      "event_id": "e_weekly",
+      "occurrence_date": "2026-09-26",
+      "user_id": "u_denise",
+      "name": "Denise Carter",
+      "email": "member1@demo.com",
+      "party_size": 1,
+      "volunteer": true,
+      "note": "",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    },
+    {
+      "rsvp_id": "rfull_0",
+      "event_id": "e_full",
+      "occurrence_date": "2026-10-06",
+      "user_id": "",
+      "name": "Nora",
+      "email": "nora@example.com",
+      "party_size": 2,
+      "volunteer": false,
+      "note": "",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    },
+    {
+      "rsvp_id": "rfull_1",
+      "event_id": "e_full",
+      "occurrence_date": "2026-10-06",
+      "user_id": "",
+      "name": "Eli",
+      "email": "eli@example.com",
+      "party_size": 2,
+      "volunteer": false,
+      "note": "",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    },
+    {
+      "rsvp_id": "rfull_2",
+      "event_id": "e_full",
+      "occurrence_date": "2026-10-06",
+      "user_id": "",
+      "name": "Samira",
+      "email": "samira@example.com",
+      "party_size": 2,
+      "volunteer": false,
+      "note": "",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    },
+    {
+      "rsvp_id": "rfull_3",
+      "event_id": "e_full",
+      "occurrence_date": "2026-10-06",
+      "user_id": "",
+      "name": "Chris",
+      "email": "chris@example.com",
+      "party_size": 2,
+      "volunteer": false,
+      "note": "",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    },
+    {
+      "rsvp_id": "rfull_4",
+      "event_id": "e_full",
+      "occurrence_date": "2026-10-06",
+      "user_id": "",
+      "name": "Robin",
+      "email": "robin@example.com",
+      "party_size": 2,
+      "volunteer": false,
+      "note": "",
+      "status": "going",
+      "created_at": "2026-09-23T16:00:00.000Z"
+    }
+  ],
+  "announcements": [
+    {
+      "announcement_id": "a_water",
+      "garden_id": "g_riverside",
+      "title_en": "Please water your bed before Thursday",
+      "title_es": "Riega tu cama antes del jueves",
+      "body_en": "It will be hot this week. Morning watering keeps the tomatoes from splitting.",
+      "body_es": "Esta semana va a hacer calor. Regar en la mañana evita que los tomates se rompan.",
+      "visibility": "public",
+      "pinned": true,
+      "created_by": "u_maria",
+      "created_at": "2026-09-23T13:00:00.000Z"
+    },
+    {
+      "announcement_id": "a_tools",
+      "garden_id": "g_riverside",
+      "title_en": "Tool library is restocked",
+      "title_es": "Ya hay más herramientas",
+      "body_en": "Gloves, harvest crates, and two new hoses are in the shed. Please sign them back in.",
+      "body_es": "Hay guantes, cajas para la cosecha y dos mangueras nuevas en el cobertizo. Anótalas cuando las devuelvas.",
+      "visibility": "public",
+      "pinned": false,
+      "created_by": "u_maria",
+      "created_at": "2026-09-18T19:00:00.000Z"
+    },
+    {
+      "announcement_id": "a_members",
+      "garden_id": "g_riverside",
+      "title_en": "Members: compost bins moved",
+      "title_es": "Miembros: movimos los botes de composta",
+      "body_en": "The bins are now along the back fence so the path stays clear.",
+      "body_es": "Los botes están junto a la cerca de atrás para dejar el camino libre.",
+      "visibility": "members",
+      "pinned": false,
+      "created_by": "u_maria",
+      "created_at": "2026-09-21T15:00:00.000Z"
+    }
+  ],
+  "activityLog": [
+    {
+      "activity_id": "act1",
+      "garden_id": "g_riverside",
+      "type": "event_created",
+      "ref_id": "e_dinner",
+      "visibility": "public",
+      "audience_user_id": "",
+      "summary_en": "Community dinner was added.",
+      "summary_es": "Se agregó la cena comunitaria.",
+      "created_at": "2026-09-22T13:00:00.000Z"
+    },
+    {
+      "activity_id": "act2",
+      "garden_id": "g_riverside",
+      "type": "announcement",
+      "ref_id": "a_water",
+      "visibility": "public",
+      "audience_user_id": "",
+      "summary_en": "New announcement: Please water your bed before Thursday.",
+      "summary_es": "Nuevo aviso: Riega tu cama antes del jueves.",
+      "created_at": "2026-09-23T13:00:00.000Z"
+    },
+    {
+      "activity_id": "act3",
+      "garden_id": "g_riverside",
+      "type": "announcement",
+      "ref_id": "a_members",
+      "visibility": "members",
+      "audience_user_id": "",
+      "summary_en": "New announcement: compost bins moved.",
+      "summary_es": "Nuevo aviso: movimos los botes de composta.",
+      "created_at": "2026-09-21T13:00:00.000Z"
+    },
+    {
+      "activity_id": "act4",
+      "garden_id": "g_riverside",
+      "type": "event_cancelled",
+      "ref_id": "e_weekly",
+      "visibility": "public",
+      "audience_user_id": "",
+      "summary_en": "Saturday workday on 2026-10-10 was cancelled.",
+      "summary_es": "Se canceló la jornada del sábado 2026-10-10.",
+      "created_at": "2026-09-23T13:00:00.000Z"
+    },
+    {
+      "activity_id": "act5",
+      "garden_id": "g_riverside",
+      "type": "membership_approved",
+      "ref_id": "m_carlos",
+      "visibility": "public",
+      "audience_user_id": "u_carlos",
+      "summary_en": "You are now a member of Riverside Community Garden.",
+      "summary_es": "Ya eres parte del Jardín comunitario Riverside.",
+      "created_at": "2026-08-17T13:00:00.000Z"
+    },
+    {
+      "activity_id": "act6",
+      "garden_id": "g_riverside",
+      "type": "event_created",
+      "ref_id": "e_meeting",
+      "visibility": "members",
+      "audience_user_id": "",
+      "summary_en": "A members-only meeting was added.",
+      "summary_es": "Se agregó una reunión solo para miembros.",
+      "created_at": "2026-09-23T13:00:00.000Z"
+    },
+    {
+      "activity_id": "act7",
+      "garden_id": "g_hilltop",
+      "type": "event_created",
+      "ref_id": "e_hill",
+      "visibility": "public",
+      "audience_user_id": "",
+      "summary_en": "First workday was added.",
+      "summary_es": "Se agregó la primera jornada.",
+      "created_at": "2026-09-22T13:00:00.000Z"
+    }
+  ],
+  "inboxState": [
+    {
+      "user_id": "u_maria",
+      "garden_id": "g_riverside",
+      "last_seen_at": "2026-09-23T12:00:00.000Z"
+    },
+    {
+      "user_id": "u_carlos",
+      "garden_id": "g_riverside",
+      "last_seen_at": "2026-09-20T12:00:00.000Z"
+    },
+    {
+      "user_id": "u_denise",
+      "garden_id": "g_riverside",
+      "last_seen_at": "2026-09-23T16:00:00.000Z"
+    }
+  ],
+  "beds": [
+    {
+      "bed_id": "b_1",
+      "garden_id": "g_riverside",
+      "label": "Bed 1",
+      "size": "4x4",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_2",
+      "garden_id": "g_riverside",
+      "label": "Bed 2",
+      "size": "4x4",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_3",
+      "garden_id": "g_riverside",
+      "label": "Bed 3",
+      "size": "4x8",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_4",
+      "garden_id": "g_riverside",
+      "label": "Bed 4",
+      "size": "4x4",
+      "notes": "Tomatoes and basil",
+      "status": "assigned",
+      "assigned_user_id": "u_denise",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_5",
+      "garden_id": "g_riverside",
+      "label": "Bed 5",
+      "size": "4x4",
+      "notes": "",
+      "status": "assigned",
+      "assigned_user_id": "u_denise",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_6",
+      "garden_id": "g_riverside",
+      "label": "Bed 6",
+      "size": "4x8",
+      "notes": "",
+      "status": "assigned",
+      "assigned_user_id": "u_carlos",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_7",
+      "garden_id": "g_riverside",
+      "label": "Bed 7",
+      "size": "4x4",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_8",
+      "garden_id": "g_riverside",
+      "label": "Bed 8",
+      "size": "4x4",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_9",
+      "garden_id": "g_riverside",
+      "label": "Bed 9",
+      "size": "4x8",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_10",
+      "garden_id": "g_riverside",
+      "label": "Bed 10",
+      "size": "4x4",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_11",
+      "garden_id": "g_riverside",
+      "label": "Bed 11",
+      "size": "4x4",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "b_12",
+      "garden_id": "g_riverside",
+      "label": "Bed 12",
+      "size": "4x8",
+      "notes": "",
+      "status": "out_of_service",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "hb_1",
+      "garden_id": "g_hilltop",
+      "label": "Bed 1",
+      "size": "4x8",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "hb_2",
+      "garden_id": "g_hilltop",
+      "label": "Bed 2",
+      "size": "4x8",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "hb_3",
+      "garden_id": "g_hilltop",
+      "label": "Bed 3",
+      "size": "4x8",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    },
+    {
+      "bed_id": "hb_4",
+      "garden_id": "g_hilltop",
+      "label": "Bed 4",
+      "size": "4x8",
+      "notes": "",
+      "status": "available",
+      "assigned_user_id": "",
+      "season": "2026"
+    }
+  ],
+  "journalEntries": [
+    {
+      "entry_id": "j1",
+      "bed_id": "b_4",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "entry_date": "2026-07-16",
+      "stage": "planted",
+      "crop": "Tomato",
+      "text": "Planted four Cherokee Purple starts.",
+      "image_urls": [
+        "/seed/tomato.svg"
+      ],
+      "harvest_amount": null,
+      "harvest_unit": "",
+      "created_at": "2026-07-16T21:00:00.000Z"
+    },
+    {
+      "entry_id": "j2",
+      "bed_id": "b_4",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "entry_date": "2026-08-15",
+      "stage": "growing",
+      "crop": "Tomato",
+      "text": "Staked the vines and added mulch.",
+      "image_urls": [
+        "/seed/basil.svg"
+      ],
+      "harvest_amount": null,
+      "harvest_unit": "",
+      "created_at": "2026-08-15T21:00:00.000Z"
+    },
+    {
+      "entry_id": "j3",
+      "bed_id": "b_4",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "entry_date": "2026-09-12",
+      "stage": "harvest",
+      "crop": "Tomato",
+      "text": "First ripe tomatoes. Shared two pounds at the gate.",
+      "image_urls": [
+        "/seed/basket.svg"
+      ],
+      "harvest_amount": 4.5,
+      "harvest_unit": "lb",
+      "created_at": "2026-09-12T21:00:00.000Z"
+    },
+    {
+      "entry_id": "j4",
+      "bed_id": "b_4",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "entry_date": "2026-09-22",
+      "stage": "harvest",
+      "crop": "Basil",
+      "text": "Cut basil before it flowered.",
+      "image_urls": [
+        "/seed/basil.svg"
+      ],
+      "harvest_amount": 0.8,
+      "harvest_unit": "lb",
+      "created_at": "2026-09-22T21:00:00.000Z"
+    },
+    {
+      "entry_id": "j5",
+      "bed_id": "b_5",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "entry_date": "2026-09-04",
+      "stage": "maintenance",
+      "crop": "Pepper",
+      "text": "Replaced a broken soaker line.",
+      "image_urls": [],
+      "harvest_amount": null,
+      "harvest_unit": "",
+      "created_at": "2026-09-04T21:00:00.000Z"
+    },
+    {
+      "entry_id": "j6",
+      "bed_id": "b_6",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "entry_date": "2026-09-09",
+      "stage": "planted",
+      "crop": "Kale",
+      "text": "Sembré col rizada en la mitad de la cama.",
+      "image_urls": [],
+      "harvest_amount": null,
+      "harvest_unit": "",
+      "created_at": "2026-09-09T21:00:00.000Z"
+    },
+    {
+      "entry_id": "j7",
+      "bed_id": "b_4",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "entry_date": "2026-06-24",
+      "stage": "harvest",
+      "crop": "Tomato",
+      "text": "Early cherry tomatoes.",
+      "image_urls": [],
+      "harvest_amount": 2,
+      "harvest_unit": "lb",
+      "created_at": "2026-06-24T21:00:00.000Z"
+    },
+    {
+      "entry_id": "j8",
+      "bed_id": "b_6",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "entry_date": "2026-07-24",
+      "stage": "harvest",
+      "crop": "Kale",
+      "text": "Una cosecha pequeña.",
+      "image_urls": [],
+      "harvest_amount": 1.2,
+      "harvest_unit": "kg",
+      "created_at": "2026-07-24T21:00:00.000Z"
+    }
+  ],
+  "visits": [
+    {
+      "visit_id": "v_1",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-09T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_2",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-09T14:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_3",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-08-13T19:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_4",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-02T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_5",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-07-14T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_6",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-06-21T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_7",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-11T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_8",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-04-01T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_9",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-09-05T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_10",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-03-19T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_11",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-01T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_12",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-05-30T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_13",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-05-31T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_14",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-03T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_15",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-04-21T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_16",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-06-05T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_17",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-09-13T19:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_18",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-03T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_19",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-09T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_20",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-01T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_21",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-04-04T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_22",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-03-28T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_23",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-03-14T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_24",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-06-25T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_25",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-04-21T14:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_26",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-29T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_27",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-05-28T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_28",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-08T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_29",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-04-14T19:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_30",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-07T14:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_31",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-04T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_32",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-06-23T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_33",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-06-17T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_34",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-06-23T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_35",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-08-30T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_36",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-08-17T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_37",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-04-30T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_38",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-09-12T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_39",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-04-10T19:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_40",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-07-24T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_41",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-03-27T14:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_42",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-04-19T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_43",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-08-20T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_44",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-09-09T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_45",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-03-14T13:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_46",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-05-08T19:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_47",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-03-16T13:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_48",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-04-03T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_49",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-04-05T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_50",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-03-19T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_51",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-10T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_52",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-06-30T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_53",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-12T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_54",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-09-12T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_55",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-09-16T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_56",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-07-05T13:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_57",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-03-12T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_58",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-08-06T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_59",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-26T13:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_60",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-14T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_61",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-07-26T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_62",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-09-19T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_63",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-05-20T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_64",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-07-21T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_65",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-07-18T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_66",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-08-14T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_67",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-05-08T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_68",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-08-14T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_69",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-05-11T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_70",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-04-12T14:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_71",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-04-14T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_72",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-04T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_73",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-08-23T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_74",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-29T19:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_75",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-03-24T13:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_76",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-16T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_77",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-06-13T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_78",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-08-10T13:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_79",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-10T14:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_80",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-03-10T13:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_81",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-04-30T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_82",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-03-27T20:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_83",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-07-17T20:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_84",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-06-06T20:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_85",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-09-16T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_86",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-05-16T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_87",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-09-08T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_88",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-09-21T20:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_89",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-05-07T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_90",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-05-11T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_91",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-05-23T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_92",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-08-03T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_93",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-03-18T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_94",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-09-01T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_95",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-12T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_96",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-06T15:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_97",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-07-01T19:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_98",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-03T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_99",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-07-25T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_100",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-03T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_101",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-08-08T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_102",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-03T13:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_103",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-18T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_104",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-05-26T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_105",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-05-22T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_106",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-28T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_107",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-06-24T13:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_108",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-05-25T13:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_109",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-08-28T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_110",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-04-21T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_111",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-04-23T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_112",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-06-27T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_113",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-09-09T13:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_114",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-04-24T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_115",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-04-02T19:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_116",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-09-13T13:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_117",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-04-12T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_118",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-08-27T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_119",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-07-11T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_120",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-04-30T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_121",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-08-28T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_122",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-08-22T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_123",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-05-31T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_124",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-03T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_125",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-05-22T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_126",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-04-06T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_127",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-06-17T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_128",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-04-22T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_129",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-09-17T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_130",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-06-06T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_131",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-30T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_132",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-05-28T13:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_133",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-04-28T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_134",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-09-12T19:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_135",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-09-17T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_136",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-06T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_137",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-05-25T13:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_138",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-05-21T20:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_139",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-05-24T20:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_140",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-20T14:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_141",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-24T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_142",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-09T14:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_143",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-01T20:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_144",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-08-22T13:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_145",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-05-15T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_146",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-20T17:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_147",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-06-14T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_148",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-08-26T20:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_149",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-09-20T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_150",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-08-21T16:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_151",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-03-26T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_152",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-08-12T20:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_153",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-09-14T17:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_154",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-03-29T14:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_155",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-09-05T18:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_156",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-08-11T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_157",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "visited_at": "2026-03-23T15:00:00.000Z",
+      "source": "checkin"
+    },
+    {
+      "visit_id": "v_158",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-05-05T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_159",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "visited_at": "2026-07-02T18:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_160",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-07-20T13:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_rsvp_r1",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-09-29T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_rsvp_r2",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "visited_at": "2026-09-29T16:00:00.000Z",
+      "source": "rsvp"
+    },
+    {
+      "visit_id": "v_rsvp_r4",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "visited_at": "2026-09-26T16:00:00.000Z",
+      "source": "rsvp"
+    }
+  ],
+  "chatMessages": [
+    {
+      "message_id": "c_1",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "body": "Welcome, everyone. Ask questions here. Someone usually answers the same day.",
+      "created_at": "2026-09-16T14:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_2",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "body": "The hose on bed 3 leaks a little. I left a note on the shed.",
+      "created_at": "2026-09-16T15:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_3",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "body": "Hola, ¿a qué hora abren los sábados?",
+      "created_at": "2026-09-17T16:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_4",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "body": "Saturdays the gate is open from 9 to 1.",
+      "created_at": "2026-09-17T17:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_5",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "body": "I have extra basil starts if anyone wants some.",
+      "created_at": "2026-09-18T18:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_6",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "body": "Taking all of them.",
+      "created_at": "2026-09-18T14:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_7",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "body": "Puedo regar entre semana después de las 6.",
+      "created_at": "2026-09-19T15:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_8",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "body": "Thank you, Carlos. The clipboard is on the shed door.",
+      "created_at": "2026-09-19T16:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_9",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "body": "Tomatoes are almost ready on bed 4.",
+      "created_at": "2026-09-20T17:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_10",
+      "garden_id": "g_riverside",
+      "user_id": "u_priya",
+      "body": "I walked by today. It looks beautiful from the sidewalk.",
+      "created_at": "2026-09-20T18:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_11",
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "body": "This place is badly run and nobody should come.",
+      "created_at": "2026-09-21T14:00:00.000Z",
+      "deleted": true,
+      "deleted_by": "u_maria"
+    },
+    {
+      "message_id": "c_12",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "body": "Pat, that does not help. Please keep it useful for neighbors.",
+      "created_at": "2026-09-21T15:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_13",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "body": "The community dinner still has room. Bring a plate if you can.",
+      "created_at": "2026-09-22T16:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_14",
+      "garden_id": "g_riverside",
+      "user_id": "u_carlos",
+      "body": "Ahí estaremos.",
+      "created_at": "2026-09-22T17:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_15",
+      "garden_id": "g_riverside",
+      "user_id": "u_luis",
+      "body": "Hola, mandé mi solicitud para unirme.",
+      "created_at": "2026-09-23T18:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_16",
+      "garden_id": "g_riverside",
+      "user_id": "u_maria",
+      "body": "Thanks, Luis. I will look at requests today.",
+      "created_at": "2026-09-23T14:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    },
+    {
+      "message_id": "c_17",
+      "garden_id": "g_riverside",
+      "user_id": "u_denise",
+      "body": "Watered beds 4 and 5 this morning.",
+      "created_at": "2026-09-24T15:00:00.000Z",
+      "deleted": false,
+      "deleted_by": ""
+    }
+  ],
+  "chatBans": [
+    {
+      "garden_id": "g_riverside",
+      "user_id": "u_pat",
+      "banned_by": "u_maria",
+      "reason": "Repeated posts after a warning",
+      "created_at": "2026-09-23T22:00:00.000Z",
+      "active": true
+    }
+  ]
+}

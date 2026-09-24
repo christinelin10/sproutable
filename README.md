@@ -1,79 +1,50 @@
 # Sproutable
 
-Community gardens, events, volunteering, and visit-based gamification — on the web first, with a path to mobile.
+A clickable web prototype for community gardens. Garden managers publish a home page, run events, approve members, and export a simple grant report. Neighbors join, RSVP, chat, and keep a bed journal. The interface is in English and Spanish.
 
-This repository is an early base. The product idea is settled enough to start; the implementation stack is **proposed, not locked**.
+This follows the GardenHub prototype brief. Gamification, payments, and a native app are intentionally not in this build. Visit check-ins, interest tags, and harvest logs are stored so a later passport can use them.
 
-## What we are building
-
-Two sides of the same product:
-
-**Garden organizers**
-- Publish and manage events
-- Post announcements
-- Own a garden’s public page
-- Accept donations
-
-**Visitors / volunteers**
-- Discover gardens and events
-- Apply to volunteering roles
-- Check in / visit gardens
-- Earn progress from frequency and activity (visits, volunteer hours, event attendance)
-
-The bar is high for **accessibility** (keyboard, screen readers, contrast, reduced motion) and for looking good on **phone browsers and desktop**.
-
-## Stack recommendation (please confirm)
-
-**Start with Next.js (App Router) + TypeScript + Tailwind.**
-
-This product is a content, forms, and dashboard app: garden pages, event listings, volunteer applications, announcements, and donations. That is a web-native shape. Accessibility and SEO (people should be able to find a garden and an event) are also stronger on the web than in a native-only app.
-
-**Mobile, without splitting the team yet**
-1. Ship a responsive, accessible website that feels excellent on a phone.
-2. Add a PWA (home-screen install, offline-ish visit history) when the core flows work.
-3. Only then consider Expo / React Native if we need App Store listing, camera-based check-in, or push that the web cannot do well.
-
-**Data and payments (next, after the UI shell)**
-- Postgres (Supabase or a managed Postgres) for gardens, events, roles, visits, points
-- Auth later (email magic link is enough for v1)
-- Stripe Checkout for donations
-
-### Why not Expo-first?
-
-Expo is the right call if the *primary* experience is a native app (camera check-ins, maps, push, offline). Organizer tools — tables, event editors, donation reports — fight React Native. We would likely still need a web dashboard.
-
-### Why not a separate backend (Rails, Django, Nest) first?
-
-We can add a dedicated API later. For a small team, Next.js route handlers plus Postgres get organizers and visitors onto one codebase faster. If we later need a native app, the API can be extracted.
-
-### Why not Flutter?
-
-One codebase for iOS/Android/web is appealing, but Flutter web accessibility and content-site SEO are weaker than Next.js. This product needs to be a public website as much as an “app.”
-
-## Proposed app map (not built yet)
-
-| Path | Who | Purpose |
-| --- | --- | --- |
-| `/` | Everyone | Discover gardens and nearby events |
-| `/gardens/[slug]` | Everyone | Garden home: story, hours, announcements, donate |
-| `/events` | Visitors | Browse and RSVP |
-| `/volunteer` | Visitors | Open roles and applications |
-| `/me` | Visitors | Visits, streaks, badges |
-| `/organize` | Organizers | Events, announcements, roles, donations |
-
-Gamification should stay **kind**: streaks and badges for showing up, not leaderboards that shame quieter volunteers.
-
-## Repo status
-
-GitHub: [zzzPranav/sproutable](https://github.com/zzzPranav/sproutable)
-
-Nothing is scaffolded yet on purpose. Confirm Next.js (or choose Expo-first / a monorepo) and the next commit will be the actual app shell.
-
-## Local
-
-Once a framework is generated:
+## Run it
 
 ```bash
 npm install
+npm run seed
 npm run dev
 ```
+
+Open http://localhost:3000.
+
+Demo password for every seeded account: `gardenhub`
+
+| Email | Who |
+| --- | --- |
+| manager1@demo.com | Maria, manages Riverside |
+| manager2@demo.com | Sam, manages Hilltop |
+| member1@demo.com | Denise, member and bed holder |
+| member2@demo.com | Carlos, Spanish-speaking member |
+| user1@demo.com | Priya, no garden yet |
+| user2@demo.com | Luis, pending request, Spanish |
+| pat@demo.com | Pat, removed from Riverside chat |
+| admin@demo.com | Avery, can toggle the verified badge |
+
+`npm run seed` rewrites `data/db.json` and refreshes dates around today.
+
+## Stack
+
+- Next.js App Router, TypeScript, Tailwind
+- English and Spanish through `next-intl` (cookie, not a locale in the URL)
+- Email and password sessions in an httpOnly cookie
+- Local JSON datastore behind `src/lib/data/store.ts`
+
+The app never talks to Google Sheets directly. A spreadsheet adapter can replace `readDb` / `updateDb` later. The demo uses JSON so it runs without API keys and without spreadsheet rate limits.
+
+## What you can click through
+
+- Sign up as a neighbor or a manager, or log in with a demo account
+- Browse gardens and open a modular home page
+- Switch EN / ES from any page
+- Request to join, then approve or decline as the manager
+- Create recurring events, RSVP from the calendar, cancel one date
+- Inbox, public chat with delete and chat removal
+- Beds, journal photos, announcements, check-in
+- Impact charts plus PDF and CSV export

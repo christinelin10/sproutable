@@ -23,6 +23,8 @@ async function readFileDb(): Promise<Database> {
     const raw = await fs.readFile(DB_PATH, "utf8");
     const data = JSON.parse(raw) as Database;
     if (!data.emails) data.emails = [];
+    if (!data.itemDonations) data.itemDonations = [];
+    if (!data.moneyDonations) data.moneyDonations = [];
     return data;
   } catch (error) {
     const code = (error as NodeJS.ErrnoException).code;

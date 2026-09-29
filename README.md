@@ -48,3 +48,9 @@ The app never talks to Google Sheets directly. A spreadsheet adapter can replace
 - Inbox, public chat with delete and chat removal
 - Beds, journal photos, announcements, check-in
 - Impact charts plus PDF and CSV export
+
+## What's growing
+
+`/growing` is the Beechview board: beds, journal notes, item donations, and money pledges. A pledge is a note for the steward. The app does not charge a card.
+
+Log in as `beechview@demo.com` to ask for an item or mark one as here. Any demo account can offer an item or record a pledge. Password: `gardenhub`.

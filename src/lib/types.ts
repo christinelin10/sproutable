@@ -198,6 +198,29 @@ export interface JournalEntry {
   created_at: string;
 }
 
+export type ItemDonationStatus = "needed" | "offered" | "received";
+
+export interface ItemDonation {
+  donation_id: string;
+  garden_id: string;
+  title: string;
+  detail: string;
+  status: ItemDonationStatus;
+  offered_by: string;
+  offered_name: string;
+  created_at: string;
+}
+
+export interface MoneyDonation {
+  donation_id: string;
+  garden_id: string;
+  user_id: string;
+  name: string;
+  amount_cents: number;
+  note: string;
+  created_at: string;
+}
+
 export interface Visit {
   visit_id: string;
   garden_id: string;
@@ -239,6 +262,8 @@ export interface Database {
   inboxState: InboxState[];
   beds: Bed[];
   journalEntries: JournalEntry[];
+  itemDonations: ItemDonation[];
+  moneyDonations: MoneyDonation[];
   visits: Visit[];
   chatMessages: ChatMessage[];
   chatBans: ChatBan[];
@@ -260,6 +285,8 @@ export function emptyDatabase(): Database {
     inboxState: [],
     beds: [],
     journalEntries: [],
+    itemDonations: [],
+    moneyDonations: [],
     visits: [],
     chatMessages: [],
     chatBans: [],

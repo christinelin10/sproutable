@@ -28,6 +28,9 @@ export async function SiteHeader() {
           <NavLink href="/calendar" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
             {t("calendar")}
           </NavLink>
+          <NavLink href="/growing" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
+            {t("growing")}
+          </NavLink>
         </nav>
         <div className="ml-auto flex items-center gap-2">
           <LanguageSwitcher locale={locale} label={t("language")} />

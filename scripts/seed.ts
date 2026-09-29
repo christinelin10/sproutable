@@ -157,6 +157,8 @@ const db: Database = {
   ],
   beds: [],
   journalEntries: [],
+  itemDonations: [],
+  moneyDonations: [],
   visits: [],
   chatMessages: [],
   emails: [
@@ -362,6 +364,33 @@ for (let i = 1; i <= 4; i += 1) {
   });
 }
 
+const beechBeds: Array<[string, string, string, string, string]> = [
+  ["bb_herb", "Herb spiral", "8 ft round", "u_beech", "Basil and parsley for anyone who cooks"],
+  ["bb_butterfly", "Butterfly bed", "4x12", "u_beech", "Milkweed and zinnias along the fence"],
+  ["bb_tomato", "Tomato terrace", "4x16", "u_denise", "Cherokee Purple and Sungold"],
+  ["bb_kale", "North kale", "4x8", "u_carlos", "Lacinato on the shady side"],
+  ["bb_pepper", "Pepper row", "4x8", "u_denise", "Shishito and jalapeño"],
+  ["bb_beans", "Pole beans", "4x8", "", "Open this season"],
+  ["bb_squash", "Winter squash", "4x12", "u_beech", "Butternut on the south edge"],
+  ["bb_garlic", "Garlic bed", "4x8", "u_beech", "Planted last fall"],
+  ["bb_lettuce", "Cut-and-come lettuce", "4x4", "", "Shared leaves by the gate"],
+  ["bb_strawberry", "Strawberry edge", "4x20", "u_beech", "June bearers along the path"],
+  ["bb_sun", "Sunflower fence", "2x20", "", "A screen for the compost"],
+  ["bb_sisters", "Three sisters", "8x8", "u_carlos", "Corn, beans, and squash"],
+];
+for (const [id, label, size, assigned, notes] of beechBeds) {
+  db.beds.push({
+    bed_id: id,
+    garden_id: "g_beechview",
+    label,
+    size,
+    notes,
+    status: assigned ? "assigned" : "available",
+    assigned_user_id: assigned,
+    season: String(today.year),
+  });
+}
+
 db.journalEntries = [
   journal("j1", "b_4", "u_denise", today.minus({ days: 70 }), "planted", "Tomato", "Planted four Cherokee Purple starts.", ["/seed/tomato.svg"], null, ""),
   journal("j2", "b_4", "u_denise", today.minus({ days: 40 }), "growing", "Tomato", "Staked the vines and added mulch.", ["/seed/basil.svg"], null, ""),
@@ -371,6 +400,34 @@ db.journalEntries = [
   journal("j6", "b_6", "u_carlos", today.minus({ days: 15 }), "planted", "Kale", "Sembré col rizada en la mitad de la cama.", [], null, ""),
   journal("j7", "b_4", "u_denise", today.minus({ months: 3 }), "harvest", "Tomato", "Early cherry tomatoes.", [], 2, "lb"),
   journal("j8", "b_6", "u_carlos", today.minus({ months: 2 }), "harvest", "Kale", "Una cosecha pequeña.", [], 1.2, "kg"),
+  journal("bj1", "bb_herb", "u_beech", today.minus({ days: 18 }), "growing", "Basil", "Pinched the basil so it stays bushy. Neighbors can cut a handful.", ["/seed/basil.svg"], null, "", "g_beechview"),
+  journal("bj2", "bb_butterfly", "u_beech", today.minus({ days: 24 }), "growing", "Milkweed", "Monarch caterpillars on the milkweed. Please leave this bed alone.", ["/seed/beds.svg"], null, "", "g_beechview"),
+  journal("bj3", "bb_tomato", "u_denise", today.minus({ days: 6 }), "harvest", "Tomato", "Sungolds are coming in. Left a bowl at the gate.", ["/seed/tomato.svg", "/seed/basket.svg"], 6, "lb", "g_beechview"),
+  journal("bj4", "bb_kale", "u_carlos", today.minus({ days: 9 }), "growing", "Kale", "Las hojas están listas para cortar de afuera hacia adentro.", [], null, "", "g_beechview"),
+  journal("bj5", "bb_pepper", "u_denise", today.minus({ days: 11 }), "growing", "Pepper", "First shishitos. Still small.", ["/seed/harvest.svg"], null, "", "g_beechview"),
+  journal("bj6", "bb_squash", "u_beech", today.minus({ days: 30 }), "growing", "Squash", "Vines are covering the straw. One fruit is sizing up.", ["/seed/beds.svg"], null, "", "g_beechview"),
+  journal("bj7", "bb_garlic", "u_beech", today.minus({ days: 40 }), "maintenance", "Garlic", "Scapes came off last month. Bulbs are drying in the shade.", [], null, "", "g_beechview"),
+  journal("bj8", "bb_lettuce", "u_beech", today.minus({ days: 3 }), "harvest", "Lettuce", "Cut a crate for the Saturday open garden.", ["/seed/basket.svg"], 1.5, "lb", "g_beechview"),
+  journal("bj9", "bb_strawberry", "u_beech", today.minus({ days: 50 }), "harvest", "Strawberry", "The June flush. Most of it walked out in neighbors' hands.", ["/seed/harvest.svg"], 4.2, "lb", "g_beechview"),
+  journal("bj10", "bb_sun", "u_beech", today.minus({ days: 21 }), "growing", "Sunflower", "Heads are turning toward Rockland Avenue.", [], null, "", "g_beechview"),
+  journal("bj11", "bb_sisters", "u_carlos", today.minus({ days: 16 }), "planted", "Corn", "Sembré el maíz. Los frijoles van cuando tenga un palmo de alto.", ["/seed/beds.svg"], null, "", "g_beechview"),
+];
+
+db.itemDonations = [
+  { donation_id: "id_mulch", garden_id: "g_beechview", title: "Straw mulch, 6 bales", detail: "For the paths and the squash bed.", status: "needed", offered_by: "", offered_name: "", created_at: utc(today.minus({ days: 4 }), 9) },
+  { donation_id: "id_cages", garden_id: "g_beechview", title: "Tomato cages", detail: "Four sturdy cages, not the thin conical ones.", status: "offered", offered_by: "u_denise", offered_name: "Denise Carter", created_at: utc(today.minus({ days: 3 }), 14) },
+  { donation_id: "id_mats", garden_id: "g_beechview", title: "Seedling heat mat", detail: "Used for the pepper starts.", status: "received", offered_by: "u_carlos", offered_name: "Carlos Rivera", created_at: utc(today.minus({ days: 20 }), 11) },
+  { donation_id: "id_hose", garden_id: "g_beechview", title: "Soaker hose, 50 ft", detail: "The terrace hose split.", status: "needed", offered_by: "", offered_name: "", created_at: utc(today.minus({ days: 2 }), 8) },
+  { donation_id: "id_compost", garden_id: "g_beechview", title: "A yard of compost", detail: "Delivery to the Rockland gate is fine.", status: "offered", offered_by: "u_beech", offered_name: "Beechview Steward", created_at: utc(today.minus({ days: 1 }), 16) },
+];
+
+db.moneyDonations = [
+  { donation_id: "md_denise", garden_id: "g_beechview", user_id: "u_denise", name: "Denise Carter", amount_cents: 4000, note: "For the compost delivery", created_at: utc(today.minus({ days: 5 }), 18) },
+  { donation_id: "md_carlos", garden_id: "g_beechview", user_id: "u_carlos", name: "Carlos Rivera", amount_cents: 2500, note: "Para la manguera", created_at: utc(today.minus({ days: 4 }), 12) },
+  { donation_id: "md_priya", garden_id: "g_beechview", user_id: "u_priya", name: "Priya Shah", amount_cents: 1500, note: "Glad the gate stays open until dusk", created_at: utc(today.minus({ days: 2 }), 19) },
+  { donation_id: "md_steward", garden_id: "g_beechview", user_id: "u_beech", name: "Beechview Steward", amount_cents: 6000, note: "Lumber for the terrace", created_at: utc(today.minus({ days: 8 }), 10) },
+  { donation_id: "md_pat", garden_id: "g_beechview", user_id: "u_pat", name: "Pat Nguyen", amount_cents: 2000, note: "", created_at: utc(today.minus({ days: 1 }), 15) },
+  { donation_id: "md_maria", garden_id: "g_beechview", user_id: "u_maria", name: "Maria Alvarez", amount_cents: 5000, note: "From Riverside, for the shared hose", created_at: utc(today.minus({ days: 6 }), 9) },
 ];
 
 const visitors = ["u_denise", "u_carlos", "u_maria", "u_pat"];
@@ -578,11 +635,12 @@ function journal(
   images: string[],
   amount: number | null,
   unit: "" | "lb" | "kg",
+  gardenId = "g_riverside",
 ) {
   return {
     entry_id: id,
     bed_id: bedId,
-    garden_id: "g_riverside",
+    garden_id: gardenId,
     user_id: userId,
     entry_date: day.toISODate()!,
     stage,

@@ -45,12 +45,26 @@
     "nextBody": "Open a garden page to check in when you visit. If you have access to a bed's journal, add your harvests and photos there. Progress reflects your current records across all time; editing or removing entries can change it.",
     "findGarden": "Find a garden"
   },
+  "map": {
+    "home": "Back to the welcome hub",
+    "title": "Map of Pittsburgh",
+    "body": "You are starting at Hamburg Hall for now. Six nearby community gardens are marked. Later, visits on this map can count toward achievements.",
+    "youAreHere": "You are here",
+    "nearby": "Nearby gardens",
+    "miles": "mi",
+    "openGarden": "Open garden page",
+    "notOnSproutable": "Listed on the map. A Sproutable page is not set up yet.",
+    "missingToken": "Add a Mapbox token as NEXT_PUBLIC_MAPBOX_TOKEN to load the interactive map. The garden list still works.",
+    "listLabel": "Nearby community gardens",
+    "mapLabel": "Interactive map"
+  },
   "meta": {
     "title": "Sproutable",
     "description": "A home for community gardens: events, members, and the story you can show a funder."
   },
   "nav": {
     "gardens": "Gardens",
+    "map": "Map",
     "calendar": "Calendar",
     "growing": "What's growing",
     "inbox": "Inbox",

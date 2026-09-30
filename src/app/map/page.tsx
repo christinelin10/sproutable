@@ -1,0 +1,40 @@
+import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { MapExplorer } from "@/app/map/map-explorer";
+import { HOME_BASE, NEARBY_GARDENS, milesBetween } from "@/lib/nearby-gardens";
+
+export default async function MapPage() {
+  const t = await getTranslations("map");
+  const gardens = NEARBY_GARDENS.map((garden) => ({
+    ...garden,
+    miles: milesBetween(HOME_BASE.lat, HOME_BASE.lng, garden.lat, garden.lng),
+  })).sort((a, b) => a.miles - b.miles);
+
+  return (
+    <section className="mx-auto max-w-6xl px-4 py-8">
+      <p className="font-semibold text-primary">
+        <Link href="/" className="underline">
+          {t("home")}
+        </Link>
+      </p>
+      <h1 className="mt-2 text-4xl font-semibold">{t("title")}</h1>
+      <p className="mt-3 max-w-2xl text-lg text-muted">{t("body")}</p>
+      <div className="mt-6">
+        <MapExplorer
+          token={process.env.NEXT_PUBLIC_MAPBOX_TOKEN ?? ""}
+          gardens={gardens}
+          copy={{
+            youAreHere: t("youAreHere"),
+            nearby: t("nearby"),
+            miles: t("miles"),
+            openGarden: t("openGarden"),
+            notOnSproutable: t("notOnSproutable"),
+            missingToken: t("missingToken"),
+            listLabel: t("listLabel"),
+            mapLabel: t("mapLabel"),
+          }}
+        />
+      </div>
+    </section>
+  );
+}

@@ -45,12 +45,26 @@
     "nextBody": "Abre la página de un jardín para registrar tu visita cuando llegues. Si tienes acceso al diario de una cama, añade allí tus cosechas y fotos. El progreso refleja todos tus registros actuales; editar o eliminar entradas puede cambiarlo.",
     "findGarden": "Buscar un jardín"
   },
+  "map": {
+    "home": "Volver al inicio",
+    "title": "Mapa de Pittsburgh",
+    "body": "Por ahora el punto de partida es Hamburg Hall. Hay seis jardines comunitarios cercanos marcados. Más adelante, las visitas en este mapa podrán contar para los logros.",
+    "youAreHere": "Estás aquí",
+    "nearby": "Jardines cercanos",
+    "miles": "mi",
+    "openGarden": "Abrir la página del jardín",
+    "notOnSproutable": "Está en el mapa. Todavía no tiene página en Sproutable.",
+    "missingToken": "Agrega un token de Mapbox como NEXT_PUBLIC_MAPBOX_TOKEN para ver el mapa interactivo. La lista de jardines sigue disponible.",
+    "listLabel": "Jardines comunitarios cercanos",
+    "mapLabel": "Mapa interactivo"
+  },
   "meta": {
     "title": "Sproutable",
     "description": "Un lugar para los jardines comunitarios: eventos, miembros y la historia que puedes mostrar a quien financia."
   },
   "nav": {
     "gardens": "Jardines",
+    "map": "Mapa",
     "calendar": "Calendario",
     "growing": "Qué crece",
     "inbox": "Bandeja",

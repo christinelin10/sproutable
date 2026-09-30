@@ -1,0 +1,96 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import mapboxgl from "mapbox-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
+import type { NearbyGarden } from "@/lib/nearby-gardens";
+import { HOME_BASE } from "@/lib/nearby-gardens";
+
+export function GardenMap({
+  token,
+  gardens,
+  selectedId,
+  onSelect,
+  youAreHere,
+  missingToken,
+}: {
+  token: string;
+  gardens: NearbyGarden[];
+  selectedId: string;
+  onSelect: (id: string) => void;
+  youAreHere: string;
+  missingToken: string;
+}) {
+  const container = useRef<HTMLDivElement>(null);
+  const mapRef = useRef<mapboxgl.Map | null>(null);
+  const onSelectRef = useRef(onSelect);
+  onSelectRef.current = onSelect;
+
+  useEffect(() => {
+    if (!token || !container.current || mapRef.current) return;
+    mapboxgl.accessToken = token;
+    const map = new mapboxgl.Map({
+      container: container.current,
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: [HOME_BASE.lng, HOME_BASE.lat],
+      zoom: 12,
+    });
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+    mapRef.current = map;
+
+    const bounds = new mapboxgl.LngLatBounds();
+    bounds.extend([HOME_BASE.lng, HOME_BASE.lat]);
+
+    const you = document.createElement("button");
+    you.type = "button";
+    you.className = "map-pin map-pin-you";
+    you.setAttribute("aria-label", youAreHere);
+    you.title = youAreHere;
+    new mapboxgl.Marker({ element: you, anchor: "center" }).setLngLat([HOME_BASE.lng, HOME_BASE.lat]).addTo(map);
+
+    for (const garden of gardens) {
+      bounds.extend([garden.lng, garden.lat]);
+      const pin = document.createElement("button");
+      pin.type = "button";
+      pin.className = "map-pin map-pin-garden";
+      pin.dataset.gardenId = garden.id;
+      pin.setAttribute("aria-label", garden.name);
+      pin.title = garden.name;
+      pin.addEventListener("click", () => onSelectRef.current(garden.id));
+      new mapboxgl.Marker({ element: pin, anchor: "center" }).setLngLat([garden.lng, garden.lat]).addTo(map);
+    }
+
+    map.on("load", () => {
+      map.fitBounds(bounds, { padding: 56, maxZoom: 14, duration: 0 });
+    });
+
+    return () => {
+      map.remove();
+      mapRef.current = null;
+    };
+  }, [gardens, token, youAreHere]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) return;
+    const pins = map.getContainer().querySelectorAll<HTMLButtonElement>(".map-pin-garden");
+    pins.forEach((pin) => {
+      const selected = pin.dataset.gardenId === selectedId;
+      pin.classList.toggle("map-pin-selected", selected);
+      pin.setAttribute("aria-pressed", selected ? "true" : "false");
+    });
+    const garden = gardens.find((item) => item.id === selectedId);
+    if (!garden) return;
+    map.flyTo({ center: [garden.lng, garden.lat], zoom: 14, essential: true });
+  }, [gardens, selectedId]);
+
+  if (!token) {
+    return (
+      <div className="flex h-full min-h-[420px] items-center justify-center rounded-3xl border border-line bg-card p-6 text-center">
+        <p className="max-w-sm text-muted">{missingToken}</p>
+      </div>
+    );
+  }
+
+  return <div ref={container} className="h-full min-h-[420px] w-full" />;
+}

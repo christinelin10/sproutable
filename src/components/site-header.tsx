@@ -25,6 +25,9 @@ export async function SiteHeader() {
           <NavLink href="/gardens" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
             {t("gardens")}
           </NavLink>
+          <NavLink href="/map" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
+            {t("map")}
+          </NavLink>
           <NavLink href="/events" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
             {t("eventBoard")}
           </NavLink>

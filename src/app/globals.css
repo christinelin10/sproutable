@@ -52,6 +52,31 @@ a {
   outline-offset: 2px;
 }
 
+.map-pin {
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 2px solid #fffdf8;
+  border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(28, 25, 23, 0.35);
+}
+
+.map-pin-you {
+  width: 1.35rem;
+  height: 1.35rem;
+  background: #8f3b1c;
+}
+
+.map-pin-garden {
+  background: #215c45;
+}
+
+.map-pin-selected {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: #e3b23c;
+  outline: 3px solid #215c45;
+}
+
 .prose-garden a {
   color: var(--primary);
   text-decoration: underline;

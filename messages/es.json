@@ -1,4 +1,50 @@
 {
+  "welcomeHub": {
+    "eyebrow": "Te damos la bienvenida a Sproutable",
+    "title": "Cultivemos algo juntos.",
+    "body": "Encuentra tu lugar en el jardín: explora, participa y celebra lo que aportas.",
+    "navigation": "Explora Sproutable",
+    "map": { "title": "Mapa", "body": "Encuentra un jardín comunitario y planea tu próxima visita.", "action": "Explorar el mapa" },
+    "events": { "title": "Eventos", "body": "Participa en jornadas de trabajo, talleres y encuentros comunitarios.", "action": "Ver eventos" },
+    "growing": { "title": "Qué crece", "body": "Explora las camas, sigue el diario y ayuda al jardín a crecer.", "action": "Ver qué crece" },
+    "achievements": { "title": "Logros", "body": "Celebra tus visitas, cosechas y fotos del diario.", "action": "Ver tu progreso" }
+  },
+  "achievements": {
+    "home": "Volver al inicio",
+    "title": "Tus logros",
+    "body": "Cada visita y cada aporte ayudan a nuestra comunidad a crecer. Mira tu progreso en todos los jardines.",
+    "earnedCount": "{count, number} de {total, number} logros conseguidos",
+    "total": "{count, number}",
+    "empty": "Tu historia empieza aquí. Registra tu visita a un jardín o añade una cosecha o una foto a tu diario para alcanzar tu primera meta.",
+    "guest": "Entra para ver tu participación y tus metas alcanzadas. Explora las metas a continuación para descubrir lo que puedes lograr.",
+    "login": "Entrar para ver tu progreso",
+    "earned": "Alcanzada",
+    "inProgress": "En progreso",
+    "milestone": "Meta",
+    "preview": "Entra para ver tu progreso.",
+    "progress": "{count, number} de {target, number}",
+    "visits": {
+      "names": { "1": "Primer brote", "5": "Visita habitual", "10": "Raíz de la comunidad" },
+      "title": "Visitas",
+      "description": "Las visitas registradas en el jardín cuentan para estas metas. Las confirmaciones de asistencia a eventos no cuentan como visitas.",
+      "milestone": "{count, plural, one {# visita al jardín} other {# visitas al jardín}}"
+    },
+    "harvests": {
+      "names": { "1": "Primera cosecha", "5": "Buena mano para las plantas", "10": "Orgullo de la cosecha" },
+      "title": "Cosechas",
+      "description": "Cada entrada del diario que escribas en la etapa de cosecha cuenta como una cosecha, sin importar su peso.",
+      "milestone": "{count, plural, one {# cosecha registrada} other {# cosechas registradas}}"
+    },
+    "photos": {
+      "names": { "1": "Instantánea del jardín", "5": "Historias del jardín", "10": "Guardián de recuerdos" },
+      "title": "Fotos del diario",
+      "description": "Cada foto que esté adjunta a una entrada del diario escrita por ti cuenta para estas metas.",
+      "milestone": "{count, plural, one {# foto del diario} other {# fotos del diario}}"
+    },
+    "nextTitle": "Sigue creciendo con tu comunidad",
+    "nextBody": "Abre la página de un jardín para registrar tu visita cuando llegues. Si tienes acceso al diario de una cama, añade allí tus cosechas y fotos. El progreso refleja todos tus registros actuales; editar o eliminar entradas puede cambiarlo.",
+    "findGarden": "Buscar un jardín"
+  },
   "meta": {
     "title": "Sproutable",
     "description": "Un lugar para los jardines comunitarios: eventos, miembros y la historia que puedes mostrar a quien financia."

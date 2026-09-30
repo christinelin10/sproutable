@@ -10,6 +10,7 @@ import type { Language } from "@/lib/types";
 
 export default async function HomePage() {
   const t = await getTranslations("home");
+  const hub = await getTranslations("welcomeHub");
   const gardensT = await getTranslations("gardens");
   const locale = (await getLocale()) as Language;
   const db = await readDb();
@@ -45,9 +46,28 @@ export default async function HomePage() {
 
   return (
     <div>
+      <section className="mx-auto max-w-6xl px-4 pt-8 sm:pt-12">
+        <p className="font-semibold text-primary">{hub("eyebrow")}</p>
+        <h1 className="mt-2 max-w-3xl text-4xl font-semibold tracking-tight sm:text-6xl">{hub("title")}</h1>
+        <p className="mt-4 max-w-2xl text-xl text-muted">{hub("body")}</p>
+        <nav className="mt-8" aria-label={hub("navigation")}>
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {(["map", "events", "growing", "achievements"] as const).map((door) => (
+              <li key={door}>
+                <Link href={`/${door}`} className="flex h-full flex-col rounded-3xl border border-line bg-card p-5 shadow-sm hover:border-primary sm:p-6">
+                  <h2 className="text-2xl font-semibold text-primary">{hub(`${door}.title`)}</h2>
+                  <p className="mt-3 text-muted">{hub(`${door}.body`)}</p>
+                  <span className="mt-auto block pt-6 font-semibold text-primary">{hub(`${door}.action`)} <span aria-hidden="true">→</span></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </section>
+
       <section className="mx-auto max-w-6xl px-4 py-12">
         <p className="font-semibold text-primary">{t("eyebrow")}</p>
-        <h1 className="mt-3 max-w-3xl text-5xl font-semibold leading-tight tracking-tight">{t("title")}</h1>
+        <h2 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight tracking-tight">{t("title")}</h2>
         <p className="mt-5 max-w-2xl text-xl text-muted">{t("body")}</p>
         <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Link href="/gardens" className="inline-flex min-h-14 items-center justify-center rounded-2xl bg-primary px-4 py-3 text-center font-semibold text-primary-foreground">

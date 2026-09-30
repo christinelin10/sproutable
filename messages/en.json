@@ -1,4 +1,50 @@
 {
+  "welcomeHub": {
+    "eyebrow": "Welcome to Sproutable",
+    "title": "Grow something together.",
+    "body": "Find your way into the garden: explore, join in, and celebrate what you contribute.",
+    "navigation": "Explore Sproutable",
+    "map": { "title": "Map", "body": "Find a community garden and plan your next visit.", "action": "Explore the map" },
+    "events": { "title": "Events", "body": "Make time for workdays, workshops, and community gatherings.", "action": "See events" },
+    "growing": { "title": "What's Growing", "body": "See the beds, follow the journal, and help the garden grow.", "action": "See what's growing" },
+    "achievements": { "title": "Achievements", "body": "Celebrate your visits, harvests, and journal photos.", "action": "See your progress" }
+  },
+  "achievements": {
+    "home": "Back to the Welcome Hub",
+    "title": "Your achievements",
+    "body": "Every visit and every contribution helps our community grow. See your progress across all gardens.",
+    "earnedCount": "{count, number} of {total, number} achievements earned",
+    "total": "{count, number}",
+    "empty": "Your story starts here. Check in at a garden or add a harvest or photo to your journal to reach your first milestone.",
+    "guest": "Log in to see your own participation and earned milestones. Explore the milestones below to see what you can work toward.",
+    "login": "Log in to see your progress",
+    "earned": "Earned",
+    "inProgress": "In progress",
+    "milestone": "Milestone",
+    "preview": "Log in to see your progress.",
+    "progress": "{count, number} of {target, number}",
+    "visits": {
+      "names": { "1": "First Sprout", "5": "Garden Regular", "10": "Community Root" },
+      "title": "Visits",
+      "description": "Recorded garden check-ins count toward these milestones. Event RSVPs do not count as visits.",
+      "milestone": "{count, plural, one {# garden visit} other {# garden visits}}"
+    },
+    "harvests": {
+      "names": { "1": "First Harvest", "5": "Green Thumb", "10": "Harvest Hero" },
+      "title": "Harvests",
+      "description": "Each journal entry you author at the harvest stage counts as one harvest, regardless of its weight.",
+      "milestone": "{count, plural, one {# harvest recorded} other {# harvests recorded}}"
+    },
+    "photos": {
+      "names": { "1": "Garden Snapshot", "5": "Garden Storyteller", "10": "Memory Keeper" },
+      "title": "Journal photos",
+      "description": "Each photo currently attached to a journal entry you author counts toward these milestones.",
+      "milestone": "{count, plural, one {# journal photo} other {# journal photos}}"
+    },
+    "nextTitle": "Keep growing with your community",
+    "nextBody": "Open a garden page to check in when you visit. If you have access to a bed's journal, add your harvests and photos there. Progress reflects your current records across all time; editing or removing entries can change it.",
+    "findGarden": "Find a garden"
+  },
   "meta": {
     "title": "Sproutable",
     "description": "A home for community gardens: events, members, and the story you can show a funder."

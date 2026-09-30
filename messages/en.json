@@ -50,6 +50,15 @@
     "title": "Map of Pittsburgh",
     "body": "You are starting at Hamburg Hall for now. Six nearby community gardens are marked. Later, visits on this map can count toward achievements.",
     "youAreHere": "You are here",
+    "startingPoint": "Starting point",
+    "liveStart": "Show my location",
+    "liveWaiting": "Looking for your location…",
+    "liveOn": "Live location is on. The blue dot follows you.",
+    "liveCenter": "Center on me",
+    "liveDenied": "Location is blocked. Allow it for this site, then try again.",
+    "liveUnavailable": "Your location could not be found. Try again.",
+    "liveUnsupported": "This browser cannot share your location.",
+    "fromYou": "from you",
     "nearby": "Nearby gardens",
     "miles": "mi",
     "openGarden": "Open garden page",
@@ -57,6 +66,13 @@
     "missingToken": "Add a Mapbox token as NEXT_PUBLIC_MAPBOX_TOKEN to load the interactive map. The garden list still works.",
     "listLabel": "Nearby community gardens",
     "mapLabel": "Interactive map"
+  },
+  "feedback": {
+    "home": "Back to the welcome hub",
+    "title": "Feedback",
+    "body": "Tell us what is working and what should change. Responses are saved in the team’s Google Form.",
+    "formTitle": "Sproutable feedback form",
+    "open": "Open the form in a new tab"
   },
   "meta": {
     "title": "Sproutable",
@@ -77,7 +93,8 @@
     "menu": "Account menu",
     "primary": "Main",
     "skip": "Skip to content",
-    "eventBoard": "Event board"
+    "eventBoard": "Event board",
+    "feedback": "Feedback"
   },
   "home": {
     "eyebrow": "Community gardens",
@@ -91,6 +108,9 @@
     "yourGardens": "Gardens you manage",
     "visit": "Visit",
     "emptyEvents": "No public events in the next few weeks.",
+    "feedbackTitle": "Tell us what to change",
+    "feedbackBody": "The feedback form is on its own page so your answers go straight to the team.",
+    "feedbackAction": "Open the feedback form",
     "featured": "Gardens near Pittsburgh",
     "card1Title": "A page that feels like the garden",
     "card1Body": "Tell people how to visit, what to bring, and how to take part.",

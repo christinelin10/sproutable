@@ -161,6 +161,13 @@ export default async function HomePage() {
           </ul>
         </div>
       </section>
+      <section className="mx-auto max-w-3xl px-4 pb-16">
+        <h2 className="text-3xl font-semibold">{t("feedbackTitle")}</h2>
+        <p className="mt-3 text-lg text-muted">{t("feedbackBody")}</p>
+        <Link href="/feedback" className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline">
+          {t("feedbackAction")}
+        </Link>
+      </section>
     </div>
   );
 }

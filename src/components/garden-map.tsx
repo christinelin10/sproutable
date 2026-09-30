@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { NearbyGarden } from "@/lib/nearby-gardens";
@@ -12,6 +12,9 @@ export function GardenMap({
   selectedId,
   onSelect,
   youAreHere,
+  live,
+  liveLabel,
+  focusLive,
   missingToken,
 }: {
   token: string;
@@ -19,11 +22,17 @@ export function GardenMap({
   selectedId: string;
   onSelect: (id: string) => void;
   youAreHere: string;
+  live: { lat: number; lng: number } | null;
+  liveLabel: string;
+  focusLive: number;
   missingToken: string;
 }) {
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const onSelectRef = useRef(onSelect);
+  const liveMarker = useRef<mapboxgl.Marker | null>(null);
+  const lastFocus = useRef(0);
+  const [mapReady, setMapReady] = useState(false);
   onSelectRef.current = onSelect;
 
   useEffect(() => {
@@ -62,13 +71,35 @@ export function GardenMap({
 
     map.on("load", () => {
       map.fitBounds(bounds, { padding: 56, maxZoom: 14, duration: 0 });
+      setMapReady(true);
     });
 
     return () => {
       map.remove();
       mapRef.current = null;
+      liveMarker.current = null;
+      setMapReady(false);
     };
   }, [gardens, token, youAreHere]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !mapReady || !live) return;
+    if (!liveMarker.current) {
+      const dot = document.createElement("div");
+      dot.className = "map-pin map-pin-live";
+      dot.setAttribute("role", "img");
+      dot.setAttribute("aria-label", liveLabel);
+      liveMarker.current = new mapboxgl.Marker({ element: dot, anchor: "center" }).setLngLat([live.lng, live.lat]).addTo(map);
+    } else {
+      liveMarker.current.setLngLat([live.lng, live.lat]);
+      liveMarker.current.getElement().setAttribute("aria-label", liveLabel);
+    }
+    if (focusLive !== lastFocus.current) {
+      lastFocus.current = focusLive;
+      map.flyTo({ center: [live.lng, live.lat], zoom: 15, essential: true });
+    }
+  }, [focusLive, live, liveLabel, mapReady]);
 
   useEffect(() => {
     const map = mapRef.current;

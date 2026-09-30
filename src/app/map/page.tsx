@@ -25,6 +25,15 @@ export default async function MapPage() {
           gardens={gardens}
           copy={{
             youAreHere: t("youAreHere"),
+            startingPoint: t("startingPoint"),
+            liveStart: t("liveStart"),
+            liveWaiting: t("liveWaiting"),
+            liveOn: t("liveOn"),
+            liveCenter: t("liveCenter"),
+            liveDenied: t("liveDenied"),
+            liveUnavailable: t("liveUnavailable"),
+            liveUnsupported: t("liveUnsupported"),
+            fromYou: t("fromYou"),
             nearby: t("nearby"),
             miles: t("miles"),
             openGarden: t("openGarden"),

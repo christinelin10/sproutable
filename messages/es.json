@@ -50,6 +50,15 @@
     "title": "Mapa de Pittsburgh",
     "body": "Por ahora el punto de partida es Hamburg Hall. Hay seis jardines comunitarios cercanos marcados. Más adelante, las visitas en este mapa podrán contar para los logros.",
     "youAreHere": "Estás aquí",
+    "startingPoint": "Punto de partida",
+    "liveStart": "Mostrar mi ubicación",
+    "liveWaiting": "Buscando tu ubicación…",
+    "liveOn": "La ubicación en vivo está activa. El punto azul te sigue.",
+    "liveCenter": "Centrar en mí",
+    "liveDenied": "La ubicación está bloqueada. Permítela en este sitio e inténtalo de nuevo.",
+    "liveUnavailable": "No se pudo encontrar tu ubicación. Inténtalo de nuevo.",
+    "liveUnsupported": "Este navegador no puede compartir tu ubicación.",
+    "fromYou": "desde ti",
     "nearby": "Jardines cercanos",
     "miles": "mi",
     "openGarden": "Abrir la página del jardín",
@@ -57,6 +66,13 @@
     "missingToken": "Agrega un token de Mapbox como NEXT_PUBLIC_MAPBOX_TOKEN para ver el mapa interactivo. La lista de jardines sigue disponible.",
     "listLabel": "Jardines comunitarios cercanos",
     "mapLabel": "Mapa interactivo"
+  },
+  "feedback": {
+    "home": "Volver al inicio",
+    "title": "Comentarios",
+    "body": "Cuéntanos qué funciona y qué debería cambiar. Las respuestas se guardan en el formulario de Google del equipo.",
+    "formTitle": "Formulario de comentarios de Sproutable",
+    "open": "Abrir el formulario en una pestaña nueva"
   },
   "meta": {
     "title": "Sproutable",
@@ -77,7 +93,8 @@
     "menu": "Menú de la cuenta",
     "primary": "Principal",
     "skip": "Saltar al contenido",
-    "eventBoard": "Tablón de eventos"
+    "eventBoard": "Tablón de eventos",
+    "feedback": "Comentarios"
   },
   "home": {
     "eyebrow": "Jardines comunitarios",
@@ -91,6 +108,9 @@
     "yourGardens": "Jardines que coordinas",
     "visit": "Visitar",
     "emptyEvents": "No hay eventos públicos en las próximas semanas.",
+    "feedbackTitle": "Cuéntanos qué cambiar",
+    "feedbackBody": "El formulario está en su propia página para que las respuestas lleguen al equipo.",
+    "feedbackAction": "Abrir el formulario",
     "featured": "Jardines cerca de Pittsburgh",
     "card1Title": "Una página que se siente como el jardín",
     "card1Body": "Cuenta cómo llegar, qué traer y cómo participar.",

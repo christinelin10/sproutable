@@ -269,6 +269,7 @@ export async function saveEvent(slug: string, raw: EventInput, eventId?: string)
     });
   });
   revalidatePath(`/gardens/${slug}/events`);
+  revalidatePath("/events");
   redirect(`/gardens/${slug}/events?notice=${past ? "past" : "saved"}`);
 }
 
@@ -304,6 +305,7 @@ export async function cancelOccurrence(slug: string, eventId: string, date: stri
     }
   });
   revalidatePath(`/gardens/${slug}/events`);
+  revalidatePath("/events");
 }
 
 export async function cancelSeries(slug: string, eventId: string) {
@@ -326,6 +328,7 @@ export async function cancelSeries(slug: string, eventId: string) {
     });
   });
   revalidatePath(`/gardens/${slug}/events`);
+  revalidatePath("/events");
 }
 
 export async function rsvpToEvent(input: {
@@ -419,6 +422,7 @@ export async function rsvpToEvent(input: {
     }
   });
   revalidatePath(`/gardens/${input.slug}/events`);
+  revalidatePath("/events");
   if (error) return { error };
   return { ok: true };
 }
@@ -645,6 +649,7 @@ export async function saveAnnouncement(slug: string, formData: FormData): Promis
     });
   });
   revalidatePath(`/gardens/${slug}`);
+  revalidatePath("/events");
   redirect(`/manage/${slug}/announcements?notice=saved`);
 }
 
@@ -814,6 +819,7 @@ export async function saveOccurrence(
     else db.eventExceptions.push({ exception_id: randomUUID(), event_id: eventId, occurrence_date: date, action: "modified", ...patch });
   });
   revalidatePath(`/gardens/${slug}/events`);
+  revalidatePath("/events");
   redirect(`/gardens/${slug}/events?notice=saved`);
 }
 
@@ -826,6 +832,7 @@ export async function deleteAnnouncement(slug: string, announcementId: string) {
     db.announcements = db.announcements.filter((item) => item.announcement_id !== announcementId);
   });
   revalidatePath(`/gardens/${slug}`);
+  revalidatePath("/events");
 }
 
 export async function updateAnnouncement(slug: string, formData: FormData): Promise<ActionState> {
@@ -847,6 +854,7 @@ export async function updateAnnouncement(slug: string, formData: FormData): Prom
     row.pinned = formData.get("pinned") === "on";
   });
   revalidatePath(`/gardens/${slug}`);
+  revalidatePath("/events");
   redirect(`/manage/${slug}/announcements?notice=saved`);
 }
 

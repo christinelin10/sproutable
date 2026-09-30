@@ -62,7 +62,8 @@
     "language": "Idioma",
     "menu": "Menú de la cuenta",
     "primary": "Principal",
-    "skip": "Saltar al contenido"
+    "skip": "Saltar al contenido",
+    "eventBoard": "Tablón de eventos"
   },
   "home": {
     "eyebrow": "Jardines comunitarios",
@@ -510,5 +511,28 @@
     "errorTaken": "Alguien ya se ofreció.",
     "missing": "Beechview no está en esta copia de los datos. Ejecuta npm run seed.",
     "photo": "Foto de {crop}"
+  },
+  "eventBoard": {
+    "eyebrow": "En el jardín",
+    "title": "Tablón de eventos",
+    "intro": "Conoce a tus vecinos, colabora y aprende algo nuevo. Encuentra tu próximo encuentro en el jardín.",
+    "explore": "Explorar eventos",
+    "inbox": "Mi bandeja · {count} sin leer",
+    "signIn": "Inicia sesión para participar",
+    "garden": "Jardín",
+    "allGardens": "Todos los jardines",
+    "category": "Tipo de evento",
+    "allTypes": "Todos los tipos",
+    "filter": "Aplicar filtros",
+    "reset": "Restablecer",
+    "upcoming": "Próximos eventos",
+    "window": "La lista muestra los próximos tres meses. Cambia al calendario para explorar otras fechas.",
+    "organize": "Organiza un encuentro",
+    "create": "Crear un evento",
+    "post": "Gestionar anuncios",
+    "notices": "Avisos de la comunidad",
+    "noticesIntro": "Novedades de tu comunidad de jardinería.",
+    "emptyNotices": "Todavía no hay anuncios. Vuelve pronto.",
+    "pinned": "Fijado"
   }
 }

@@ -62,7 +62,8 @@
     "language": "Language",
     "menu": "Account menu",
     "primary": "Main",
-    "skip": "Skip to content"
+    "skip": "Skip to content",
+    "eventBoard": "Event board"
   },
   "home": {
     "eyebrow": "Community gardens",
@@ -510,5 +511,28 @@
     "errorTaken": "Someone already claimed that.",
     "missing": "Beechview is not in this copy of the garden data. Run npm run seed.",
     "photo": "Photo of {crop}"
+  },
+  "eventBoard": {
+    "eyebrow": "Around the garden",
+    "title": "Event board",
+    "intro": "Meet your neighbors, lend a hand, and learn something new. Find your next gathering in the garden.",
+    "explore": "Explore events",
+    "inbox": "My inbox · {count} unread",
+    "signIn": "Sign in to join an event",
+    "garden": "Garden",
+    "allGardens": "All gardens",
+    "category": "Event type",
+    "allTypes": "All event types",
+    "filter": "Apply filters",
+    "reset": "Reset",
+    "upcoming": "Upcoming events",
+    "window": "The list shows the next three months. Switch to the calendar to explore other dates.",
+    "organize": "Organize a gathering",
+    "create": "Create an event",
+    "post": "Manage announcements",
+    "notices": "Community notices",
+    "noticesIntro": "Updates from your garden community.",
+    "emptyNotices": "No announcements here yet. Check back soon.",
+    "pinned": "Pinned"
   }
 }

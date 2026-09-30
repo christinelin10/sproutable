@@ -51,6 +51,7 @@ export function CalendarView({
   extraQuery = "",
   returnTo,
   signInToRsvp = false,
+  initialView = "month",
 }: {
   slug: string;
   month: string;
@@ -63,14 +64,16 @@ export function CalendarView({
   extraQuery?: string;
   returnTo?: string;
   signInToRsvp?: boolean;
+  initialView?: "month" | "list";
 }) {
   const t = useTranslations("events");
   const errors = useTranslations("errors");
-  const [view, setView] = useState<"month" | "list">("month");
+  const [view, setView] = useState<"month" | "list">(initialView);
   const [selected, setSelected] = useState<CalendarItem | null>(null);
   const [rsvpOpen, setRsvp] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [pending, setPending] = useState(false);
   const cursor = DateTime.fromISO(`${month}-01`, { zone });
   const start = cursor.startOf("month").startOf("week").minus({ days: cursor.startOf("month").weekday % 7 === 0 ? 0 : 0 });
   const gridStart = cursor.startOf("month").minus({ days: cursor.startOf("month").weekday % 7 });
@@ -91,6 +94,7 @@ export function CalendarView({
   function monthHref(value: string) {
     const query = new URLSearchParams(extraQuery);
     query.set("month", value);
+    if (basePath === "/events") query.set("view", "month");
     return `${path}?${query}`;
   }
   function eventSlug(item: CalendarItem) {
@@ -186,7 +190,7 @@ export function CalendarView({
                   {item.gardenName ? `${item.gardenName} · ` : ""}
                   {item.locked ? t("membersOnly") : item.title}
                 </span>
-                <span className="text-muted">{DateTime.fromISO(item.start).setLocale(locale).toLocaleString(DateTime.DATETIME_MED)}</span>
+                <span className="text-muted">{DateTime.fromISO(item.start, { setZone: true }).setLocale(locale).toLocaleString(DateTime.DATETIME_MED)}</span>
               </button>
             </li>
           ))}
@@ -211,7 +215,7 @@ export function CalendarView({
             <div className="space-y-3">
               <p className={`inline-block rounded-full px-2 py-0.5 text-sm ${colors[selected.category]}`}>{t(selected.category as "workday")}</p>
               {selected.fallback ? <p className="text-sm text-muted">{t("englishOnly")}</p> : null}
-              <p>{DateTime.fromISO(selected.start).setLocale(locale).toLocaleString(DateTime.DATETIME_MED)}</p>
+              <p>{DateTime.fromISO(selected.start, { setZone: true }).setLocale(locale).toLocaleString(DateTime.DATETIME_MED)}</p>
               <p>{selected.location}</p>
               <p className="whitespace-pre-wrap">{selected.description}</p>
               {selected.cancelled ? <p className="font-semibold">{t("cancelled")}</p> : null}
@@ -262,6 +266,10 @@ export function CalendarView({
                   onSubmit={async (event) => {
                     event.preventDefault();
                     const data = new FormData(event.currentTarget);
+                    if (pending) return;
+                    setPending(true);
+                    setError("");
+                    try {
                     const result = await rsvpToEvent({
                       slug: eventSlug(selected),
                       eventId: selected.eventId,
@@ -273,7 +281,17 @@ export function CalendarView({
                       note: String(data.get("note") ?? ""),
                     });
                     if (result?.error) setError(result.error);
-                    else setMessage(t("sent"));
+                    else {
+                      setError("");
+                      setMessage(t("sent"));
+                      setRsvp(false);
+                      setSelected({ ...selected, mine: true, viewerName: String(data.get("name")), viewerEmail: String(data.get("email")), going: selected.going + Number(data.get("party")) });
+                    }
+                    } catch {
+                      setError("generic");
+                    } finally {
+                      setPending(false);
+                    }
                   }}
                 >
                   <label className="block">
@@ -296,7 +314,7 @@ export function CalendarView({
                     <textarea name="note" className="mt-1 w-full rounded-xl border border-line px-3 py-2" />
                   </label>
                   {error ? <p className="text-[#8d2f2f]">{errors(error as "full")}</p> : null}
-                  <Button type="submit">{t("confirm")}</Button>
+                  <Button type="submit" disabled={pending}>{t("confirm")}</Button>
                 </form>
               ) : null}
               {(message || selected.mine) && !selected.cancelled ? (

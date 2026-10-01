@@ -128,7 +128,8 @@
     "verified": "Verified",
     "welcome": "Find a garden near you.",
     "manage": "Manage this garden",
-    "searchGo": "Search"
+    "searchGo": "Search",
+    "aerial": "Aerial photo of this address · © Mapbox © Maxar"
   },
   "garden": {
     "join": "Join this garden",
@@ -153,7 +154,8 @@
     "access": "Accessibility",
     "noEvents": "No public events on the calendar yet.",
     "noNews": "No announcements yet.",
-    "seeAll": "See the calendar"
+    "seeAll": "See the calendar",
+    "aerial": "Aerial photo of this address · © Mapbox © Maxar"
   },
   "auth": {
     "loginTitle": "Log in",
@@ -544,7 +546,8 @@
     "errorDenied": "Only the Beechview steward can do that.",
     "errorTaken": "Someone already claimed that.",
     "missing": "Beechview is not in this copy of the garden data. Run npm run seed.",
-    "photo": "Photo of {crop}"
+    "photo": "Photo of {crop}",
+    "aerial": "Aerial photo of Beechview · © Mapbox © Maxar"
   },
   "eventBoard": {
     "eyebrow": "Around the garden",

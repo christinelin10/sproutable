@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { DateTime } from "luxon";
@@ -7,6 +6,8 @@ import { Button } from "@/components/button";
 import { Field, TextArea, TextInput } from "@/components/field";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
+import { GardenCover } from "@/components/garden-cover";
+import { cropPhoto } from "@/lib/crop-photos";
 import { BEECHVIEW_SLUG, formatDollars, SEASON_FUND_GOAL_CENTS } from "@/lib/growing";
 import { managesGarden } from "@/lib/permissions";
 import { claimNeed, markReceived, offerItem, pledgeMoney, postNeed } from "@/server/growing-actions";
@@ -107,6 +108,10 @@ export default async function GrowingPage({
         </p>
       ) : null}
 
+      <div className="mt-6 overflow-hidden rounded-3xl border border-line">
+        <GardenCover slug={garden.slug} fallback={garden.cover_image_url} alt={garden.name} className="h-56 w-full object-cover sm:h-72" credit={t("aerial")} />
+      </div>
+
       <div className="mt-8 grid items-start gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(18rem,0.8fr)]">
         <div id="ground" className="rounded-3xl border border-line bg-card p-4 shadow-sm sm:p-6">
           <div className="flex flex-wrap items-end justify-between gap-3">
@@ -132,14 +137,11 @@ export default async function GrowingPage({
           <ul className="mt-5 grid gap-3 sm:grid-cols-2">
             {shown.map((bed) => {
               const latest = latestByBed.get(bed.bed_id);
-              const photo = latest?.image_urls[0];
+              const photo = cropPhoto(latest?.crop ?? "");
               return (
                 <li key={bed.bed_id} className="overflow-hidden rounded-2xl border border-line bg-background">
-                  {photo ? (
-                    <Image src={photo} alt={latest?.crop ? t("photo", { crop: latest.crop }) : bed.label} width={640} height={360} className="h-36 w-full object-cover" />
-                  ) : (
-                    <div className="flex h-16 items-end bg-primary/10 px-4 pb-2 text-sm font-semibold text-primary">{bed.size}</div>
-                  )}
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={photo} alt={latest?.crop ? t("photo", { crop: latest.crop }) : bed.label} className="h-36 w-full object-cover" />
                   <div className="p-4">
                     <p className="text-sm font-semibold text-primary">{bed.label}</p>
                     <p className="mt-1 text-xl font-semibold">{latest?.crop || t("noCrop")}</p>

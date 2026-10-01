@@ -42,9 +42,15 @@ export function MapExplorer({
   const centered = useRef(false);
 
   useEffect(() => {
+    shareLocation();
     return () => {
-      if (watchId.current !== null) navigator.geolocation.clearWatch(watchId.current);
+      if (watchId.current !== null) {
+        navigator.geolocation.clearWatch(watchId.current);
+        watchId.current = null;
+      }
     };
+    // Start once. shareLocation no-ops if a watch is already running.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function shareLocation() {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GardenCover } from "@/components/garden-cover";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Markdown } from "@/components/markdown";
 import { JoinGarden } from "@/components/join-garden";
@@ -79,6 +80,7 @@ export default async function GardenHome({ params }: { params: Promise<{ slug: s
                 loginHref={`/login?next=/gardens/${slug}`}
               />
             }
+            credit={t("aerial")}
           />
         </section>
       ))}
@@ -96,6 +98,7 @@ function ModuleBlock({
   upcoming,
   announcements,
   join,
+  credit,
 }: {
   module: HomeModule;
   garden: Garden;
@@ -103,14 +106,14 @@ function ModuleBlock({
   upcoming: { id: string; title: string; when: string }[];
   announcements: Announcement[];
   join: React.ReactNode;
+  credit: string;
 }) {
   const title = pickLocalized(locale, module.title_en, module.title_es);
   const body = pickLocalized(locale, module.body_en, module.body_es);
   if (module.type === "hero") {
     return (
       <div className="overflow-hidden rounded-[2rem] bg-primary text-primary-foreground">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={garden.cover_image_url} alt="" className="h-64 w-full object-cover" />
+        <GardenCover slug={garden.slug} fallback={garden.cover_image_url} alt="" className="h-64 w-full object-cover" credit={credit} />
         <div className="p-6">
           <h1 className="text-4xl font-semibold">{garden.name}</h1>
           {title.text ? <p className="mt-2 text-lg">{title.text}</p> : null}

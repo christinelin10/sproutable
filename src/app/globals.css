@@ -67,10 +67,12 @@ a {
 }
 
 .map-pin-live {
-  width: 1rem;
-  height: 1rem;
+  width: 1.35rem;
+  height: 1.35rem;
   background: #1d4ed8;
-  box-shadow: 0 0 0 8px rgba(29, 78, 216, 0.28);
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 10px rgba(29, 78, 216, 0.35);
+  z-index: 3;
 }
 
 .map-pin-garden {

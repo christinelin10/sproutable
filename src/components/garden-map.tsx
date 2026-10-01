@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { NearbyGarden } from "@/lib/nearby-gardens";
-import { HOME_BASE } from "@/lib/nearby-gardens";
+import { HOME_BASE, milesBetween } from "@/lib/nearby-gardens";
 
 export function GardenMap({
   token,
@@ -97,7 +97,15 @@ export function GardenMap({
     }
     if (focusLive !== lastFocus.current) {
       lastFocus.current = focusLive;
-      map.flyTo({ center: [live.lng, live.lat], zoom: 15, essential: true });
+      const miles = milesBetween(HOME_BASE.lat, HOME_BASE.lng, live.lat, live.lng);
+      if (miles < 15) {
+        const bounds = new mapboxgl.LngLatBounds([live.lng, live.lat], [live.lng, live.lat]);
+        bounds.extend([HOME_BASE.lng, HOME_BASE.lat]);
+        for (const garden of gardens) bounds.extend([garden.lng, garden.lat]);
+        map.fitBounds(bounds, { padding: 56, maxZoom: 14, duration: 800 });
+      } else {
+        map.flyTo({ center: [live.lng, live.lat], zoom: 15, essential: true });
+      }
     }
   }, [focusLive, live, liveLabel, mapReady]);
 

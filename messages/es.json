@@ -128,7 +128,8 @@
     "verified": "Verificado",
     "welcome": "Encuentra un jardín cerca de ti.",
     "manage": "Administrar este jardín",
-    "searchGo": "Buscar"
+    "searchGo": "Buscar",
+    "aerial": "Foto aérea de esta dirección · © Mapbox © Maxar"
   },
   "garden": {
     "join": "Unirme a este jardín",
@@ -153,7 +154,8 @@
     "access": "Accesibilidad",
     "noEvents": "Todavía no hay eventos públicos.",
     "noNews": "Todavía no hay avisos.",
-    "seeAll": "Ver el calendario"
+    "seeAll": "Ver el calendario",
+    "aerial": "Foto aérea de esta dirección · © Mapbox © Maxar"
   },
   "auth": {
     "loginTitle": "Entrar",
@@ -544,7 +546,8 @@
     "errorDenied": "Solo quien coordina Beechview puede hacer eso.",
     "errorTaken": "Alguien ya se ofreció.",
     "missing": "Beechview no está en esta copia de los datos. Ejecuta npm run seed.",
-    "photo": "Foto de {crop}"
+    "photo": "Foto de {crop}",
+    "aerial": "Foto aérea de Beechview · © Mapbox © Maxar"
   },
   "eventBoard": {
     "eyebrow": "En el jardín",

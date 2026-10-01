@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GardenCover } from "@/components/garden-cover";
 import { DateTime } from "luxon";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getCurrentUser } from "@/lib/auth";
@@ -53,8 +54,7 @@ export default async function GardensPage({
           return (
             <li key={garden.garden_id} className="overflow-hidden rounded-3xl border border-line bg-card">
               <Link href={`/gardens/${garden.slug}`} className="block">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={garden.cover_image_url} alt="" className="h-48 w-full object-cover" />
+                <GardenCover slug={garden.slug} fallback={garden.cover_image_url} alt="" className="h-48 w-full object-cover" credit={t("aerial")} />
                 <div className="p-5">
                   <div className="flex items-center gap-2">
                     <h2 className="text-2xl font-semibold">{garden.name}</h2>

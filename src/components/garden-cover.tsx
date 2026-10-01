@@ -14,7 +14,8 @@ export function GardenCover({
   credit: string;
 }) {
   const place = gardenPlace(slug);
-  if (!place) {
+  const photo = fallback && !fallback.endsWith(".svg");
+  if (!place || photo) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img src={fallback} alt={alt} className={className} />

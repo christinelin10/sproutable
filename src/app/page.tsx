@@ -15,11 +15,7 @@ export default async function HomePage() {
   const locale = (await getLocale()) as Language;
   const db = await readDb();
   const user = await getCurrentUser();
-  const gardens = [...db.gardens].sort((a, b) => {
-    if (a.slug === "beechview-community-garden") return -1;
-    if (b.slug === "beechview-community-garden") return 1;
-    return a.name.localeCompare(b.name);
-  });
+  const gardens = [...db.gardens].sort((a, b) => a.name.localeCompare(b.name));
   const managed = user ? gardens.filter((garden) => managesGarden(db, user.user_id, garden.garden_id)) : [];
   const now = DateTime.now().setZone("America/New_York");
   const upcoming = gardens
@@ -76,11 +72,6 @@ export default async function HomePage() {
           <Link href="/calendar" className="inline-flex min-h-14 items-center justify-center rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-accent-foreground">
             {t("openCalendar")}
           </Link>
-          {gardens.some((garden) => garden.slug === "beechview-community-garden") ? (
-            <Link href="/gardens/beechview-community-garden" className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-line bg-card px-4 py-3 text-center font-semibold">
-              Beechview
-            </Link>
-          ) : null}
           <Link href={user ? "/dashboard" : "/signup?type=manager"} className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-line bg-card px-4 py-3 text-center font-semibold">
             {t("manage")}
           </Link>

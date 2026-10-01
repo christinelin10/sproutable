@@ -1,18 +1,16 @@
 const photos = {
-  tomato: "/photos/tomato.jpg",
-  basil: "/photos/basil.jpg",
-  lettuce: "/photos/lettuce.jpg",
-  beds: "/photos/beds.jpg",
-  garden: "/photos/garden.jpg",
+  beds: "/gardens/beechview/beds.jpg",
+  neighbors: "/gardens/beechview/neighbors.jpg",
+  harvest: "/gardens/beechview/harvest.jpg",
+  dahlias: "/gardens/beechview/dahlias.jpg",
+  sign: "/gardens/beechview/sign.jpg",
 } as const;
 
-/** Reference photos for crops. These are real photographs, not drawings of the bed. */
+/** Beechview photographs, chosen by what the bed is growing. */
 export function cropPhoto(crop: string) {
   const name = crop.toLowerCase();
-  if (name.includes("tomato")) return photos.tomato;
-  if (name.includes("basil") || name.includes("herb")) return photos.basil;
-  if (name.includes("lettuce")) return photos.lettuce;
-  if (name.includes("pepper") || name.includes("strawberry")) return photos.tomato;
-  if (!name) return photos.garden;
+  if (name.includes("tomato") || name.includes("bean") || name.includes("pepper") || name.includes("strawberry")) return photos.harvest;
+  if (name.includes("sunflower") || name.includes("flower") || name.includes("dahlia") || name.includes("milkweed")) return photos.dahlias;
+  if (name.includes("corn") || name.includes("squash") || name.includes("kale")) return photos.neighbors;
   return photos.beds;
 }

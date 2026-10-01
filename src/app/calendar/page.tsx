@@ -14,11 +14,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
   const locale = (await getLocale()) as Language;
   const db = await readDb();
   const user = await getCurrentUser();
-  const gardens = [...db.gardens].sort((a, b) => {
-    if (a.slug === "beechview-community-garden") return -1;
-    if (b.slug === "beechview-community-garden") return 1;
-    return a.name.localeCompare(b.name);
-  });
+  const gardens = [...db.gardens].sort((a, b) => a.name.localeCompare(b.name));
   const selected = gardens.find((garden) => garden.slug === gardenSlug) ?? null;
   const zone = selected?.timezone ?? gardens[0]?.timezone ?? "America/New_York";
   const cursor = month && /^\d{4}-\d{2}$/.test(month) ? DateTime.fromISO(`${month}-01`, { zone }) : DateTime.now().setZone(zone).startOf("month");

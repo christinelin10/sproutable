@@ -114,16 +114,16 @@
       "garden_id": "g_beechview",
       "slug": "beechview-community-garden",
       "name": "Beechview Community Garden",
-      "description_en": "A city garden on the old pool site at 1229 Rockland Avenue, between Beechwood Elementary and Vannucci Park. Neighbors lease beds, and anyone can visit from dawn until dusk.",
-      "description_es": "Un jardín de la ciudad en el terreno de la antigua piscina, en 1229 Rockland Avenue, entre la escuela Beechwood y el parque Vannucci. El vecindario alquila camas y cualquiera puede visitar desde el amanecer hasta el anochecer.",
+      "description_en": "A neighborhood garden on the old pool site at 1229 Rockland Avenue, between Beechwood Elementary and Vannucci Park. Volunteers keep it going, and beds are rented through the city.",
+      "description_es": "Un jardín del vecindario en el terreno de la antigua piscina, en 1229 Rockland Avenue, entre la escuela Beechwood y el parque Vannucci. Lo cuidan voluntarios y las camas se alquilan a través de la ciudad.",
       "address": "1229 Rockland Ave, Pittsburgh, PA 15216",
       "neighborhood": "Beechview",
       "timezone": "America/New_York",
-      "contact_email": "garden@prettyupbeechview.org",
+      "contact_email": "communitygardenbeechview@gmail.com",
       "contact_phone": "",
       "year_founded": "",
       "bed_count": "27",
-      "cover_image_url": "/seed/beechview.svg",
+      "cover_image_url": "/gardens/beechview/beds.jpg",
       "involvement_options": "bed,volunteer,events,produce,learn",
       "verified": true,
       "created_by": "u_beech",
@@ -462,15 +462,15 @@
       "visible": true,
       "title_en": "About this garden",
       "title_es": "Sobre este jardín",
-      "body_en": "Pretty Up Beechview stewards this garden. There are individual beds plus shared plantings, including herbs and a butterfly garden.\n\n- Open dawn until dusk\n- Flat ground, picnic tables, and benches\n- Dogs are not allowed\n\nCome by, and please leave the space as tidy as you found it.",
-      "body_es": "Pretty Up Beechview cuida este jardín. Hay camas individuales y siembras compartidas, incluidas hierbas y un jardín de mariposas.\n\n- Abre del amanecer al anochecer\n- Terreno plano, mesas y bancas\n- No se permiten perros\n\nPasa a visitar y deja el lugar tan ordenado como lo encontraste.",
+      "body_en": "This garden is run by neighborhood volunteers, and beds are rentable through the city.\n\nIt sits on the old pool site at 1229 Rockland Avenue, between Beechwood Elementary and Vannucci Park.\n\n- Open from dawn until dusk\n- Flat ground, with picnic tables and benches\n- Dogs are not allowed\n\nQuestions: communitygardenbeechview@gmail.com",
+      "body_es": "Este jardín lo llevan voluntarios del vecindario y las camas se alquilan a través de la ciudad.\n\nEstá en el terreno de la antigua piscina, en 1229 Rockland Avenue, entre la escuela Beechwood y el parque Vannucci.\n\n- Abre del amanecer al anochecer\n- Terreno plano, con mesas y bancas\n- No se permiten perros\n\nPreguntas: communitygardenbeechview@gmail.com",
       "config": {}
     },
     {
       "module_id": "mod_b_events",
       "garden_id": "g_beechview",
       "type": "upcoming_events",
-      "position": 2,
+      "position": 3,
       "visible": true,
       "title_en": "Upcoming events",
       "title_es": "Próximos eventos",
@@ -482,7 +482,7 @@
       "module_id": "mod_b_ways",
       "garden_id": "g_beechview",
       "type": "ways",
-      "position": 3,
+      "position": 4,
       "visible": true,
       "title_en": "Ways to get involved",
       "title_es": "Cómo participar",
@@ -502,7 +502,7 @@
       "module_id": "mod_b_here",
       "garden_id": "g_beechview",
       "type": "getting_here",
-      "position": 4,
+      "position": 5,
       "visible": true,
       "title_en": "Getting here",
       "title_es": "Cómo llegar",
@@ -521,10 +521,72 @@
       "module_id": "mod_b_contact",
       "garden_id": "g_beechview",
       "type": "contact",
-      "position": 5,
+      "position": 6,
       "visible": true,
       "title_en": "Contact",
       "title_es": "Contacto",
+      "body_en": "",
+      "body_es": "",
+      "config": {}
+    },
+    {
+      "module_id": "mod_b_gallery",
+      "garden_id": "g_beechview",
+      "type": "gallery",
+      "position": 2,
+      "visible": true,
+      "title_en": "This season",
+      "title_es": "Esta temporada",
+      "body_en": "",
+      "body_es": "",
+      "config": {
+        "images": [
+          {
+            "url": "/gardens/beechview/beds.jpg",
+            "alt_en": "Raised beds with cosmos and marigolds",
+            "alt_es": "Camas elevadas con cosmos y cempasúchil",
+            "caption_en": "Beds along the path",
+            "caption_es": "Camas junto al camino"
+          },
+          {
+            "url": "/gardens/beechview/neighbors.jpg",
+            "alt_en": "Neighbors talking between the beds",
+            "alt_es": "Vecinos conversando entre las camas",
+            "caption_en": "A weeknight in the garden",
+            "caption_es": "Una tarde entre semana"
+          },
+          {
+            "url": "/gardens/beechview/dahlias.jpg",
+            "alt_en": "Pink dahlias beside tomato cages",
+            "alt_es": "Dalias rosas junto a las jaulas de tomate",
+            "caption_en": "Dahlias and tomatoes",
+            "caption_es": "Dalias y tomates"
+          },
+          {
+            "url": "/gardens/beechview/harvest.jpg",
+            "alt_en": "Tomatoes and green beans on a bench",
+            "alt_es": "Tomates y ejotes en una banca",
+            "caption_en": "A pick from the beds",
+            "caption_es": "Una cosecha de las camas"
+          },
+          {
+            "url": "/gardens/beechview/sign.jpg",
+            "alt_en": "Welcome sign on the garden fence",
+            "alt_es": "Letrero de bienvenida en la reja",
+            "caption_en": "The sign on Rockland",
+            "caption_es": "El letrero en Rockland"
+          }
+        ]
+      }
+    },
+    {
+      "module_id": "mod_b_news",
+      "garden_id": "g_beechview",
+      "type": "announcements",
+      "position": 7,
+      "visible": true,
+      "title_en": "Announcements",
+      "title_es": "Avisos",
       "body_en": "",
       "body_es": "",
       "config": {}
@@ -1001,6 +1063,18 @@
       "pinned": false,
       "created_by": "u_maria",
       "created_at": "2026-09-25T15:00:00.000Z"
+    },
+    {
+      "announcement_id": "a_beech_gate",
+      "garden_id": "g_beechview",
+      "title_en": "The gate is open until dusk",
+      "title_es": "La reja está abierta hasta el anochecer",
+      "body_en": "Come by Rockland Avenue. Beds are rented through the city. Questions: communitygardenbeechview@gmail.com",
+      "body_es": "Pasa por Rockland Avenue. Las camas se alquilan a través de la ciudad. Preguntas: communitygardenbeechview@gmail.com",
+      "visibility": "public",
+      "pinned": true,
+      "created_by": "u_beech",
+      "created_at": "2026-10-01T20:11:48.135Z"
     }
   ],
   "activityLog": [
@@ -1512,7 +1586,7 @@
       "crop": "Basil",
       "text": "Pinched the basil so it stays bushy. Neighbors can cut a handful.",
       "image_urls": [
-        "/seed/basil.svg"
+        "/gardens/beechview/beds.jpg"
       ],
       "harvest_amount": null,
       "harvest_unit": "",
@@ -1528,7 +1602,7 @@
       "crop": "Milkweed",
       "text": "Monarch caterpillars on the milkweed. Please leave this bed alone.",
       "image_urls": [
-        "/seed/beds.svg"
+        "/gardens/beechview/dahlias.jpg"
       ],
       "harvest_amount": null,
       "harvest_unit": "",
@@ -1544,8 +1618,8 @@
       "crop": "Tomato",
       "text": "Sungolds are coming in. Left a bowl at the gate.",
       "image_urls": [
-        "/seed/tomato.svg",
-        "/seed/basket.svg"
+        "/gardens/beechview/harvest.jpg",
+        "/gardens/beechview/dahlias.jpg"
       ],
       "harvest_amount": 6,
       "harvest_unit": "lb",
@@ -1560,7 +1634,9 @@
       "stage": "growing",
       "crop": "Kale",
       "text": "Las hojas están listas para cortar de afuera hacia adentro.",
-      "image_urls": [],
+      "image_urls": [
+        "/gardens/beechview/neighbors.jpg"
+      ],
       "harvest_amount": null,
       "harvest_unit": "",
       "created_at": "2026-09-19T21:00:00.000Z"
@@ -1575,7 +1651,7 @@
       "crop": "Pepper",
       "text": "First shishitos. Still small.",
       "image_urls": [
-        "/seed/harvest.svg"
+        "/gardens/beechview/harvest.jpg"
       ],
       "harvest_amount": null,
       "harvest_unit": "",
@@ -1591,7 +1667,7 @@
       "crop": "Squash",
       "text": "Vines are covering the straw. One fruit is sizing up.",
       "image_urls": [
-        "/seed/beds.svg"
+        "/gardens/beechview/beds.jpg"
       ],
       "harvest_amount": null,
       "harvest_unit": "",
@@ -1621,7 +1697,7 @@
       "crop": "Lettuce",
       "text": "Cut a crate for the Saturday open garden.",
       "image_urls": [
-        "/seed/basket.svg"
+        "/gardens/beechview/harvest.jpg"
       ],
       "harvest_amount": 1.5,
       "harvest_unit": "lb",
@@ -1637,7 +1713,7 @@
       "crop": "Strawberry",
       "text": "The June flush. Most of it walked out in neighbors' hands.",
       "image_urls": [
-        "/seed/harvest.svg"
+        "/gardens/beechview/harvest.jpg"
       ],
       "harvest_amount": 4.2,
       "harvest_unit": "lb",
@@ -1652,7 +1728,9 @@
       "stage": "growing",
       "crop": "Sunflower",
       "text": "Heads are turning toward Rockland Avenue.",
-      "image_urls": [],
+      "image_urls": [
+        "/gardens/beechview/dahlias.jpg"
+      ],
       "harvest_amount": null,
       "harvest_unit": "",
       "created_at": "2026-09-07T21:00:00.000Z"
@@ -1667,7 +1745,7 @@
       "crop": "Corn",
       "text": "Sembré el maíz. Los frijoles van cuando tenga un palmo de alto.",
       "image_urls": [
-        "/seed/beds.svg"
+        "/gardens/beechview/neighbors.jpg"
       ],
       "harvest_amount": null,
       "harvest_unit": "",

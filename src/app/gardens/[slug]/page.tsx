@@ -113,7 +113,7 @@ function ModuleBlock({
   if (module.type === "hero") {
     return (
       <div className="overflow-hidden rounded-[2rem] bg-primary text-primary-foreground">
-        <GardenCover slug={garden.slug} fallback={garden.cover_image_url} alt="" className="h-64 w-full object-cover" credit={credit} />
+        <GardenCover slug={garden.slug} fallback={garden.cover_image_url} alt="" className="h-80 w-full object-cover" credit={credit} />
         <div className="p-6">
           <h1 className="text-4xl font-semibold">{garden.name}</h1>
           {title.text ? <p className="mt-2 text-lg">{title.text}</p> : null}
@@ -158,7 +158,7 @@ function Gallery({ config, locale }: { config: Record<string, unknown>; locale: 
         return (
           <li key={image.url}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={image.url} alt={alt.text || ""} className="h-36 w-full rounded-2xl object-cover" />
+            <img src={image.url} alt={alt.text || ""} className="h-52 w-full rounded-2xl object-cover" />
             {caption.text ? <p className="mt-1 text-sm text-muted">{caption.text}</p> : null}
           </li>
         );

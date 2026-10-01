@@ -21,11 +21,7 @@ export default async function GardensPage({
   const user = await getCurrentUser();
   const query = q.trim().toLowerCase();
   const gardens = [...db.gardens]
-    .sort((a, b) => {
-      if (a.slug === "beechview-community-garden") return -1;
-      if (b.slug === "beechview-community-garden") return 1;
-      return a.name.localeCompare(b.name);
-    })
+    .sort((a, b) => a.name.localeCompare(b.name))
     .filter((garden) => !query || garden.name.toLowerCase().includes(query) || garden.neighborhood.toLowerCase().includes(query));
 
   return (

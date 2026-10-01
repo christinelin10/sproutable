@@ -22,8 +22,7 @@ export default async function EventsPage({ searchParams }: {
   const locale = (await getLocale()) as Language;
   const db = await readDb();
   const user = await getCurrentUser();
-  const gardens = [...db.gardens].sort((a, b) =>
-    Number(b.slug === "beechview-community-garden") - Number(a.slug === "beechview-community-garden") || a.name.localeCompare(b.name));
+  const gardens = [...db.gardens].sort((a, b) => a.name.localeCompare(b.name));
   const selected = gardens.find(garden => garden.slug === params.garden);
   const category = categories.find(value => value === params.category) ?? "";
   const zone = selected?.timezone ?? gardens[0]?.timezone ?? "America/New_York";

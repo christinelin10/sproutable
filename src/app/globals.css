@@ -53,11 +53,19 @@ a {
 }
 
 .map-pin {
+  position: relative;
   width: 1.15rem;
   height: 1.15rem;
   border: 2px solid #fffdf8;
   border-radius: 999px;
   box-shadow: 0 1px 4px rgba(28, 25, 23, 0.35);
+  cursor: pointer;
+}
+
+.map-pin-garden::after {
+  content: "";
+  position: absolute;
+  inset: -14px;
 }
 
 .map-pin-you {

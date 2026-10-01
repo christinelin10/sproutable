@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { GardenMap } from "@/components/garden-map";
 import { HOME_BASE, milesBetween, type NearbyGarden } from "@/lib/nearby-gardens";
@@ -40,6 +41,7 @@ export function MapExplorer({
   const [focusLive, setFocusLive] = useState(0);
   const watchId = useRef<number | null>(null);
   const centered = useRef(false);
+  const router = useRouter();
 
   useEffect(() => {
     shareLocation();
@@ -104,7 +106,10 @@ export function MapExplorer({
                 <button
                   type="button"
                   aria-pressed={selected}
-                  onClick={() => setSelectedId(garden.id)}
+                  onClick={() => {
+                    if (garden.slug) router.push(`/gardens/${garden.slug}`);
+                    else setSelectedId(garden.id);
+                  }}
                   className={`w-full rounded-2xl border px-3 py-3 text-left ${selected ? "border-primary bg-primary/10" : "border-line hover:border-primary"}`}
                 >
                   <span className="block font-semibold">{garden.name}</span>

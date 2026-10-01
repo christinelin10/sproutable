@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import type { NearbyGarden } from "@/lib/nearby-gardens";
@@ -31,9 +30,6 @@ export function GardenMap({
   const container = useRef<HTMLDivElement>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
   const onSelectRef = useRef(onSelect);
-  const router = useRouter();
-  const routerRef = useRef(router);
-  routerRef.current = router;
   const liveMarker = useRef<mapboxgl.Marker | null>(null);
   const lastFocus = useRef(0);
   const [mapReady, setMapReady] = useState(false);
@@ -69,10 +65,17 @@ export function GardenMap({
       pin.dataset.gardenId = garden.id;
       pin.setAttribute("aria-label", garden.slug ? `${garden.name}. Open garden page` : garden.name);
       pin.title = garden.name;
-      pin.addEventListener("click", (event) => {
-        event.stopPropagation();
+      const openGarden = () => {
         onSelectRef.current(garden.id);
-        if (garden.slug) routerRef.current.push(`/gardens/${garden.slug}`);
+        if (garden.slug) window.location.assign(`/gardens/${garden.slug}`);
+      };
+      pin.addEventListener("pointerdown", (event) => event.stopPropagation());
+      pin.addEventListener("mousedown", (event) => event.stopPropagation());
+      pin.addEventListener("touchstart", (event) => event.stopPropagation(), { passive: true });
+      pin.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        openGarden();
       });
       new mapboxgl.Marker({ element: pin, anchor: "center" }).setLngLat([garden.lng, garden.lat]).addTo(map);
     }

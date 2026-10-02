@@ -43,7 +43,7 @@ export async function SiteHeader() {
           </NavLink>
         </nav>
         <div className="ml-auto flex items-center gap-2">
-          <Link href="/journal" className="game-btn inline-flex min-h-11 items-center bg-[#e3b23c] px-3 font-game text-lg text-[#3d2914]">
+          <Link href="/journal" className="game-btn inline-flex min-h-11 shrink-0 items-center bg-[#e3b23c] px-3 font-game text-base text-[#3d2914] sm:text-lg">
             {journal("add")}
           </Link>
           <LanguageSwitcher locale={locale} label={t("language")} />
@@ -84,10 +84,10 @@ export async function SiteHeader() {
             </>
           ) : (
             <>
-              <Link href="/login" className="rounded-full px-3 py-2 font-semibold">
+              <Link href="/login" className="whitespace-nowrap rounded-full px-3 py-2 font-semibold">
                 {t("login")}
               </Link>
-              <Link href="/signup" className="rounded-full bg-accent px-4 py-2 font-semibold text-accent-foreground">
+              <Link href="/signup" className="whitespace-nowrap rounded-full bg-accent px-4 py-2 font-semibold text-accent-foreground">
                 {t("signup")}
               </Link>
             </>

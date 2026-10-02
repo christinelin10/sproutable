@@ -26,6 +26,7 @@
   --color-line: var(--line);
   --color-sun: var(--sun);
   --font-sans: var(--font-source), "Source Sans 3", sans-serif;
+  --font-game: var(--font-pixel), "Pixelify Sans", ui-sans-serif, sans-serif;
 }
 
 body {
@@ -106,6 +107,67 @@ a {
 
 .prose-garden p + p {
   margin-top: 0.75rem;
+}
+
+.font-game {
+  font-family: var(--font-game);
+}
+
+.game-panel {
+  border: 4px solid #3d2914;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 0 #3d2914;
+}
+
+.game-btn {
+  border: 3px solid #3d2914;
+  border-radius: 999px;
+  box-shadow: 3px 3px 0 #3d2914;
+}
+
+.game-btn:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 #3d2914;
+}
+
+.game-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 #3d2914;
+}
+
+.garden-sky {
+  background:
+    radial-gradient(circle at 85% 12%, rgba(227, 178, 60, 0.55), transparent 22%),
+    linear-gradient(#b9ddf2 0%, #e7f4ea 58%, #8fbf6a 100%);
+}
+
+@keyframes sprout-sway {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2.5deg);
+  }
+}
+
+@keyframes sun-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+.plant-sway {
+  transform-origin: 50% 100%;
+  animation: sprout-sway 3.4s ease-in-out infinite;
+}
+
+.sun-bob {
+  animation: sun-bob 5s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

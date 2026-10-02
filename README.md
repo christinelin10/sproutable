@@ -2,7 +2,11 @@
 
 A clickable web prototype for community gardens. Garden managers publish a home page, run events, approve members, and export a simple grant report. Neighbors join, RSVP, chat, and keep a bed journal. The interface is in English and Spanish.
 
-This follows the GardenHub prototype brief. Gamification, payments, and a native app are intentionally not in this build. Visit check-ins, interest tags, and harvest logs are stored so a later passport can use them.
+This follows the GardenHub prototype brief. Payments and a native app are intentionally not in this build. Visit check-ins, interest tags, and harvest logs feed a cooperative gardener: the home page is a small garden world, and real visits, gatherings, journal notes, photos, and harvests add experience.
+
+## Garden world
+
+Open `/` to walk the garden. The signpost is the map, the bulletin is the event board, a bed is what's growing, and the badge board is achievements. `/gardener` shows level and collected badges. `+ Journal` stays on every page and opens `/journal` for a bed you already hold. The map, event board, Beechview board, and milestone achievements are the same tools as before, with this layer around them.
 
 ## Run it
 

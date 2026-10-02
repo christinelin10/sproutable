@@ -6,6 +6,7 @@ import { Button } from "@/components/button";
 import { Field, TextArea, TextInput } from "@/components/field";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
+import { PlantSprite } from "@/components/game/plant-sprite";
 import { GardenCover } from "@/components/garden-cover";
 import { cropPhoto } from "@/lib/crop-photos";
 import { BEECHVIEW_SLUG, formatDollars, SEASON_FUND_GOAL_CENTS } from "@/lib/growing";
@@ -140,11 +141,18 @@ export default async function GrowingPage({
               const photo = cropPhoto(latest?.crop ?? "");
               return (
                 <li key={bed.bed_id} className="overflow-hidden rounded-2xl border border-line bg-background">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={photo} alt={latest?.crop ? t("photo", { crop: latest.crop }) : bed.label} className="h-36 w-full object-cover" />
+                  <div className="relative">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={photo} alt={latest?.crop ? t("photo", { crop: latest.crop }) : bed.label} className="h-36 w-full object-cover" />
+                    <span className="absolute bottom-2 left-2 rounded-xl border-[3px] border-[#3d2914] bg-[#fffdf8]">
+                      <PlantSprite stage={latest?.stage ?? ""} className="plant-sway h-14 w-14" />
+                    </span>
+                  </div>
                   <div className="p-4">
                     <p className="text-sm font-semibold text-primary">{bed.label}</p>
-                    <p className="mt-1 text-xl font-semibold">{latest?.crop || t("noCrop")}</p>
+                    <Link href={`/growing/${bed.bed_id}`} className="mt-1 block text-xl font-semibold hover:underline">
+                      {latest?.crop || t("noCrop")}
+                    </Link>
                     <p className="mt-1 text-sm text-muted">
                       {person(bed)}
                       {latest ? ` · ${bedsT(latest.stage)}` : ""}

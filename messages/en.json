@@ -4,10 +4,26 @@
     "title": "Grow something together.",
     "body": "Find your way into the garden: explore, join in, and celebrate what you contribute.",
     "navigation": "Explore Sproutable",
-    "map": { "title": "Map", "body": "Find a community garden and plan your next visit.", "action": "Explore the map" },
-    "events": { "title": "Events", "body": "Make time for workdays, workshops, and community gatherings.", "action": "See events" },
-    "growing": { "title": "What's Growing", "body": "See the beds, follow the journal, and help the garden grow.", "action": "See what's growing" },
-    "achievements": { "title": "Achievements", "body": "Celebrate your visits, harvests, and journal photos.", "action": "See your progress" }
+    "map": {
+      "title": "Map",
+      "body": "Find a community garden and plan your next visit.",
+      "action": "Explore the map"
+    },
+    "events": {
+      "title": "Events",
+      "body": "Make time for workdays, workshops, and community gatherings.",
+      "action": "See events"
+    },
+    "growing": {
+      "title": "What's Growing",
+      "body": "See the beds, follow the journal, and help the garden grow.",
+      "action": "See what's growing"
+    },
+    "achievements": {
+      "title": "Achievements",
+      "body": "Celebrate your visits, harvests, and journal photos.",
+      "action": "See your progress"
+    }
   },
   "achievements": {
     "home": "Back to the Welcome Hub",
@@ -24,19 +40,31 @@
     "preview": "Log in to see your progress.",
     "progress": "{count, number} of {target, number}",
     "visits": {
-      "names": { "1": "First Sprout", "5": "Garden Regular", "10": "Community Root" },
+      "names": {
+        "1": "First Sprout",
+        "5": "Garden Regular",
+        "10": "Community Root"
+      },
       "title": "Visits",
       "description": "Recorded garden check-ins count toward these milestones. Event RSVPs do not count as visits.",
       "milestone": "{count, plural, one {# garden visit} other {# garden visits}}"
     },
     "harvests": {
-      "names": { "1": "First Harvest", "5": "Green Thumb", "10": "Harvest Hero" },
+      "names": {
+        "1": "First Harvest",
+        "5": "Green Thumb",
+        "10": "Harvest Hero"
+      },
       "title": "Harvests",
       "description": "Each journal entry you author at the harvest stage counts as one harvest, regardless of its weight.",
       "milestone": "{count, plural, one {# harvest recorded} other {# harvests recorded}}"
     },
     "photos": {
-      "names": { "1": "Garden Snapshot", "5": "Garden Storyteller", "10": "Memory Keeper" },
+      "names": {
+        "1": "Garden Snapshot",
+        "5": "Garden Storyteller",
+        "10": "Memory Keeper"
+      },
       "title": "Journal photos",
       "description": "Each photo currently attached to a journal entry you author counts toward these milestones.",
       "milestone": "{count, plural, one {# journal photo} other {# journal photos}}"
@@ -94,7 +122,10 @@
     "primary": "Main",
     "skip": "Skip to content",
     "eventBoard": "Event board",
-    "feedback": "Feedback"
+    "feedback": "Feedback",
+    "achievements": "Achievements",
+    "journal": "Journal",
+    "gardener": "My gardener"
   },
   "home": {
     "eyebrow": "Community gardens",
@@ -570,6 +601,142 @@
     "notices": "Community notices",
     "noticesIntro": "Updates from your garden community.",
     "emptyNotices": "No announcements here yet. Check back soon.",
-    "pinned": "Pinned"
+    "pinned": "Pinned",
+    "questsTitle": "Community quests",
+    "questsHint": "Friendly gatherings. Join one, then show up.",
+    "joinQuest": "Join quest",
+    "questEmpty": "Nothing on the board in this window."
+  },
+  "world": {
+    "eyebrow": "Your garden world",
+    "title": "A little garden that grows when you do.",
+    "body": "Explore a garden, show up, and help out. Your visits and contributions make this world more alive.",
+    "guestTitle": "Curious Sprout",
+    "guest": "Walk in as a guest, or log in to see your gardener grow.",
+    "login": "Log in",
+    "signup": "Start a gardener",
+    "scene": "Sproutable garden world",
+    "mapKicker": "Map",
+    "mapTitle": "Explore Pittsburgh Gardens",
+    "mapDetail": "Find a garden and plan a visit.",
+    "eventsKicker": "Bulletin",
+    "eventsTitle": "Today's Events",
+    "eventsDetail": "Workdays, workshops, and meals.",
+    "growingKicker": "Beds",
+    "growingTitle": "What's Growing?",
+    "growingDetail": "See the plants and their stories.",
+    "progressKicker": "Badges",
+    "progressTitle": "My Progress",
+    "progressDetail": "Visits, harvests, and photos.",
+    "gardenerKicker": "You",
+    "gardenerTitle": "My Gardener",
+    "gardenerDetail": "Your level, backpack, and buddies.",
+    "quests": "Community quests",
+    "questsEmpty": "No gatherings on the board right now.",
+    "joinQuest": "Join quest",
+    "stories": "From the beds",
+    "storiesEmpty": "The journal is quiet. A visit is a good place to start.",
+    "openStory": "Open this plant"
+  },
+  "progress": {
+    "level": "Level {level, number}",
+    "xp": "{xp, number} XP",
+    "xpToNext": "{xp, number} XP to {title}",
+    "maxLevel": "Garden Steward. This world is in full bloom.",
+    "openGardener": "Open my gardener",
+    "how": "How your world grows",
+    "xpEach": "{xp, number} XP each",
+    "visit": "Garden check-in",
+    "rsvp": "Joined a gathering",
+    "journal": "Journal note",
+    "photo": "Garden photo",
+    "harvest": "Harvest recorded",
+    "levels": {
+      "sprout": "Curious Sprout",
+      "visitor": "Garden Visitor",
+      "helper": "Garden Helper",
+      "gardener": "Community Gardener",
+      "steward": "Garden Steward"
+    }
+  },
+  "badges": {
+    "title": "Collected badges",
+    "earned": "Collected",
+    "locked": "Still growing",
+    "firstSprout": {
+      "name": "First Sprout",
+      "detail": "Check in at a garden."
+    },
+    "explorer": {
+      "name": "Garden Explorer",
+      "detail": "Check in at three different gardens."
+    },
+    "helpingHands": {
+      "name": "Helping Hands",
+      "detail": "Join a workday or volunteer at a gathering."
+    },
+    "harvestHelper": {
+      "name": "Harvest Helper",
+      "detail": "Record a harvest in a bed journal."
+    },
+    "gardenStory": {
+      "name": "Garden Story",
+      "detail": "Write your first journal note."
+    },
+    "snapshot": {
+      "name": "Garden Snapshot",
+      "detail": "Add a photo to a journal note."
+    },
+    "returnVisit": {
+      "name": "Come Back Soon",
+      "detail": "Check in twice at the same garden."
+    },
+    "gardenBuddy": {
+      "name": "Garden Buddy",
+      "detail": "Show up to a gathering someone else is joining."
+    },
+    "seasonFriend": {
+      "name": "Season Friend",
+      "detail": "Pledge toward a garden's season fund."
+    },
+    "toolShare": {
+      "name": "Tool Share",
+      "detail": "Offer an item a garden asked for."
+    }
+  },
+  "journalHub": {
+    "add": "+ Journal",
+    "home": "Back to the garden world",
+    "title": "Garden journal",
+    "body": "A note, a photo, or what you did today. It lands in your bed and adds to your gardener.",
+    "savedHint": "Saving a note adds journal XP. A photo and a harvest add a little more.",
+    "login": "Log in to write",
+    "guest": "Log in to write a note about a visit, a plant, or a photo.",
+    "none": "You do not have a bed assigned yet. Visit a garden and ask a steward for a bed, then come back here.",
+    "find": "Find a garden",
+    "yourBeds": "Your beds",
+    "recent": "Recent notes from the gardens",
+    "open": "Open this plant"
+  },
+  "gardenerPage": {
+    "home": "Back to the garden world",
+    "title": "My gardener",
+    "body": "This is the record of what you have given the gardens. It grows when you visit, help, and write things down.",
+    "guest": "Log in to see your level, badges, and the people growing beside you.",
+    "login": "Log in",
+    "buddies": "In the garden with you",
+    "buddiesBody": "Neighbors who have shown up in gardens you share, or who have been writing in the beds.",
+    "buddiesEmpty": "No garden buddies yet. A visit is a good way to meet them."
+  },
+  "plant": {
+    "back": "Back to what's growing",
+    "quiet": "This bed is waiting for its next note.",
+    "journal": "Bed journal",
+    "empty": "No notes yet.",
+    "harvest": "{amount} {unit}",
+    "participate": "Ways to take part",
+    "visit": "Visit the garden",
+    "events": "See gatherings",
+    "help": "Help with donations"
   }
 }

@@ -52,6 +52,7 @@ export function CalendarView({
   returnTo,
   signInToRsvp = false,
   initialView = "month",
+  initialQuest = null,
 }: {
   slug: string;
   month: string;
@@ -65,11 +66,17 @@ export function CalendarView({
   returnTo?: string;
   signInToRsvp?: boolean;
   initialView?: "month" | "list";
+  initialQuest?: { eventId: string; date: string } | null;
 }) {
   const t = useTranslations("events");
   const errors = useTranslations("errors");
   const [view, setView] = useState<"month" | "list">(initialView);
-  const [selected, setSelected] = useState<CalendarItem | null>(null);
+  const opened = initialQuest
+    ? listItems.find((item) => item.eventId === initialQuest.eventId && item.date === initialQuest.date) ??
+      items.find((item) => item.eventId === initialQuest.eventId && item.date === initialQuest.date) ??
+      null
+    : null;
+  const [selected, setSelected] = useState<CalendarItem | null>(opened);
   const [rsvpOpen, setRsvp] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");

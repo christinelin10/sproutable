@@ -1,22 +1,31 @@
 import Link from "next/link";
 import { DateTime } from "luxon";
 import { getLocale, getTranslations } from "next-intl/server";
+import { GardenWorld } from "@/components/game/garden-world";
+import { QuestCard } from "@/components/game/quest-card";
+import { StoryCard } from "@/components/game/story-card";
+import { XpMeter } from "@/components/game/xp-meter";
 import { getCurrentUser } from "@/lib/auth";
+import { recentStories } from "@/lib/community";
 import { readDb } from "@/lib/data/store";
-import { expandEvents, nextPublicOccurrence } from "@/lib/events";
+import { expandEvents } from "@/lib/events";
 import { managesGarden } from "@/lib/permissions";
+import { progressFor } from "@/lib/progression";
 import { pickLocalized } from "@/lib/text";
 import type { Language } from "@/lib/types";
 
 export default async function HomePage() {
   const t = await getTranslations("home");
-  const hub = await getTranslations("welcomeHub");
+  const world = await getTranslations("world");
+  const progress = await getTranslations("progress");
+  const eventsT = await getTranslations("events");
   const gardensT = await getTranslations("gardens");
   const locale = (await getLocale()) as Language;
   const db = await readDb();
   const user = await getCurrentUser();
   const gardens = [...db.gardens].sort((a, b) => a.name.localeCompare(b.name));
   const managed = user ? gardens.filter((garden) => managesGarden(db, user.user_id, garden.garden_id)) : [];
+  const stats = user ? progressFor(db, user.user_id) : null;
   const now = DateTime.now().setZone("America/New_York");
   const upcoming = gardens
     .flatMap((garden) =>
@@ -28,59 +37,71 @@ export default async function HomePage() {
         now.plus({ days: 21 }),
       )
         .filter((item) => !item.cancelled)
-        .map((item) => ({
-          id: `${item.eventId}-${item.date}`,
-          title: pickLocalized(locale, item.event.title_en, item.event.title_es).text,
-          when: DateTime.fromISO(item.start).setLocale(locale).toFormat("ccc LLL d, t"),
-          start: item.start,
-          garden: garden.name,
-          slug: garden.slug,
-        })),
+        .map((item) => {
+          const title = pickLocalized(locale, item.event.title_en, item.event.title_es);
+          const body = pickLocalized(locale, item.event.description_en, item.event.description_es);
+          return {
+            id: `${item.eventId}-${item.date}`,
+            title: title.text,
+            detail: body.text.replace(/\s+/g, " ").slice(0, 140),
+            when: DateTime.fromISO(item.start).setLocale(locale).toFormat("ccc LLL d, t"),
+            start: item.start,
+            garden: garden.name,
+            category: eventsT(item.event.category),
+            href: `/events?quest=${item.eventId}&date=${item.date}#upcoming`,
+          };
+        }),
     )
     .sort((a, b) => a.start.localeCompare(b.start))
-    .slice(0, 6);
+    .slice(0, 3);
+  const stories = recentStories(db, 3);
+  const nextLevelId = stats?.levelId === "sprout" ? "visitor" : stats?.levelId === "visitor" ? "helper" : stats?.levelId === "helper" ? "gardener" : "steward";
 
   return (
-    <div>
-      <section className="mx-auto max-w-6xl px-4 pt-8 sm:pt-12">
-        <p className="font-semibold text-primary">{hub("eyebrow")}</p>
-        <h1 className="mt-2 max-w-3xl text-4xl font-semibold tracking-tight sm:text-6xl">{hub("title")}</h1>
-        <p className="mt-4 max-w-2xl text-xl text-muted">{hub("body")}</p>
-        <nav className="mt-8" aria-label={hub("navigation")}>
-          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {(["map", "events", "growing", "achievements"] as const).map((door) => (
-              <li key={door}>
-                <Link href={`/${door}`} className="flex h-full flex-col rounded-3xl border border-line bg-card p-5 shadow-sm hover:border-primary sm:p-6">
-                  <h2 className="text-2xl font-semibold text-primary">{hub(`${door}.title`)}</h2>
-                  <p className="mt-3 text-muted">{hub(`${door}.body`)}</p>
-                  <span className="mt-auto block pt-6 font-semibold text-primary">{hub(`${door}.action`)} <span aria-hidden="true">→</span></span>
+    <div className="mx-auto max-w-6xl px-4 py-6 sm:py-10">
+      <GardenWorld
+        eyebrow={world("eyebrow")}
+        title={world("title")}
+        body={world("body")}
+        sceneLabel={world("scene")}
+        bloom={stats ? stats.level - 1 : 1}
+        meter={
+          stats ? (
+            <XpMeter
+              levelLabel={progress("level", { level: stats.level })}
+              title={progress(`levels.${stats.levelId}`)}
+              xpLabel={progress("xp", { xp: stats.xp })}
+              nextLabel={stats.nextLevelXp === null ? progress("maxLevel") : progress("xpToNext", { xp: stats.nextLevelXp - stats.xp, title: progress(`levels.${nextLevelId}`) })}
+              value={stats.span === 0 ? 1 : stats.intoLevel}
+              max={stats.span === 0 ? 1 : stats.span}
+            />
+          ) : (
+            <div>
+              <p className="font-game text-xl">{world("guestTitle")}</p>
+              <p className="mt-1 text-sm text-muted">{world("guest")}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Link href="/login?next=/" className="game-btn inline-flex min-h-11 items-center bg-[#215c45] px-3 font-semibold text-[#f7f3ea]">
+                  {world("login")}
                 </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-4 py-12">
-        <p className="font-semibold text-primary">{t("eyebrow")}</p>
-        <h2 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight tracking-tight">{t("title")}</h2>
-        <p className="mt-5 max-w-2xl text-xl text-muted">{t("body")}</p>
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          <Link href="/gardens" className="inline-flex min-h-14 items-center justify-center rounded-2xl bg-primary px-4 py-3 text-center font-semibold text-primary-foreground">
-            {t("find")}
-          </Link>
-          <Link href="/calendar" className="inline-flex min-h-14 items-center justify-center rounded-2xl bg-accent px-4 py-3 text-center font-semibold text-accent-foreground">
-            {t("openCalendar")}
-          </Link>
-          <Link href={user ? "/dashboard" : "/signup?type=manager"} className="inline-flex min-h-14 items-center justify-center rounded-2xl border border-line bg-card px-4 py-3 text-center font-semibold">
-            {t("manage")}
-          </Link>
-        </div>
-      </section>
+                <Link href="/signup" className="game-btn inline-flex min-h-11 items-center bg-[#fffdf8] px-3 font-semibold">
+                  {world("signup")}
+                </Link>
+              </div>
+            </div>
+          )
+        }
+        doors={[
+          { kind: "map", href: "/map", kicker: world("mapKicker"), title: world("mapTitle"), detail: world("mapDetail") },
+          { kind: "events", href: "/events", kicker: world("eventsKicker"), title: world("eventsTitle"), detail: world("eventsDetail") },
+          { kind: "growing", href: "/growing", kicker: world("growingKicker"), title: world("growingTitle"), detail: world("growingDetail") },
+          { kind: "progress", href: "/achievements", kicker: world("progressKicker"), title: world("progressTitle"), detail: world("progressDetail") },
+          { kind: "gardener", href: user ? "/gardener" : "/login?next=/gardener", kicker: world("gardenerKicker"), title: world("gardenerTitle"), detail: world("gardenerDetail") },
+        ]}
+      />
 
       {managed.length > 0 ? (
-        <section className="mx-auto max-w-6xl px-4 pb-8">
-          <h2 className="text-2xl font-semibold">{t("yourGardens")}</h2>
+        <section className="mt-8">
+          <h2 className="font-game text-2xl">{t("yourGardens")}</h2>
           <ul className="mt-3 flex flex-wrap gap-2">
             {managed.map((garden) => (
               <li key={garden.garden_id}>
@@ -93,66 +114,75 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      <section className="mx-auto grid max-w-6xl gap-8 px-4 pb-12 lg:grid-cols-[1.1fr_0.9fr]">
-        <div>
-          <div className="flex items-end justify-between gap-3">
-            <h2 className="text-3xl font-semibold">{t("upcoming")}</h2>
-            <Link href="/calendar" className="font-semibold text-primary underline">
-              {t("allEvents")}
-            </Link>
-          </div>
-          {upcoming.length === 0 ? <p className="mt-4 text-muted">{t("emptyEvents")}</p> : null}
-          <ul className="mt-4 space-y-3">
-            {upcoming.map((item) => (
-              <li key={item.id}>
-                <Link href={`/calendar?garden=${item.slug}`} className="block rounded-2xl border border-line bg-card p-4 hover:border-primary">
-                  <span className="text-sm font-semibold text-primary">{item.garden}</span>
-                  <span className="mt-1 block text-xl font-semibold">{item.title}</span>
-                  <span className="mt-1 block text-muted">{item.when}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <section className="mt-10" aria-labelledby="home-quests">
+        <div className="flex items-end justify-between gap-3">
+          <h2 id="home-quests" className="font-game text-3xl">
+            {world("quests")}
+          </h2>
+          <Link href="/events" className="font-semibold text-primary underline">
+            {t("allEvents")}
+          </Link>
         </div>
-        <div>
-          <h2 className="text-3xl font-semibold">{t("featured")}</h2>
-          <ul className="mt-4 space-y-3">
-            {gardens.map((garden) => {
-              const next = nextPublicOccurrence(
-                db.events.filter((event) => event.garden_id === garden.garden_id),
-                db.eventExceptions,
-                garden.timezone,
-              );
-              const owns = user ? managesGarden(db, user.user_id, garden.garden_id) : false;
-              return (
-                <li key={garden.garden_id} className="rounded-2xl border border-line bg-card p-4">
-                  <Link href={`/gardens/${garden.slug}`} className="block">
-                    <span className="block text-xl font-semibold">{garden.name}</span>
-                    <span className="mt-1 block text-muted">
-                      {garden.neighborhood}
-                      {next ? ` · ${DateTime.fromISO(next.start).setLocale(locale).toFormat("ccc LLL d")}` : ""}
-                    </span>
-                  </Link>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <Link href={`/gardens/${garden.slug}`} className="inline-flex min-h-11 items-center rounded-full border border-line px-3 font-semibold">
-                      {t("visit")}
-                    </Link>
-                    <Link href={`/calendar?garden=${garden.slug}`} className="inline-flex min-h-11 items-center rounded-full border border-line px-3 font-semibold">
-                      {t("openCalendar")}
-                    </Link>
-                    {owns ? (
-                      <Link href={`/manage/${garden.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-primary px-3 font-semibold text-primary-foreground">
-                        {gardensT("manage")}
-                      </Link>
-                    ) : null}
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
+        {upcoming.length === 0 ? <p className="mt-4 text-muted">{world("questsEmpty")}</p> : null}
+        <ul className="mt-4 grid gap-3 lg:grid-cols-3">
+          {upcoming.map((item) => (
+            <li key={item.id}>
+              <QuestCard garden={item.garden} title={item.title} when={item.when} detail={item.detail} category={item.category} href={item.href} action={world("joinQuest")} />
+            </li>
+          ))}
+        </ul>
       </section>
-      <section className="mx-auto max-w-3xl px-4 pb-16">
+
+      <section className="mt-10" aria-labelledby="home-stories">
+        <h2 id="home-stories" className="font-game text-3xl">
+          {world("stories")}
+        </h2>
+        {stories.length === 0 ? <p className="mt-4 text-muted">{world("storiesEmpty")}</p> : null}
+        <ul className="mt-4 grid gap-3 lg:grid-cols-3">
+          {stories.map((story) => (
+            <li key={story.entry.entry_id}>
+              <StoryCard
+                href={story.href}
+                author={story.author}
+                garden={story.gardenName}
+                crop={story.entry.crop || story.bedLabel}
+                when={DateTime.fromISO(story.entry.entry_date).setLocale(locale).toFormat("ccc LLL d")}
+                text={story.entry.text}
+                action={world("openStory")}
+              />
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="font-game text-3xl">{t("featured")}</h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          {gardens.map((garden) => (
+            <li key={garden.garden_id} className="rounded-2xl border border-line bg-card p-4">
+              <Link href={`/gardens/${garden.slug}`} className="block">
+                <span className="block text-xl font-semibold">{garden.name}</span>
+                <span className="mt-1 block text-muted">{garden.neighborhood}</span>
+              </Link>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Link href={`/gardens/${garden.slug}`} className="inline-flex min-h-11 items-center rounded-full border border-line px-3 font-semibold">
+                  {t("visit")}
+                </Link>
+                <Link href={`/events?garden=${garden.slug}`} className="inline-flex min-h-11 items-center rounded-full border border-line px-3 font-semibold">
+                  {t("openCalendar")}
+                </Link>
+                {user && managesGarden(db, user.user_id, garden.garden_id) ? (
+                  <Link href={`/manage/${garden.slug}`} className="inline-flex min-h-11 items-center rounded-full bg-primary px-3 font-semibold text-primary-foreground">
+                    {gardensT("manage")}
+                  </Link>
+                ) : null}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-10 mb-4 max-w-3xl">
         <h2 className="text-3xl font-semibold">{t("feedbackTitle")}</h2>
         <p className="mt-3 text-lg text-muted">{t("feedbackBody")}</p>
         <Link href="/feedback" className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline">

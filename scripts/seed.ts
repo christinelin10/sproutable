@@ -190,6 +190,8 @@ const db: Database = {
   awardedBadges: [],
   savedEvents: [],
   volunteerOffers: [],
+  communityPosts: [],
+  produceShares: [],
   chatMessages: [],
   emails: [
     {

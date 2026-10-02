@@ -10,6 +10,7 @@ import { CropMark } from "@/components/game/crop-mark";
 import { GardenCover } from "@/components/garden-cover";
 import { BEECHVIEW_SLUG, formatDollars, SEASON_FUND_GOAL_CENTS } from "@/lib/growing";
 import { managesGarden } from "@/lib/permissions";
+import { shareProduce } from "@/server/community-actions";
 import { claimNeed, markReceived, offerItem, pledgeMoney, postNeed } from "@/server/growing-actions";
 import type { JournalEntry, JournalStage, Language } from "@/lib/types";
 
@@ -83,7 +84,10 @@ export default async function GrowingPage({
   return (
     <section className="mx-auto max-w-6xl px-4 py-8 sm:py-12">
       <p className="font-semibold text-primary">{t("place")}</p>
-      <h1 className="mt-2 text-4xl font-semibold tracking-tight sm:text-6xl">{t("title")}</h1>
+      <h1 className="mt-2 font-game text-4xl tracking-tight text-[#3d2914] sm:text-6xl">{t("title")}</h1>
+      <p className="mt-4">
+        <Link href="/journal" className="game-btn inline-flex min-h-11 items-center bg-[#e3b23c] px-4 font-game text-lg text-[#3d2914]">{t("journalNow")}</Link>
+      </p>
       <p className="mt-4 max-w-2xl text-xl text-muted">
         {garden.address}. {t("hours")}.
       </p>
@@ -134,12 +138,55 @@ export default async function GrowingPage({
                     <span className="rounded-md border-[3px] border-[#3d2914] bg-[#c4a574] p-1">
                       <CropMark crop={latest?.crop ?? ""} className="plant-sway h-20 w-20" />
                     </span>
-                    <span className="mt-2 font-game text-xl leading-tight text-[#3d2914]">{label}</span>
+                    <span className="mt-2 font-game text-2xl leading-tight text-[#3d2914]">{label}</span>
+                    <span className="text-sm font-semibold text-primary">{garden.name}</span>
                   </Link>
                 </li>
               );
             })}
           </ul>
+
+          <section className="mt-8" aria-labelledby="extra-produce">
+            <h3 id="extra-produce" className="font-game text-3xl text-[#3d2914]">{t("extraTitle")}</h3>
+            <p className="mt-2 text-muted">{t("extraBody")}</p>
+            <ul className="mt-4 space-y-3">
+              {(db.produceShares ?? []).length === 0 ? <li className="text-muted">{t("extraEmpty")}</li> : null}
+              {(db.produceShares ?? []).slice(0, 8).map((share) => {
+                const place = db.gardens.find((item) => item.garden_id === share.garden_id);
+                return (
+                  <li key={share.share_id} className="rounded-2xl border border-line p-4">
+                    <p className="font-game text-2xl text-[#3d2914]">{share.crop}</p>
+                    <p className="font-semibold text-primary">{place?.name}</p>
+                    {share.note ? <p className="mt-1">{share.note}</p> : null}
+                    {place ? <Link href={`/gardens/${place.slug}`} className="mt-2 inline-flex font-semibold text-primary underline">{t("pickup")}</Link> : null}
+                  </li>
+                );
+              })}
+            </ul>
+            {user ? (
+              <form action={shareProduce} className="mt-4 grid gap-3 sm:grid-cols-2">
+                <label className="text-sm font-semibold">
+                  {t("whichGarden")}
+                  <select name="garden_id" className="mt-1 block w-full rounded-xl border border-line bg-card px-3 py-2" required>
+                    {db.gardens.map((item) => (
+                      <option key={item.garden_id} value={item.garden_id}>{item.name}</option>
+                    ))}
+                  </select>
+                </label>
+                <label className="text-sm font-semibold">
+                  {t("cropName")}
+                  <input name="crop" required maxLength={80} className="mt-1 block w-full rounded-xl border border-line px-3 py-2" />
+                </label>
+                <label className="text-sm font-semibold sm:col-span-2">
+                  {t("pickupNote")}
+                  <input name="note" maxLength={180} className="mt-1 block w-full rounded-xl border border-line px-3 py-2" />
+                </label>
+                <button type="submit" className="game-btn min-h-11 bg-[#215c45] px-4 font-semibold text-[#f7f3ea] sm:col-span-2 sm:w-fit">{t("shareProduce")}</button>
+              </form>
+            ) : (
+              <p className="mt-4"><Link href="/login?next=/growing" className="font-semibold text-primary underline">{t("loginShare")}</Link></p>
+            )}
+          </section>
 
           <h3 className="mt-8 text-2xl font-semibold">{t("journalTitle")}</h3>
           {entries.length === 0 ? <p className="mt-3 text-muted">{t("emptyJournal")}</p> : null}

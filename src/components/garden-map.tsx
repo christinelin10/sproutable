@@ -63,7 +63,7 @@ export function GardenMap({
       bounds.extend([garden.lng, garden.lat]);
       const pin = document.createElement("button");
       pin.type = "button";
-      pin.className = "map-pin map-pin-garden";
+      pin.className = `map-pin map-pin-garden${garden.favorite ? " map-pin-favorite" : ""}`;
       pin.dataset.gardenId = garden.id;
       pin.setAttribute("aria-label", garden.slug ? `${garden.name}. ${openPin}` : garden.name);
       pin.title = garden.name;

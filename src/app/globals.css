@@ -88,6 +88,11 @@ a {
   background: #215c45;
 }
 
+.map-pin-favorite {
+  background: #e3b23c;
+  box-shadow: 0 0 0 3px #215c45;
+}
+
 .map-pin-selected {
   width: 1.5rem;
   height: 1.5rem;

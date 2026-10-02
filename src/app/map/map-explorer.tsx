@@ -34,6 +34,8 @@ export function MapExplorer({
     missingToken: string;
     listLabel: string;
     mapLabel: string;
+    favorite: string;
+    visited: string;
   };
 }) {
   const [selectedId, setSelectedId] = useState("");
@@ -113,7 +115,11 @@ export function MapExplorer({
                   }}
                   className={`w-full rounded-2xl border px-3 py-3 text-left ${selected ? "border-primary bg-primary/10" : "border-line hover:border-primary"}`}
                 >
-                  <span className="block font-semibold">{garden.name}</span>
+                  <span className="block font-semibold">
+                    {garden.favorite ? `★ ${copy.favorite} · ` : ""}
+                    {garden.name}
+                    {garden.visited ? ` · ${copy.visited}` : ""}
+                  </span>
                   <span className="mt-1 block text-sm text-muted">
                     {garden.neighborhood} · {garden.miles.toFixed(1)} {copy.miles}
                     {fromYou !== null ? ` · ${fromYou.toFixed(1)} ${copy.miles} ${copy.fromYou}` : ""}

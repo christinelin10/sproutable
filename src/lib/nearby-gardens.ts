@@ -16,6 +16,8 @@ export type NearbyGarden = {
   lng: number;
   /** Set when this garden already has a Sproutable page. */
   slug?: string;
+  favorite?: boolean;
+  visited?: boolean;
 };
 
 export const NEARBY_GARDENS: NearbyGarden[] = [

@@ -12,8 +12,8 @@ export function LoginForm({ next }: { next?: string }) {
   const t = useTranslations();
   const [state, action, pending] = useActionState(login, null);
   return (
-    <div className="mx-auto max-w-md px-4 py-12">
-      <h1 className="text-4xl font-semibold">{t("auth.loginTitle")}</h1>
+    <div className="mt-6">
+      <h1 className="font-game text-3xl text-[#3d2914]">{t("auth.loginTitle")}</h1>
       <form action={action} className="mt-6 space-y-4">
         <input type="hidden" name="next" value={next ?? ""} />
         <Field label={t("auth.email")}>

@@ -263,6 +263,23 @@ export interface SavedEvent {
   created_at: string;
 }
 
+export interface CommunityPost {
+  post_id: string;
+  user_id: string;
+  garden_id: string;
+  body: string;
+  created_at: string;
+}
+
+export interface ProduceShare {
+  share_id: string;
+  user_id: string;
+  garden_id: string;
+  crop: string;
+  note: string;
+  created_at: string;
+}
+
 export interface VolunteerOffer {
   offer_id: string;
   garden_id: string;
@@ -324,6 +341,8 @@ export interface Database {
   awardedBadges: AwardedBadge[];
   savedEvents: SavedEvent[];
   volunteerOffers: VolunteerOffer[];
+  communityPosts: CommunityPost[];
+  produceShares: ProduceShare[];
   chatMessages: ChatMessage[];
   chatBans: ChatBan[];
   emails: MockEmail[];
@@ -353,6 +372,8 @@ export function emptyDatabase(): Database {
     awardedBadges: [],
     savedEvents: [],
     volunteerOffers: [],
+    communityPosts: [],
+    produceShares: [],
     chatMessages: [],
     chatBans: [],
     emails: [],

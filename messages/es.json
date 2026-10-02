@@ -71,7 +71,20 @@
     },
     "nextTitle": "Sigue creciendo con tu comunidad",
     "nextBody": "Abre la página de un jardín para registrar tu visita cuando llegues. Si tienes acceso al diario de una cama, añade allí tus cosechas y fotos. El progreso refleja todos tus registros actuales; editar o eliminar entradas puede cambiarlo.",
-    "findGarden": "Buscar un jardín"
+    "findGarden": "Buscar un jardín",
+    "growthTitle": "De brote a árbol",
+    "growthBody": "Las visitas reales, el voluntariado, las notas y las cosechas te hacen crecer. No hay carrera con nadie.",
+    "you": "Estás aquí",
+    "guestMark": "Entra para crecer",
+    "start": "Inicio",
+    "stages": {
+      "tree": "Árbol grande",
+      "youngTree": "Árbol joven",
+      "sapling": "Arbolito",
+      "plant": "Planta en crecimiento",
+      "young": "Brote joven",
+      "sprout": "Brote pequeño"
+    }
   },
   "map": {
     "home": "Volver al inicio",
@@ -94,6 +107,8 @@
     "missingToken": "Agrega un token de Mapbox como NEXT_PUBLIC_MAPBOX_TOKEN para ver el mapa interactivo. La lista de jardines sigue disponible.",
     "listLabel": "Jardines comunitarios cercanos",
     "mapLabel": "Mapa interactivo",
+    "favorite": "Favorito",
+    "visited": "Visitado",
     "openPin": "Abrir la página del jardín"
   },
   "feedback": {
@@ -129,7 +144,9 @@
     "gardener": "Mi jardinero",
     "buddies": "Compañeros",
     "saved": "Guardados",
-    "volunteer": "Voluntariado"
+    "volunteer": "Voluntariado",
+    "community": "Comunidad",
+    "welcomeTour": "Recorrido de bienvenida"
   },
   "home": {
     "eyebrow": "Jardines comunitarios",
@@ -588,7 +605,17 @@
     "errorTaken": "Alguien ya se ofreció.",
     "missing": "Beechview no está en esta copia de los datos. Ejecuta npm run seed.",
     "photo": "Foto de {crop}",
-    "aerial": "Foto aérea de Beechview · © Mapbox © Maxar"
+    "aerial": "Foto aérea de Beechview · © Mapbox © Maxar",
+    "journalNow": "+ Nota de diario",
+    "extraTitle": "Cosecha de más",
+    "extraBody": "Quien cultiva puede marcar comida lista para que un vecino la recoja.",
+    "extraEmpty": "Nada está marcado para recoger ahora.",
+    "pickup": "Ver el jardín",
+    "whichGarden": "Jardín",
+    "cropName": "Planta",
+    "pickupNote": "Nota de recogida",
+    "shareProduce": "Compartir esta cosecha",
+    "loginShare": "Entra para compartir cosecha de más"
   },
   "eventBoard": {
     "eyebrow": "En el jardín",
@@ -841,5 +868,70 @@
     "help": "Voy a ayudar",
     "helping": "Vas a ayudar",
     "garden": "Página del jardín"
+  },
+  "village": {
+    "caption": "Tu aldea",
+    "move": "Toca un letrero para entrar, o camina con las flechas. Las visitas reales al jardín son lo que hace crecer este lugar.",
+    "enter": "Entrar",
+    "visitor": "Visitante",
+    "tour": "¿Primera vez? Haz el recorrido corto.",
+    "loginLead": "Una entrada acogedora a los jardines comunitarios de Pittsburgh.",
+    "map": "Mapa",
+    "mapHint": "Encuentra un jardín",
+    "community": "Comunidad",
+    "communityHint": "Eventos y compañeros",
+    "growing": "Cultivo",
+    "growingHint": "Plantas y diario",
+    "achievements": "Crecimiento",
+    "achievementsHint": "Tu árbol"
+  },
+  "welcome": {
+    "title": "Te damos la bienvenida a Sproutable",
+    "intro": "Sproutable te ayuda a descubrir, visitar y participar en jardines comunitarios.",
+    "idea": "Cuanto más participas en la comunidad real, más crece tu progreso en Sproutable.",
+    "communityTitle": "Tablón comunitario",
+    "communityBody": "Encuentra eventos, jornadas, notas y compañeros de jardín.",
+    "growingTitle": "Qué crece",
+    "growingBody": "Mira las plantas, la cosecha de más y lleva tu diario.",
+    "mapTitle": "Mapa",
+    "mapBody": "Explora jardines comunitarios en Pittsburgh.",
+    "achievementsTitle": "Logros",
+    "achievementsBody": "Mira cómo tu progreso pasa de un brote pequeño a un árbol.",
+    "buddiesTitle": "Compañeros de jardín",
+    "buddiesBody": "Visita con alguien. Pide a un vecino que sea tu compañero y vayan juntos.",
+    "next": "Siguiente",
+    "start": "Empezar a explorar",
+    "skip": "Saltar el recorrido"
+  },
+  "community": {
+    "eyebrow": "Tablón comunitario",
+    "title": "Qué está pasando",
+    "body": "Eventos, jornadas, notas públicas y las personas con quienes cultivas.",
+    "chatNote": "Para avisos el mismo día, muchos jardines siguen usando el chat de grupo que ya tienen. Este tablón es para planes, preguntas e historias que cualquiera puede leer.",
+    "calendar": "Calendario del mes",
+    "mineTitle": "Eventos a los que vas",
+    "mineEmpty": "Todavía no te uniste a un encuentro. Las misiones de abajo se aceptan con un toque.",
+    "mineGuest": "Entra cuando quieras guardar la lista de eventos a los que te uniste.",
+    "questsTitle": "Misiones comunitarias",
+    "questsHint": "Jornadas, cosechas y encuentros. Unirse es un sí, no una competencia.",
+    "quest": "Misión comunitaria",
+    "join": "Unirme",
+    "cancel": "Cancelar",
+    "withBuddies": "Compañeros que van:",
+    "postsTitle": "Notas de la comunidad",
+    "postsBody": "Avisos, preguntas, consejos e invitaciones para cultivar juntos.",
+    "postGarden": "Jardín, si corresponde",
+    "anyGarden": "Todos los jardines",
+    "postLabel": "Tu nota",
+    "post": "Publicar",
+    "loginPost": "Entra para publicar",
+    "postsEmpty": "Todavía no hay notas públicas.",
+    "translate": "Traducir",
+    "buddiesTitle": "Compañeros de jardín",
+    "buddiesBody": "Un día de jardín es mejor con alguien más.",
+    "loginBuddies": "Entra para encontrar compañeros",
+    "buddiesEmpty": "Todavía no hay compañeros. Pide a alguien de abajo.",
+    "ask": "Pedir ser compañeros",
+    "openBuddies": "Abrir compañeros y notas"
   }
 }

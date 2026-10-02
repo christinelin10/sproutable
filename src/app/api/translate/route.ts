@@ -5,7 +5,7 @@ export async function GET(request: Request) {
   if (!text) return NextResponse.json({ error: "empty" }, { status: 400 });
   try {
     const response = await fetch(
-      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.slice(0, 450))}&langpair=en|es`,
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text.slice(0, 450))}&langpair=${new URL(request.url).searchParams.get("pair") === "es|en" ? "es|en" : "en|es"}`,
       { next: { revalidate: 0 } },
     );
     const data = await response.json();

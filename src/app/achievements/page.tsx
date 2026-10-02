@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { AchievementCard } from "@/components/achievement-card";
+import { GrowthTree } from "@/components/game/growth-tree";
 import { BadgeCard } from "@/components/game/badge-card";
 import { XpMeter } from "@/components/game/xp-meter";
 import { achievementCategories, achievementMilestones, participationTotals } from "@/lib/achievements";
@@ -30,6 +31,25 @@ export default async function AchievementsPage() {
       <Link href="/" className="font-semibold text-primary underline">{t("home")}</Link>
       <h1 className="mt-4 font-game text-4xl tracking-tight sm:text-6xl">{t("title")}</h1>
       <p className="mt-4 max-w-2xl text-xl text-muted">{t("body")}</p>
+      <div className="mt-6 rounded-3xl border border-line bg-card p-5">
+        <h2 className="font-game text-3xl text-[#3d2914]">{t("growthTitle")}</h2>
+        <p className="mt-2 max-w-xl text-muted">{t("growthBody")}</p>
+        <div className="mt-4">
+          <GrowthTree
+            level={stats?.level ?? 1}
+            you={stats ? t("you") : t("guestMark")}
+            start={t("start")}
+            labels={{
+              tree: t("stages.tree"),
+              youngTree: t("stages.youngTree"),
+              sapling: t("stages.sapling"),
+              plant: t("stages.plant"),
+              young: t("stages.young"),
+              sprout: t("stages.sprout"),
+            }}
+          />
+        </div>
+      </div>
       {stats ? (
         <div className="mt-6 max-w-md rounded-2xl border border-line bg-card p-4">
           <XpMeter

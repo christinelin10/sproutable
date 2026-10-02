@@ -67,6 +67,7 @@ export async function inviteBuddy(formData: FormData) {
     if (existing.status === "pending" && existing.from_user_id === otherId) existing.status = "accepted";
   });
   revalidatePath("/buddies");
+  revalidatePath("/community");
 }
 
 export async function respondBuddy(formData: FormData) {
@@ -82,6 +83,7 @@ export async function respondBuddy(formData: FormData) {
     else db.buddyLinks = db.buddyLinks.filter((item) => item.buddy_id !== buddyId);
   });
   revalidatePath("/buddies");
+  revalidatePath("/community");
 }
 
 export async function sendBuddyNote(formData: FormData) {
@@ -103,6 +105,7 @@ export async function sendBuddyNote(formData: FormData) {
     });
   });
   revalidatePath("/buddies");
+  revalidatePath("/community");
 }
 
 export async function awardBadge(formData: FormData) {

@@ -71,7 +71,20 @@
     },
     "nextTitle": "Keep growing with your community",
     "nextBody": "Open a garden page to check in when you visit. If you have access to a bed's journal, add your harvests and photos there. Progress reflects your current records across all time; editing or removing entries can change it.",
-    "findGarden": "Find a garden"
+    "findGarden": "Find a garden",
+    "growthTitle": "From sprout to tree",
+    "growthBody": "Real visits, volunteering, journal notes, and harvests move you up. There is no race with anyone else.",
+    "you": "You are here",
+    "guestMark": "Log in to grow",
+    "start": "Start",
+    "stages": {
+      "tree": "Large tree",
+      "youngTree": "Young tree",
+      "sapling": "Sapling",
+      "plant": "Growing plant",
+      "young": "Young sprout",
+      "sprout": "Tiny sprout"
+    }
   },
   "map": {
     "home": "Back to the welcome hub",
@@ -94,6 +107,8 @@
     "missingToken": "Add a Mapbox token as NEXT_PUBLIC_MAPBOX_TOKEN to load the interactive map. The garden list still works.",
     "listLabel": "Nearby community gardens",
     "mapLabel": "Interactive map",
+    "favorite": "Favorite",
+    "visited": "Visited",
     "openPin": "Open garden page"
   },
   "feedback": {
@@ -129,7 +144,9 @@
     "gardener": "My gardener",
     "buddies": "Garden buddies",
     "saved": "Saved",
-    "volunteer": "Volunteer"
+    "volunteer": "Volunteer",
+    "community": "Community",
+    "welcomeTour": "Welcome tour"
   },
   "home": {
     "eyebrow": "Community gardens",
@@ -588,7 +605,17 @@
     "errorTaken": "Someone already claimed that.",
     "missing": "Beechview is not in this copy of the garden data. Run npm run seed.",
     "photo": "Photo of {crop}",
-    "aerial": "Aerial photo of Beechview · © Mapbox © Maxar"
+    "aerial": "Aerial photo of Beechview · © Mapbox © Maxar",
+    "journalNow": "+ Journal entry",
+    "extraTitle": "Extra produce",
+    "extraBody": "Gardeners can mark food that is ready for a neighbor to pick up.",
+    "extraEmpty": "Nothing is marked for pickup right now.",
+    "pickup": "View the garden",
+    "whichGarden": "Garden",
+    "cropName": "Plant",
+    "pickupNote": "Pickup note",
+    "shareProduce": "Share this produce",
+    "loginShare": "Log in to share extra produce"
   },
   "eventBoard": {
     "eyebrow": "Around the garden",
@@ -841,5 +868,70 @@
     "help": "I'll volunteer",
     "helping": "You're volunteering",
     "garden": "Garden page"
+  },
+  "village": {
+    "caption": "Your village",
+    "move": "Tap a sign to enter, or walk there with the arrows. Real garden visits are what make this place grow.",
+    "enter": "Enter",
+    "visitor": "Visitor",
+    "tour": "New here? Take the short welcome.",
+    "loginLead": "A cozy way into Pittsburgh's community gardens.",
+    "map": "Map",
+    "mapHint": "Find a garden",
+    "community": "Community",
+    "communityHint": "Events and buddies",
+    "growing": "Growing",
+    "growingHint": "Plants and journal",
+    "achievements": "Growth",
+    "achievementsHint": "Your tree"
+  },
+  "welcome": {
+    "title": "Welcome to Sproutable",
+    "intro": "Sproutable helps you discover, visit, and take part in community gardens.",
+    "idea": "The more you show up in the real gardening community, the more your Sproutable progress grows.",
+    "communityTitle": "Community Board",
+    "communityBody": "Find events, volunteer days, posts, and gardening buddies.",
+    "growingTitle": "What's Growing",
+    "growingBody": "See plants, extra produce, and keep a garden journal.",
+    "mapTitle": "Map",
+    "mapBody": "Explore community gardens around Pittsburgh.",
+    "achievementsTitle": "Achievements",
+    "achievementsBody": "Watch your progress grow from a tiny sprout toward a tree.",
+    "buddiesTitle": "Gardening buddies",
+    "buddiesBody": "Visit with someone. Ask a neighbor to be a gardening buddy, then show up together.",
+    "next": "Next",
+    "start": "Start exploring",
+    "skip": "Skip tutorial"
+  },
+  "community": {
+    "eyebrow": "Community board",
+    "title": "What's happening",
+    "body": "Events, volunteer days, public notes, and the people you garden with.",
+    "chatNote": "For messages the day of a workday, many gardens still use the group chat they already have. This board is for plans, questions, and stories anyone can read.",
+    "calendar": "Month calendar",
+    "mineTitle": "Events you're going to",
+    "mineEmpty": "You have not joined a gathering yet. The quests below take one tap.",
+    "mineGuest": "Log in when you want to keep a list of events you joined.",
+    "questsTitle": "Community quests",
+    "questsHint": "Workdays, harvests, and gatherings. Joining is a yes, not a contest.",
+    "quest": "Community quest",
+    "join": "Join",
+    "cancel": "Cancel",
+    "withBuddies": "Gardening buddies going:",
+    "postsTitle": "Community posts",
+    "postsBody": "Updates, questions, tips, and invitations to garden together.",
+    "postGarden": "Garden, if it belongs to one",
+    "anyGarden": "All gardens",
+    "postLabel": "Your note",
+    "post": "Post",
+    "loginPost": "Log in to post",
+    "postsEmpty": "No public notes yet.",
+    "translate": "Translate",
+    "buddiesTitle": "Gardening buddies",
+    "buddiesBody": "A garden day is better with someone else.",
+    "loginBuddies": "Log in to find gardening buddies",
+    "buddiesEmpty": "No buddies yet. Ask someone below.",
+    "ask": "Ask to be buddies",
+    "openBuddies": "Open buddies and notes"
   }
 }

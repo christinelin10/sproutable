@@ -112,7 +112,7 @@ export async function signup(_prev: ActionState, formData: FormData): Promise<Ac
 
   await setSession(userId);
   await rememberLanguage(language);
-  redirect(accountType === "manager" ? "/dashboard?welcome=1" : "/gardens?welcome=1");
+  redirect("/welcome");
 }
 
 export async function login(_prev: ActionState, formData: FormData): Promise<ActionState> {
@@ -126,7 +126,14 @@ export async function login(_prev: ActionState, formData: FormData): Promise<Act
   await setSession(user.user_id);
   await rememberLanguage(user.language);
   const next = safeNext(formData.get("next"));
-  redirect(next || (user.account_type === "manager" ? "/dashboard" : "/gardens"));
+  const seen = (await cookies()).get("sproutable_seen_welcome")?.value === "1";
+  redirect(next || (seen ? "/" : "/welcome"));
+}
+
+export async function finishWelcome() {
+  const jar = await cookies();
+  jar.set("sproutable_seen_welcome", "1", { path: "/", maxAge: 60 * 60 * 24 * 365, sameSite: "lax" });
+  redirect("/");
 }
 
 export async function logout() {

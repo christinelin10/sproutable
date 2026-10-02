@@ -1,13 +1,35 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { MapExplorer } from "@/app/map/map-explorer";
+import { getCurrentUser } from "@/lib/auth";
+import { readDb } from "@/lib/data/store";
 import { HOME_BASE, NEARBY_GARDENS, milesBetween } from "@/lib/nearby-gardens";
 
 export default async function MapPage() {
   const t = await getTranslations("map");
+  const user = await getCurrentUser();
+  const db = await readDb();
+  const favoriteSlugs = new Set(
+    user
+      ? (db.gardenTies ?? [])
+          .filter((tie) => tie.user_id === user.user_id && tie.kind === "favorite")
+          .map((tie) => db.gardens.find((garden) => garden.garden_id === tie.garden_id)?.slug)
+          .filter((slug): slug is string => Boolean(slug))
+      : [],
+  );
+  const visitedSlugs = new Set(
+    user
+      ? db.visits
+          .filter((visit) => visit.user_id === user.user_id)
+          .map((visit) => db.gardens.find((garden) => garden.garden_id === visit.garden_id)?.slug)
+          .filter((slug): slug is string => Boolean(slug))
+      : [],
+  );
   const gardens = NEARBY_GARDENS.map((garden) => ({
     ...garden,
     miles: milesBetween(HOME_BASE.lat, HOME_BASE.lng, garden.lat, garden.lng),
+    favorite: Boolean(garden.slug && favoriteSlugs.has(garden.slug)),
+    visited: Boolean(garden.slug && visitedSlugs.has(garden.slug)),
   })).sort((a, b) => a.miles - b.miles);
 
   return (
@@ -42,6 +64,8 @@ export default async function MapPage() {
             missingToken: t("missingToken"),
             listLabel: t("listLabel"),
             mapLabel: t("mapLabel"),
+            favorite: t("favorite"),
+            visited: t("visited"),
           }}
         />
       </div>

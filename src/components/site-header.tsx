@@ -10,6 +10,7 @@ import type { Language } from "@/lib/types";
 
 export async function SiteHeader() {
   const t = await getTranslations("nav");
+  const journal = await getTranslations("journalHub");
   const locale = (await getLocale()) as Language;
   const user = await getCurrentUser();
   const db = user ? await readDb() : null;
@@ -42,6 +43,9 @@ export async function SiteHeader() {
           </NavLink>
         </nav>
         <div className="ml-auto flex items-center gap-2">
+          <Link href="/journal" className="game-btn inline-flex min-h-11 items-center bg-[#e3b23c] px-3 font-game text-lg text-[#3d2914]">
+            {journal("add")}
+          </Link>
           <LanguageSwitcher locale={locale} label={t("language")} />
           {user ? (
             <>

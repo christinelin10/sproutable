@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Pixelify_Sans, Source_Sans_3 } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages, getTranslations } from "next-intl/server";
-import { JournalDock } from "@/components/game/journal-dock";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
 
@@ -18,7 +17,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const locale = await getLocale();
   const messages = await getMessages();
   const t = await getTranslations("nav");
-  const journal = await getTranslations("journalHub");
 
   return (
     <html lang={locale} className={`${sans.variable} ${pixel.variable} h-full`}>
@@ -28,8 +26,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             {t("skip")}
           </a>
           <SiteHeader />
-          <main id="main" className="pb-20">{children}</main>
-          <JournalDock href="/journal" label={journal("add")} />
+          <main id="main">{children}</main>
         </NextIntlClientProvider>
       </body>
     </html>

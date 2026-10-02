@@ -5,6 +5,7 @@ import Link from "next/link";
 import { DateTime } from "luxon";
 import { useTranslations } from "next-intl";
 import { cancelOccurrence, rsvpToEvent } from "@/server/garden-actions";
+import { toggleSavedEvent } from "@/server/social-actions";
 import { Modal } from "@/components/modal";
 import { Button } from "@/components/button";
 
@@ -27,6 +28,7 @@ export type CalendarItem = {
   viewerName: string;
   viewerEmail: string;
   loggedIn: boolean;
+  saved?: boolean;
   slug?: string;
   gardenName?: string;
 };
@@ -227,6 +229,23 @@ export function CalendarView({
               <p className="whitespace-pre-wrap">{selected.description}</p>
               {selected.cancelled ? <p className="font-semibold">{t("cancelled")}</p> : null}
               {selected.mine ? <p className="font-semibold">{t("going")}</p> : null}
+              {selected.loggedIn ? (
+                <form
+                  action={async (data) => {
+                    await toggleSavedEvent(data);
+                    setSelected({ ...selected, saved: !selected.saved });
+                  }}
+                >
+                  <input type="hidden" name="event_id" value={selected.eventId} />
+                  <input type="hidden" name="date" value={selected.date} />
+                  <input type="hidden" name="next" value={returnTo || path} />
+                  <Button type="submit" variant="ghost">{selected.saved ? t("savedEvent") : t("saveEvent")}</Button>
+                </form>
+              ) : (
+                <Link className="inline-block font-semibold text-primary" href={`/login?next=${encodeURIComponent(returnTo || path)}`}>
+                  {t("saveEvent")}
+                </Link>
+              )}
               {selected.capacity ? (
                 <p>
                   {Math.max(selected.capacity - selected.going, 0)} {t("spots")}

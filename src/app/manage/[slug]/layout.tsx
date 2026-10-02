@@ -31,6 +31,7 @@ export default async function ManageLayout({ children, params }: { children: Rea
     ["/page-builder", t("manage.page")],
     ["/events", t("manage.events")],
     ["/members", `${t("manage.members")}${pending ? ` (${pending})` : ""}`],
+    ["/gardeners", t("manage.gardeners")],
     ["/beds", t("manage.beds")],
     ["/announcements", t("manage.announcements")],
     ["/impact", t("manage.impact")],

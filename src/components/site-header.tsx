@@ -32,6 +32,12 @@ export async function SiteHeader() {
           <NavLink href="/events" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
             {t("eventBoard")}
           </NavLink>
+          <NavLink href="/saved" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
+            {t("saved")}
+          </NavLink>
+          <NavLink href="/volunteer" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
+            {t("volunteer")}
+          </NavLink>
           <NavLink href="/growing" className="inline-flex min-h-11 items-center rounded-full px-3 font-semibold hover:bg-white aria-[current=page]:bg-white">
             {t("growing")}
           </NavLink>
@@ -62,6 +68,9 @@ export async function SiteHeader() {
                   {user.name.split(" ")[0]}
                 </summary>
                 <div className="absolute right-0 mt-2 w-48 rounded-2xl border border-line bg-card p-2 shadow-lg">
+                  <Link className="block rounded-xl px-3 py-2 hover:bg-background" href="/buddies">
+                    {t("buddies")}
+                  </Link>
                   <Link className="block rounded-xl px-3 py-2 hover:bg-background" href="/gardener">
                     {t("gardener")}
                   </Link>

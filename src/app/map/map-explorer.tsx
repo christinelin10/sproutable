@@ -29,6 +29,7 @@ export function MapExplorer({
     nearby: string;
     miles: string;
     openGarden: string;
+    openPin: string;
     notOnSproutable: string;
     missingToken: string;
     listLabel: string;
@@ -83,7 +84,7 @@ export function MapExplorer({
 
   return (
     <div className="grid gap-4 lg:grid-cols-[20rem_1fr] lg:items-start">
-      <section className="rounded-3xl border border-line bg-card p-4 lg:max-h-[72vh] lg:overflow-auto" aria-label={copy.listLabel}>
+      <section className="order-2 rounded-3xl border border-line bg-card p-4 lg:order-1 lg:max-h-[72vh] lg:overflow-auto" aria-label={copy.listLabel}>
         <h2 className="text-lg font-semibold">{copy.youAreHere}</h2>
         {status === "live" ? <p className="mt-1 text-sm text-muted">{copy.liveOn}</p> : null}
         {status === "waiting" ? <p className="mt-1 text-sm text-muted">{copy.liveWaiting}</p> : null}
@@ -131,7 +132,7 @@ export function MapExplorer({
           })}
         </ul>
       </section>
-      <section className="overflow-hidden rounded-3xl border border-line bg-card lg:h-[72vh]" aria-label={copy.mapLabel}>
+      <section className="order-1 h-[58vh] min-h-[300px] w-full overflow-hidden rounded-3xl border border-line bg-card lg:order-2 lg:h-[72vh]" aria-label={copy.mapLabel}>
         <GardenMap
           token={token}
           gardens={gardens}
@@ -142,6 +143,7 @@ export function MapExplorer({
           liveLabel={copy.youAreHere}
           focusLive={focusLive}
           missingToken={copy.missingToken}
+          openPin={copy.openPin}
         />
       </section>
     </div>

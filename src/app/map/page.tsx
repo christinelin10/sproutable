@@ -37,6 +37,7 @@ export default async function MapPage() {
             nearby: t("nearby"),
             miles: t("miles"),
             openGarden: t("openGarden"),
+            openPin: t("openPin"),
             notOnSproutable: t("notOnSproutable"),
             missingToken: t("missingToken"),
             listLabel: t("listLabel"),

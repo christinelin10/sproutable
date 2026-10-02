@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GardenCover } from "@/components/garden-cover";
+import { GardenTies } from "@/components/garden-ties";
 import { DateTime } from "luxon";
 import { getLocale, getTranslations } from "next-intl/server";
 import { getCurrentUser } from "@/lib/auth";
@@ -16,6 +17,7 @@ export default async function GardensPage({
 }) {
   const { q = "", welcome } = await searchParams;
   const t = await getTranslations("gardens");
+  const ties = await getTranslations("ties");
   const locale = (await getLocale()) as Language;
   const db = await readDb();
   const user = await getCurrentUser();
@@ -65,6 +67,23 @@ export default async function GardensPage({
                   </p>
                 </div>
               </Link>
+              <div className="mx-5 mb-5">
+                <GardenTies
+                  gardenId={garden.garden_id}
+                  next="/gardens"
+                  loggedIn={Boolean(user)}
+                  loginHref={`/login?next=/gardens`}
+                  favorite={(db.gardenTies ?? []).some((tie) => tie.user_id === user?.user_id && tie.garden_id === garden.garden_id && tie.kind === "favorite")}
+                  committed={(db.gardenTies ?? []).some((tie) => tie.user_id === user?.user_id && tie.garden_id === garden.garden_id && tie.kind === "gardener")}
+                  volunteering={(db.gardenTies ?? []).some((tie) => tie.user_id === user?.user_id && tie.garden_id === garden.garden_id && tie.kind === "volunteer")}
+                  favoriteLabel={ties("favorite")}
+                  favoritedLabel={ties("favorited")}
+                  commitLabel={ties("commit")}
+                  committedLabel={ties("committed")}
+                  volunteerLabel={ties("volunteer")}
+                  volunteeringLabel={ties("volunteering")}
+                />
+              </div>
               {user && managesGarden(db, user.user_id, garden.garden_id) ? (
                 <Link href={`/manage/${garden.slug}`} className="mx-5 mb-5 inline-flex min-h-11 items-center rounded-full bg-primary px-4 font-semibold text-primary-foreground">
                   {t("manage")}

@@ -77,6 +77,7 @@ export default async function EventsPage({
       viewerName: user?.name ?? "",
       viewerEmail: user?.email ?? "",
       loggedIn: Boolean(user),
+      saved: Boolean(user && (db.savedEvents ?? []).some((saved) => saved.user_id === user.user_id && saved.event_id === item.eventId && saved.occurrence_date === item.date)),
     };
   };
 

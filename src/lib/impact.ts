@@ -22,6 +22,18 @@ export function periodRange(key: PeriodKey, zone: string, customFrom?: string, c
   };
 }
 
+export function totalHarvestPounds(entries: { stage: string; harvest_amount?: number | null; harvest_unit?: string | null }[]) {
+  const pounds = entries.reduce((sum, entry) => {
+    if (entry.stage !== "harvest" || !entry.harvest_amount) return sum;
+    return sum + (entry.harvest_unit === "kg" ? entry.harvest_amount * 2.20462 : entry.harvest_amount);
+  }, 0);
+  return Math.round(pounds * 10) / 10;
+}
+
+export function countGardenVisits(visits: { garden_id: string; user_id: string }[], gardenId: string, userId?: string) {
+  return visits.filter((visit) => visit.garden_id === gardenId && (!userId || visit.user_id === userId)).length;
+}
+
 export function impactSummary(db: Database, gardenId: string, from: DateTime, to: DateTime) {
   const fromIso = from.toISO() ?? "";
   const toIso = to.toISO() ?? "";
@@ -38,10 +50,7 @@ export function impactSummary(db: Database, gardenId: string, from: DateTime, to
   const harvest = db.journalEntries.filter(
     (entry) => entry.garden_id === gardenId && entry.stage === "harvest" && entry.harvest_amount && inRange(entry.entry_date),
   );
-  const harvestLb = harvest.reduce((sum, entry) => {
-    const amount = entry.harvest_amount ?? 0;
-    return sum + (entry.harvest_unit === "kg" ? amount * 2.20462 : amount);
-  }, 0);
+  const harvestLb = totalHarvestPounds(harvest);
 
   const months: string[] = [];
   let cursor = from.startOf("month");

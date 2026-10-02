@@ -6,12 +6,14 @@ import { XpMeter } from "@/components/game/xp-meter";
 import { achievementCategories, achievementMilestones, participationTotals } from "@/lib/achievements";
 import { getCurrentUser } from "@/lib/auth";
 import { readDb } from "@/lib/data/store";
+import { managerAwardIds } from "@/lib/awards";
 import { badgeIds, badgeState, emptyBadges, progressFor } from "@/lib/progression";
 
 export default async function AchievementsPage() {
   const t = await getTranslations("achievements");
   const progress = await getTranslations("progress");
   const badges = await getTranslations("badges");
+  const awards = await getTranslations("awards");
   const user = await getCurrentUser();
   const db = await readDb();
   const totals = user ? participationTotals(db, user.user_id) : null;
@@ -48,6 +50,18 @@ export default async function AchievementsPage() {
             <BadgeCard name={badges(`${id}.name`)} detail={badges(`${id}.detail`)} earned={collected[id]} status={collected[id] ? badges("earned") : badges("locked")} />
           </li>
         ))}
+      </ul>
+      <h2 className="mt-8 font-game text-3xl">{awards("title")}</h2>
+      <p className="mt-2 max-w-2xl text-muted">{awards("body")}</p>
+      <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        {managerAwardIds.map((id) => {
+          const given = user ? (db.awardedBadges ?? []).filter((award) => award.user_id === user.user_id && award.badge_id === id) : [];
+          return (
+            <li key={id}>
+              <BadgeCard name={awards(`${id}.name`)} detail={given[0]?.note || awards(`${id}.detail`)} earned={given.length > 0} status={given.length > 0 ? awards("fromGarden") : awards("fromManager")} />
+            </li>
+          );
+        })}
       </ul>
       {totals ? (
         <>

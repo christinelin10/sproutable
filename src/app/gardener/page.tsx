@@ -87,6 +87,9 @@ export default async function GardenerPage() {
         ))}
       </ul>
 
+      <p className="mt-8">
+        <Link href="/buddies" className="game-btn inline-flex min-h-11 items-center bg-[#e3b23c] px-4 font-semibold text-[#3d2914]">{t("openBuddies")}</Link>
+      </p>
       <h2 className="mt-10 font-game text-3xl">{t("buddies")}</h2>
       <p className="mt-2 max-w-2xl text-muted">{t("buddiesBody")}</p>
       {buddies.length === 0 ? <p className="mt-4 text-muted">{t("buddiesEmpty")}</p> : null}

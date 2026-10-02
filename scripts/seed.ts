@@ -184,6 +184,12 @@ const db: Database = {
   itemDonations: [],
   moneyDonations: [],
   visits: [],
+  gardenTies: [],
+  buddyLinks: [],
+  buddyNotes: [],
+  awardedBadges: [],
+  savedEvents: [],
+  volunteerOffers: [],
   chatMessages: [],
   emails: [
     {

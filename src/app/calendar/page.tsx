@@ -61,6 +61,7 @@ export default async function CalendarPage({ searchParams }: { searchParams: Pro
         viewerName: user?.name ?? "",
         viewerEmail: user?.email ?? "",
         loggedIn: Boolean(user),
+        saved: Boolean(user && (db.savedEvents ?? []).some((saved) => saved.user_id === user.user_id && saved.event_id === item.eventId && saved.occurrence_date === item.date)),
         slug: garden.slug,
         gardenName: garden.name,
       };

@@ -76,7 +76,7 @@
   "map": {
     "home": "Back to the welcome hub",
     "title": "Map of Pittsburgh",
-    "body": "You are starting at Hamburg Hall for now. Nearby community gardens are marked. Later, visits on this map can count toward achievements.",
+    "body": "Community gardens across Pittsburgh. Turn on location to see which are near you. A pin opens the garden when Sproutable has a page for it.",
     "youAreHere": "You are here",
     "startingPoint": "Starting point",
     "liveStart": "Show my location",
@@ -93,7 +93,8 @@
     "notOnSproutable": "Listed on the map. A Sproutable page is not set up yet.",
     "missingToken": "Add a Mapbox token as NEXT_PUBLIC_MAPBOX_TOKEN to load the interactive map. The garden list still works.",
     "listLabel": "Nearby community gardens",
-    "mapLabel": "Interactive map"
+    "mapLabel": "Interactive map",
+    "openPin": "Open garden page"
   },
   "feedback": {
     "home": "Back to the welcome hub",
@@ -125,7 +126,10 @@
     "feedback": "Feedback",
     "achievements": "Achievements",
     "journal": "Journal",
-    "gardener": "My gardener"
+    "gardener": "My gardener",
+    "buddies": "Garden buddies",
+    "saved": "Saved",
+    "volunteer": "Volunteer"
   },
   "home": {
     "eyebrow": "Community gardens",
@@ -307,6 +311,8 @@
     "going": "You're going",
     "people": "Number of people",
     "volunteer": "I can help volunteer",
+    "saveEvent": "Save for later",
+    "savedEvent": "Saved",
     "rsvpNote": "Note (optional)",
     "confirm": "Confirm RSVP",
     "cancelRsvp": "Cancel RSVP",
@@ -518,7 +524,11 @@
     "overview": "Overview",
     "newEvent": "New event",
     "post": "Post announcement",
-    "review": "Review requests"
+    "review": "Review requests",
+    "gardeners": "Gardeners",
+    "visitTotal": "Garden visits",
+    "yieldTotal": "Crop yield",
+    "pounds": "{pounds} lb"
   },
   "common": {
     "save": "Save",
@@ -587,6 +597,8 @@
     "explore": "Explore events",
     "inbox": "My inbox · {count} unread",
     "signIn": "Sign in to join an event",
+    "savedLink": "Saved events",
+    "volunteerLink": "Volunteer",
     "garden": "Garden",
     "allGardens": "All gardens",
     "category": "Event type",
@@ -726,7 +738,8 @@
     "login": "Log in",
     "buddies": "In the garden with you",
     "buddiesBody": "Neighbors who have shown up in gardens you share, or who have been writing in the beds.",
-    "buddiesEmpty": "No garden buddies yet. A visit is a good way to meet them."
+    "buddiesEmpty": "No garden buddies yet. A visit is a good way to meet them.",
+    "openBuddies": "Garden buddies"
   },
   "plant": {
     "back": "Back to what's growing",
@@ -738,5 +751,95 @@
     "visit": "Visit the garden",
     "events": "See gatherings",
     "help": "Help with donations"
+  },
+  "ties": {
+    "favorite": "Favorite this garden",
+    "favorited": "Favorited",
+    "commit": "I'm a gardener here",
+    "committed": "Gardener here",
+    "volunteer": "I can volunteer",
+    "volunteering": "Volunteering here"
+  },
+  "buddiesPage": {
+    "title": "Garden buddies",
+    "body": "Ask someone you garden with, then leave a short note. This is a hello, not a scoreboard.",
+    "guest": "Log in to find garden buddies and send a note.",
+    "login": "Log in",
+    "back": "Back to my gardener",
+    "requests": "Asking to be buddies",
+    "noRequests": "No one is waiting on you.",
+    "accept": "Accept",
+    "decline": "Not now",
+    "yours": "Your buddies",
+    "noneYet": "No buddies yet. Invite someone below.",
+    "noteLabel": "Note",
+    "notePlaceholder": "A short note",
+    "send": "Send",
+    "invite": "People in your gardens",
+    "inviteBody": "These neighbors show up in gardens you have visited, joined, or favorited.",
+    "waiting": "Waiting on {names}",
+    "ask": "Ask to be buddies",
+    "someone": "Gardener"
+  },
+  "roster": {
+    "title": "Gardeners at this garden",
+    "body": "People who favorited this garden, said they garden here, joined, or checked in. You can publish an event or give a badge.",
+    "publish": "Publish an event",
+    "empty": "No gardeners are linked yet.",
+    "favorite": "Favorited",
+    "committed": "Committed as a gardener",
+    "approved": "Member",
+    "pending": "Asked to join",
+    "counts": "{visits, number} check-ins · {journals, number} notes · {harvests, number} harvests",
+    "visitTotal": "Garden visits",
+    "yieldTotal": "Crop yield",
+    "pounds": "{pounds} lb",
+    "here": "{visits, number} visits here · {pounds} lb harvested",
+    "volunteer": "Volunteer",
+    "award": "Badge",
+    "note": "Note",
+    "give": "Award badge"
+  },
+  "awards": {
+    "title": "From a garden steward",
+    "body": "A garden manager can give these. They sit beside the badges you earn yourself.",
+    "fromGarden": "Given",
+    "fromManager": "A steward can give this",
+    "bedKeeper": {
+      "name": "Bed Keeper",
+      "detail": "Looked after a bed with care."
+    },
+    "workdayStar": {
+      "name": "Workday Star",
+      "detail": "Showed up and helped on a workday."
+    },
+    "welcomeNeighbor": {
+      "name": "Welcome Neighbor",
+      "detail": "Helped someone feel at home in the garden."
+    },
+    "harvestHand": {
+      "name": "Harvest Hand",
+      "detail": "Helped bring a harvest in."
+    }
+  },
+  "savedPage": {
+    "title": "Saved events",
+    "body": "Gatherings you saved, and ones you already said you are going to.",
+    "signedOut": "Log in to see the events you saved or plan to attend.",
+    "signIn": "Log in",
+    "empty": "Nothing saved yet. Open an event and choose Save for later.",
+    "going": "You're going",
+    "interested": "Saved",
+    "open": "Open event",
+    "remove": "Remove"
+  },
+  "volunteerPage": {
+    "title": "Volunteer",
+    "body": "You do not need a garden bed to help. These workdays are open to visitors who want to lend a hand.",
+    "signIn": "Log in to offer your help",
+    "empty": "No public workdays are on the calendar right now.",
+    "help": "I'll volunteer",
+    "helping": "You're volunteering",
+    "garden": "Garden page"
   }
 }

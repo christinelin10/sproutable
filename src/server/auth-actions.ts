@@ -2,6 +2,7 @@
 
 import { randomUUID } from "crypto";
 import { cookies } from "next/headers";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { clearSession, getCurrentUser, hashPassword, setSession, verifyPassword } from "@/lib/auth";
@@ -142,6 +143,7 @@ export async function setLocale(locale: Language) {
       if (row) row.language = locale;
     });
   }
+  revalidatePath("/", "layout");
 }
 
 export async function updateProfile(_prev: ActionState, formData: FormData): Promise<ActionState> {

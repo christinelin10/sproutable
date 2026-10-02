@@ -2,6 +2,7 @@ import Link from "next/link";
 import { GardenCover } from "@/components/garden-cover";
 import { getLocale, getTranslations } from "next-intl/server";
 import { Markdown } from "@/components/markdown";
+import { GardenTies } from "@/components/garden-ties";
 import { JoinGarden } from "@/components/join-garden";
 import { CheckInButton } from "@/components/check-in";
 import { getCurrentUser } from "@/lib/auth";
@@ -22,6 +23,7 @@ export default async function GardenHome({ params }: { params: Promise<{ slug: s
   const user = await getCurrentUser();
   const locale = (await getLocale()) as Language;
   const t = await getTranslations("garden");
+  const ties = await getTranslations("ties");
   const manager = user ? managesGarden(db, user.user_id, garden.garden_id) : false;
   const membership = user ? membershipFor(db, user.user_id, garden.garden_id) : null;
   const modules = db.homeModules
@@ -55,6 +57,23 @@ export default async function GardenHome({ params }: { params: Promise<{ slug: s
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-8">
+      <div className="mb-6">
+        <GardenTies
+          gardenId={garden.garden_id}
+          next={`/gardens/${slug}`}
+          loggedIn={Boolean(user)}
+          loginHref={`/login?next=/gardens/${slug}`}
+          favorite={Boolean(user && (db.gardenTies ?? []).some((tie) => tie.user_id === user.user_id && tie.garden_id === garden.garden_id && tie.kind === "favorite"))}
+          committed={Boolean(user && (db.gardenTies ?? []).some((tie) => tie.user_id === user.user_id && tie.garden_id === garden.garden_id && tie.kind === "gardener"))}
+          volunteering={Boolean(user && (db.gardenTies ?? []).some((tie) => tie.user_id === user.user_id && tie.garden_id === garden.garden_id && tie.kind === "volunteer"))}
+          favoriteLabel={ties("favorite")}
+          favoritedLabel={ties("favorited")}
+          commitLabel={ties("commit")}
+          committedLabel={ties("committed")}
+          volunteerLabel={ties("volunteer")}
+          volunteeringLabel={ties("volunteering")}
+        />
+      </div>
       {manager ? (
         <Link href={`/manage/${slug}/page-builder`} className="mb-4 inline-flex rounded-full bg-primary px-4 py-2 font-semibold text-primary-foreground">
           {t("edit")}

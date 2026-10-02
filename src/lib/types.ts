@@ -229,6 +229,59 @@ export interface Visit {
   source: "checkin" | "rsvp";
 }
 
+export type GardenTieKind = "favorite" | "gardener" | "volunteer";
+
+export interface GardenTie {
+  tie_id: string;
+  garden_id: string;
+  user_id: string;
+  kind: GardenTieKind;
+  created_at: string;
+}
+
+export interface BuddyLink {
+  buddy_id: string;
+  from_user_id: string;
+  to_user_id: string;
+  status: "pending" | "accepted";
+  created_at: string;
+}
+
+export interface BuddyNote {
+  note_id: string;
+  from_user_id: string;
+  to_user_id: string;
+  body: string;
+  created_at: string;
+}
+
+export interface SavedEvent {
+  save_id: string;
+  user_id: string;
+  event_id: string;
+  occurrence_date: string;
+  created_at: string;
+}
+
+export interface VolunteerOffer {
+  offer_id: string;
+  garden_id: string;
+  event_id: string;
+  occurrence_date: string;
+  user_id: string;
+  created_at: string;
+}
+
+export interface AwardedBadge {
+  award_id: string;
+  garden_id: string;
+  user_id: string;
+  badge_id: string;
+  note: string;
+  awarded_by: string;
+  created_at: string;
+}
+
 export interface ChatMessage {
   message_id: string;
   garden_id: string;
@@ -265,6 +318,12 @@ export interface Database {
   itemDonations: ItemDonation[];
   moneyDonations: MoneyDonation[];
   visits: Visit[];
+  gardenTies: GardenTie[];
+  buddyLinks: BuddyLink[];
+  buddyNotes: BuddyNote[];
+  awardedBadges: AwardedBadge[];
+  savedEvents: SavedEvent[];
+  volunteerOffers: VolunteerOffer[];
   chatMessages: ChatMessage[];
   chatBans: ChatBan[];
   emails: MockEmail[];
@@ -288,6 +347,12 @@ export function emptyDatabase(): Database {
     itemDonations: [],
     moneyDonations: [],
     visits: [],
+    gardenTies: [],
+    buddyLinks: [],
+    buddyNotes: [],
+    awardedBadges: [],
+    savedEvents: [],
+    volunteerOffers: [],
     chatMessages: [],
     chatBans: [],
     emails: [],

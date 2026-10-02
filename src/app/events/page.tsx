@@ -73,6 +73,7 @@ export default async function EventsPage({ searchParams }: {
         viewerName: user?.name ?? "",
         viewerEmail: user?.email ?? "",
         loggedIn: Boolean(user),
+        saved: Boolean(user && (db.savedEvents ?? []).some((saved) => saved.user_id === user.user_id && saved.event_id === item.eventId && saved.occurrence_date === item.date)),
         slug: garden.slug,
         gardenName: garden.name,
       };
@@ -105,6 +106,8 @@ export default async function EventsPage({ searchParams }: {
           <Link href={user ? "/inbox" : "/login?next=%2Fevents"} className="rounded-full border border-white/50 px-5 py-3 font-semibold">
             {user ? t("inbox", { count: unread }) : t("signIn")}
           </Link>
+          <Link href="/saved" className="rounded-full border border-white/50 px-5 py-3 font-semibold">{t("savedLink")}</Link>
+          <Link href="/volunteer" className="rounded-full border border-white/50 px-5 py-3 font-semibold">{t("volunteerLink")}</Link>
         </div>
       </header>
       <section className="mt-6" aria-labelledby="community-quests">

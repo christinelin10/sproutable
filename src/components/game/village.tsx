@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { GardenerSprite } from "@/components/game/gardener-sprite";
+import { PlaceMark, VillageGround } from "@/components/game/village-art";
 
 export type VillagePlace = {
   id: "community" | "growing" | "map" | "achievements";
@@ -45,11 +46,11 @@ export function Village({
 }) {
   const router = useRouter();
   const scene = useRef<HTMLDivElement>(null);
-  const pos = useRef({ x: 48, y: 52 });
+  const pos = useRef({ x: 48, y: 58 });
   const goal = useRef<{ x: number; y: number } | null>(null);
   const held = useRef({ x: 0, y: 0 });
   const nearRef = useRef<string | null>(null);
-  const [at, setAt] = useState({ x: 48, y: 52 });
+  const [at, setAt] = useState({ x: 48, y: 58 });
   const [near, setNear] = useState<string | null>(null);
 
   useEffect(() => {
@@ -93,8 +94,8 @@ export function Village({
           y += (dy / dist) * step;
         }
       }
-      x = clamp(x, 8, 88);
-      y = clamp(y, 16, 78);
+      x = clamp(x, 10, 90);
+      y = clamp(y, 12, 88);
       if (Math.abs(pos.current.x - x) > 0.05 || Math.abs(pos.current.y - y) > 0.05) {
         pos.current = { x, y };
         setAt({ x, y });
@@ -122,8 +123,8 @@ export function Village({
     const rect = scene.current?.getBoundingClientRect();
     if (!rect) return;
     goal.current = {
-      x: clamp(((event.clientX - rect.left) / rect.width) * 100, 8, 88),
-      y: clamp(((event.clientY - rect.top) / rect.height) * 100, 16, 78),
+      x: clamp(((event.clientX - rect.left) / rect.width) * 100, 10, 90),
+      y: clamp(((event.clientY - rect.top) / rect.height) * 100, 12, 88),
     };
   }
 
@@ -139,35 +140,29 @@ export function Village({
       <div
         ref={scene}
         onPointerDown={walkTo}
-        className="relative mt-3 h-[calc(100dvh-11rem)] min-h-[28rem] overflow-hidden rounded-[1.25rem] border-4 border-[#3d2914] shadow-[6px_6px_0_#3d2914]"
-        style={{
-          background:
-            "linear-gradient(#8ec8ef 0 28%, #b7e0a8 28% 100%)",
-        }}
+        className="relative mt-3 aspect-[5/4] min-h-[26rem] w-full overflow-hidden rounded-[1.25rem] border-4 border-[#5c4632] shadow-[6px_6px_0_#5c4632] sm:aspect-[16/10] sm:min-h-[32rem]"
       >
-        <div className="absolute left-[18%] top-[34%] h-[46%] w-[64%] rounded-full bg-[#c4a574]/80" />
-        <div className="absolute left-[8%] right-[8%] top-1/2 h-8 -translate-y-1/2 bg-[#d7c4a3]" />
-        <div className="absolute bottom-[18%] left-1/2 top-[22%] w-8 -translate-x-1/2 bg-[#d7c4a3]" />
-        <Tree className="absolute left-[6%] top-[8%] h-16 w-16" />
-        <Tree className="absolute right-[8%] top-[10%] h-14 w-14" />
-        <Flower className="absolute bottom-[10%] left-[14%]" />
-        <Flower className="absolute bottom-[12%] right-[18%]" />
-        <Flower className="absolute left-[30%] top-[22%]" />
+        <VillageGround />
+        <DecorTree className="absolute left-[4%] top-[18%] h-16 w-14" />
+        <DecorTree className="absolute right-[3%] top-[48%] h-20 w-16" />
+        <DecorTree className="absolute bottom-[6%] left-[8%] h-14 w-12" />
         {places.map((place) => (
           <a
             key={place.id}
             href={place.href}
-            className={`absolute z-10 flex w-28 -translate-x-1/2 -translate-y-1/2 flex-col items-center rounded-2xl border-[3px] bg-[#fffdf8]/95 p-2 text-center shadow-[3px_3px_0_#3d2914] sm:w-36 ${near === place.id ? "border-[#e3b23c]" : "border-[#3d2914]"}`}
+            aria-label={`${place.label}. ${place.hint}`}
+            className="absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center"
             style={{ left: `${place.x}%`, top: `${place.y}%` }}
           >
-            <PlaceArt id={place.id} />
-            <span className="font-game text-lg leading-none text-[#3d2914] sm:text-xl">{place.label}</span>
-            <span className="mt-1 hidden text-xs text-muted sm:block">{place.hint}</span>
-            {near === place.id ? <span className="mt-1 text-xs font-semibold text-primary">{enterLabel}</span> : null}
+            <PlaceMark id={place.id} hot={near === place.id} />
+            <span className={`-mt-1 border-2 border-[#6b3f22] bg-[#f4e7c5] px-2 font-game text-sm leading-tight text-[#3d2914] shadow-[2px_2px_0_#6b3f22] sm:text-base ${near === place.id ? "bg-[#e3b23c]" : ""}`}>
+              {place.label}
+            </span>
+            {near === place.id ? <span className="mt-1 bg-[#fffdf8]/90 px-1 text-xs font-semibold text-primary">{enterLabel}</span> : null}
           </a>
         ))}
-        <Neighbor className="absolute left-[22%] top-[62%]" label="Ana" shirt="#3d6f8f" />
-        <Neighbor className="absolute right-[20%] top-[24%]" label="Luis" shirt="#8f3b1c" />
+        <Neighbor className="absolute left-[34%] top-[64%] z-[5]" label="Ana" shirt="#3d6f8f" />
+        <Neighbor className="absolute left-[58%] top-[26%] z-[5]" label="Luis" shirt="#8f3b1c" />
         <div className="absolute z-20 -translate-x-1/2 -translate-y-1/2 text-center" style={{ left: `${at.x}%`, top: `${at.y}%` }}>
           <GardenerSprite className="mx-auto h-16 w-16 drop-shadow" shirt={shirtFor(name)} />
           <span className="mt-0.5 inline-block rounded-full bg-[#fffdf8]/90 px-2 font-game text-sm text-[#3d2914]">{name}</span>
@@ -220,62 +215,13 @@ function Neighbor({ className, label, shirt }: { className: string; label: strin
   );
 }
 
-function Tree({ className }: { className: string }) {
+function DecorTree({ className }: { className: string }) {
   return (
-    <svg viewBox="0 0 16 16" className={className} aria-hidden="true" shapeRendering="crispEdges">
-      <rect x="7" y="10" width="2" height="5" fill="#6b3f22" />
-      <rect x="4" y="6" width="8" height="5" fill="#2f6b45" />
-      <rect x="5" y="3" width="6" height="4" fill="#3f8f55" />
-    </svg>
-  );
-}
-
-function Flower({ className }: { className: string }) {
-  return (
-    <svg viewBox="0 0 8 8" className={`${className} h-6 w-6`} aria-hidden="true" shapeRendering="crispEdges">
-      <rect x="3" y="3" width="2" height="5" fill="#2f6b45" />
-      <rect x="2" y="1" width="4" height="3" fill="#e07a2f" />
-    </svg>
-  );
-}
-
-function PlaceArt({ id }: { id: VillagePlace["id"] }) {
-  if (id === "community") {
-    return (
-      <svg viewBox="0 0 16 12" className="h-10 w-14" aria-hidden="true" shapeRendering="crispEdges">
-        <rect x="1" y="2" width="14" height="9" fill="#8a5a32" />
-        <rect x="2" y="3" width="5" height="4" fill="#f4e7c5" />
-        <rect x="8" y="3" width="6" height="3" fill="#fffdf8" />
-        <rect x="8" y="7" width="5" height="3" fill="#d7eccf" />
-      </svg>
-    );
-  }
-  if (id === "growing") {
-    return (
-      <svg viewBox="0 0 16 12" className="h-10 w-14" aria-hidden="true" shapeRendering="crispEdges">
-        <rect x="1" y="4" width="14" height="7" fill="#6b3f22" />
-        <rect x="2" y="5" width="5" height="5" fill="#3f8f55" />
-        <rect x="9" y="5" width="5" height="5" fill="#7dbe6a" />
-        <rect x="4" y="1" width="3" height="4" fill="#d84b3a" />
-        <rect x="10" y="2" width="3" height="3" fill="#e3b23c" />
-      </svg>
-    );
-  }
-  if (id === "map") {
-    return (
-      <svg viewBox="0 0 16 12" className="h-10 w-14" aria-hidden="true" shapeRendering="crispEdges">
-        <rect x="7" y="3" width="2" height="8" fill="#6b3f22" />
-        <rect x="2" y="2" width="8" height="5" fill="#f4e7c5" />
-        <rect x="3" y="4" width="5" height="1" fill="#215c45" />
-      </svg>
-    );
-  }
-  return (
-    <svg viewBox="0 0 16 14" className="h-10 w-12" aria-hidden="true" shapeRendering="crispEdges">
-      <rect x="7" y="8" width="2" height="5" fill="#6b3f22" />
-      <rect x="3" y="5" width="10" height="4" fill="#2f6b45" />
-      <rect x="4" y="2" width="8" height="4" fill="#3f8f55" />
-      <rect x="6" y="0" width="4" height="3" fill="#8fce73" />
+    <svg viewBox="0 0 16 20" className={className} aria-hidden="true" shapeRendering="crispEdges">
+      <rect x="7" y="12" width="2" height="8" fill="#6b3f22" />
+      <rect x="3" y="8" width="10" height="6" fill="#2f6b45" />
+      <rect x="4" y="4" width="8" height="6" fill="#3f8f55" />
+      <rect x="6" y="1" width="4" height="4" fill="#8fce73" />
     </svg>
   );
 }
